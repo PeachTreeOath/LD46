@@ -7,6 +7,7 @@ public class ResourceLoader : Singleton<ResourceLoader>
 {
 
     [HideInInspector] public GameObject testLandmarkPrefab;
+    [HideInInspector] public GameObject customerPrefab;
 
     protected override void Awake()
     {
@@ -17,5 +18,6 @@ public class ResourceLoader : Singleton<ResourceLoader>
     private void LoadResources()
     {
         testLandmarkPrefab = Resources.Load<GameObject>("Prefabs/testLandmark");
+        customerPrefab = Resources.Load<GameObject>("Prefabs/customer");
     }
 }

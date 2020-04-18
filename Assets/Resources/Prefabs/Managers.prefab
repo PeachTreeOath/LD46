@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testLandmarkPrefab: {fileID: 0}
+  customerPrefab: {fileID: 0}
 --- !u!114 &7216740713649722169
 MonoBehaviour:
   m_ObjectHideFlags: 0
