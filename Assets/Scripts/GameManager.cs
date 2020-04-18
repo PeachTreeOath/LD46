@@ -10,15 +10,18 @@ public class GameManager : Singleton<GameManager>
     public float moveSpeed = 5f; // This moves all stationary objects. The cars themselves are still.
     public float landmarkSpawnTime;
 
-    public int startingLevel = 0;
+    public int startingLevel = 1;
     private int currentLevel;
-    public List<ScriptableObject> vehiclePrefabs;
-    public int[] orderCountPerLevel;
-    public int[] maxSpawnPerLevel;
-    public float[] timeBetweenSpawnPerLevel;
-    public Dictionary<int,int[]> vehiclesThatCanSpawnPerLevel = new Dictionary<int, int[]>();
-    private float t;
 
+    private float t;
+    private LevelData level;
+
+    private float spawnCD;
+    private int maxCarOnScreen;
+    private int nOrdersToFill;
+    private List<GameObject> possibleCars;
+  
+  
 
     //public float startingFuelAmount;s
     //public float fuelDecay;
@@ -29,51 +32,58 @@ public class GameManager : Singleton<GameManager>
     private float landmarkSpawnTimeElapsed;
     private List<GameObject> stationaryObjects = new List<GameObject>();
     private int aliveOrders;
+    private int filledOrders;
 
     private const float maxDistance = 5f;
 
     // Start is called before the first frame update
     void Start()
     {
+        t = 0;
+        if(startingLevel <= 0) 
+        {
+            startingLevel = 1; 
+        };
         currentLevel = startingLevel;
-        vehiclesThatCanSpawnPerLevel.Add(0, new int[] { 1 });
-        vehiclesThatCanSpawnPerLevel.Add(1, new int[] { 1, 2 });
-        vehiclesThatCanSpawnPerLevel.Add(2, new int[] { 1, 2, 3 });
-        vehiclesThatCanSpawnPerLevel.Add(3, new int[] { 1, 2, 3 });
-        vehiclesThatCanSpawnPerLevel.Add(4, new int[] { 1, 2, 3, 4 });
-        vehiclesThatCanSpawnPerLevel.Add(5, new int[] { 1, 2, 3, 4, 5 });
+        SyncNewLevelData(currentLevel);
+    }
+
+    private void SyncNewLevelData(int nextLevel)
+    {
+        level = ResourceLoader.instance.GetLevel(nextLevel);
+
+        spawnCD = level.spawnRateInSeconds;
+        maxCarOnScreen = level.maxCarsOnScreen;
+        nOrdersToFill = level.nOrdersToFill;
+        possibleCars = level.possibleCars;
+        Debug.Log("NEW LEVEL DATA SYNC'D");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(vehiclePrefabs.Count !=0)
+        if(spawnCD < t)
         {
-            // Spawn logic
-            if (timeBetweenSpawnPerLevel[currentLevel] > t)
+            Debug.Log("CAN SPAWN");
+            if (nOrdersToFill > filledOrders)
             {
-                if (maxSpawnPerLevel[currentLevel] < aliveOrders)
+                Debug.Log("CAN ADD NEW ORDER");
+                if (maxCarOnScreen > aliveOrders)
                 {
-                    //We can spawn something for the level.
-                    var tIntArray = vehiclesThatCanSpawnPerLevel[currentLevel];
-                    var r = Random.Range(0, tIntArray.Length);
-                    var prefabToSpawn = vehiclePrefabs[r];
+                    Debug.Log("SPAWNING PREFAB");
+                    var prefabToSpawn = possibleCars[Random.Range(0, possibleCars.Count)];
                     SpawnCustomer(prefabToSpawn);
-                    aliveOrders++;
-                    t = 0f;
-                }
-                else
-                {
-                    t += Time.deltaTime;
+                    t = 0;
                 }
             }
-        
+            
         }
         else
         {
-            GameObject customerObj = Instantiate(ResourceLoader.instance.customerPrefab);
+            t += Time.deltaTime;
         }
-
+        
+            
 
 
         /*// Move all stationary objects
@@ -108,18 +118,14 @@ public class GameManager : Singleton<GameManager>
         stationaryObjects.Add(landmarkObj);
     }
 
-    private void SpawnCustomer(ScriptableObject newCustomer)
+    private void SpawnCustomer(GameObject newCustomer)
     {
+        //List<GameObject> possibleCars = ResourceLoader.instance.GetLevel(1).possibleCars;
+        //GameObject carPrefab = possibleCars[UnityEngine.Random.Range(0, possibleCars.Count)];
 
-        //GameObject customerObj = Instantiate(ResourceLoader.instance.customerPrefab);
-        //GameObject customerObj = Instantiate(newCustomer);
-        //Put Object At position.
 
-        List<GameObject> possibleCars = ResourceLoader.instance.GetLevel(1).possibleCars;
         if (possibleCars.Count == 0) Debug.LogError("You forgot to assign cars to the level scriptable object");
-        GameObject carPrefab = possibleCars[UnityEngine.Random.Range(0, possibleCars.Count)];
-
-        GameObject customerObj = Instantiate(carPrefab);
+        GameObject customerObj = Instantiate(newCustomer);
         customerObj.transform.position = new Vector3(UnityEngine.Random.Range(-10f, 10f), 0.5f, -200);
         CustomerController customer = customerObj.GetComponent<CustomerController>();
         // TODO: Spawn these in intelligent quadrants
@@ -127,5 +133,6 @@ public class GameManager : Singleton<GameManager>
         customer.SetTargetPosition(targetPosition);
         //Get it's Customer Component and add it to the list.
         customers.Add(customer);
+        Debug.Log("NEW CUSTOMER SPAWNED");
     }
 }
