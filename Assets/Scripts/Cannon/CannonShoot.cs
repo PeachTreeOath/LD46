@@ -44,17 +44,18 @@ public class CannonShoot : Singleton<CannonShoot>
             }
             break;
          case BulletType.LOB:
-            //if (Input.GetButton("Fire1"))
-            //{
-            //   Debug.Log("Pressing down");
-            //   InvokeRepeating("IncreaseLobBulletForce", 0.3f, Time.deltaTime);
-            //}
+            if (Input.GetButton("Fire1"))
+            {
+               Debug.Log("Pressing down");
+               InvokeRepeating("IncreaseLobBulletForce", 0.3f, Time.deltaTime);
+            }
 
-            //if (Input.GetButtonUp("Fire1"))
-            //{
-            //   CancelInvoke();
-            //   bulletShootForce = lobBulletForce;
-            //}
+            if (Input.GetButtonUp("Fire1"))
+            {
+               CancelInvoke();
+               bulletShootForce = lobBulletForce;
+               Shoot();
+            }
             break;
       }
 
@@ -92,6 +93,7 @@ public class CannonShoot : Singleton<CannonShoot>
       bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletShootForce, ForceMode.Impulse);
 
       shootRate = shootingCooldown;
+      lobBulletForce = 0.0f;
    }
 
    private void BulletSelectionForward()
@@ -129,7 +131,7 @@ public class CannonShoot : Singleton<CannonShoot>
 
    private void IncreaseLobBulletForce()
    {
-      lobBulletForce += 0.1f;
+      lobBulletForce += 0.001f;
    }
 
    private void ChangeIsCursorVisible()
