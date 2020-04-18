@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    // Inspector set
+    public FoodType foodType;
+
     // Start is called before the first frame update
     void Start()
     {

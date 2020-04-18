@@ -10,4 +10,5 @@ public class LevelData : ScriptableObject
     public int maxCarsOnScreen;
     public int nOrdersToFill;
     public List<GameObject> possibleCars;
+    public List<GameObject> possibleFoods;
 }

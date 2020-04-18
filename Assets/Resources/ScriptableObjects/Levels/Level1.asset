@@ -19,3 +19,6 @@ MonoBehaviour:
   possibleCars:
   - {fileID: 2317140412773303417, guid: 86afc9a983548694b887b0220c259912, type: 3}
   - {fileID: 2317140412773303417, guid: 0107257b37d41e645b5669e82ebd44a8, type: 3}
+  possibleFoods:
+  - {fileID: 9065365568881466584, guid: 117a903c990cf50479f5bd53dc162823, type: 3}
+  - {fileID: 9065365568881466584, guid: 73bb71ad62004bd4b8a0091d00329ae1, type: 3}

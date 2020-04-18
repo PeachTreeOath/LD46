@@ -57,6 +57,7 @@ public class GameManager : Singleton<GameManager>
         nOrdersToFill = level.nOrdersToFill;
         possibleCars = level.possibleCars;
         Debug.Log("NEW LEVEL DATA SYNC'D");
+        CannonShoot.instance.InitAmmo(ResourceLoader.instance.GetLevel(1).possibleFoods);
     }
 
     // Update is called once per frame
