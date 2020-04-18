@@ -3,15 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     // Inspector set
+    public float moveSpeed = 5f; // This moves all stationary objects. The cars themselves are still.
     public float landmarkSpawnTime;
 
     private float landmarkSpawnTimeElapsed;
     private List<GameObject> stationaryObjects = new List<GameObject>();
-
-    private const float moveSpeed = 5; // This moves all stationary objects. The cars themselves are still.
 
     // Start is called before the first frame update
     void Start()
