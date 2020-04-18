@@ -26,6 +26,15 @@ public class CustomerController : MonoBehaviour
             Vector3 newPosition = Vector3.MoveTowards(transform.position, targetPosition, speed * speedMod * Time.deltaTime);
             rigidBody.MovePosition(newPosition);
         }
+        else
+        {
+            // Remove car when out of play
+            if (transform.position.z > TrackManager.instance.cutoffPoint / 2)
+            {
+                Destroy(gameObject);
+                // TODO: Possibly play an additional explosion here 
+            }
+        }
     }
 
     public void SetTargetPosition(Vector3 position)

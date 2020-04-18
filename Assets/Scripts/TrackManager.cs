@@ -2,18 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrackManager : MonoBehaviour
+public class TrackManager : Singleton<TrackManager>
 {
     // Inspector set
     public List<GameObject> trackSegments;
     public float trackSegmentLength;
 
-    private float totalTrackLength;
-    private float cutoffPoint;
+    [HideInInspector] public float totalTrackLength;
+    [HideInInspector] public float cutoffPoint; // The distance when a tile needs to loop back to itself
     private Vector3 resetDelta;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         totalTrackLength = trackSegmentLength * trackSegments.Count;
         cutoffPoint = totalTrackLength / 2f;
         resetDelta = new Vector3(0, 0, totalTrackLength);
