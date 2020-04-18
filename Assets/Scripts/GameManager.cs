@@ -110,9 +110,16 @@ public class GameManager : Singleton<GameManager>
 
     private void SpawnCustomer(ScriptableObject newCustomer)
     {
+
         //GameObject customerObj = Instantiate(ResourceLoader.instance.customerPrefab);
         //GameObject customerObj = Instantiate(newCustomer);
         //Put Object At position.
+
+        List<GameObject> possibleCars = ResourceLoader.instance.GetLevel(1).possibleCars;
+        if (possibleCars.Count == 0) Debug.LogError("You forgot to assign cars to the level scriptable object");
+        GameObject carPrefab = possibleCars[UnityEngine.Random.Range(0, possibleCars.Count)];
+
+        GameObject customerObj = Instantiate(carPrefab);
         customerObj.transform.position = new Vector3(UnityEngine.Random.Range(-10f, 10f), 0.5f, -200);
         CustomerController customer = customerObj.GetComponent<CustomerController>();
         // TODO: Spawn these in intelligent quadrants
