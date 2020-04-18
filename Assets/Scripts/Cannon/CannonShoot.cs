@@ -68,7 +68,7 @@ public class CannonShoot : MonoBehaviour
          Debug.Log("Selected bullet number (forward) = " + selectedBulletIndex);
       }
 
-      selectedBulletPrefab = bulletPrefabs[selectedBulletIndex];
+      AssignSelectedBullet(selectedBulletIndex);
    }
 
    private void BulletSelectionBackward()
@@ -84,6 +84,11 @@ public class CannonShoot : MonoBehaviour
          Debug.Log("Selected bullet number (backward) = " + selectedBulletIndex);
       }
 
-      selectedBulletPrefab = bulletPrefabs[selectedBulletIndex];
+      AssignSelectedBullet(selectedBulletIndex);
+   }
+
+   private void AssignSelectedBullet(int bulletIndex)
+   {
+      selectedBulletPrefab = bulletPrefabs[bulletIndex];
    }
 }
