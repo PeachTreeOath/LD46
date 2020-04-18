@@ -12,6 +12,7 @@ public class CameraLogic : MonoBehaviour
    // Start is called before the first frame update
    void Start()
    {
+
       virtualCamera = GetComponent<Cinemachine.CinemachineVirtualCameraBase>();
    }
 
