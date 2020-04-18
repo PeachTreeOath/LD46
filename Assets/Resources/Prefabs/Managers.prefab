@@ -61,6 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 50
   landmarkSpawnTime: 2
+  customers: []
 --- !u!114 &937687348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,4 +80,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  trackSegmentLength: 100
+  trackSegmentLength: 200

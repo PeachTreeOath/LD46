@@ -9,15 +9,17 @@ public class GameManager : Singleton<GameManager>
     public float moveSpeed = 5f; // This moves all stationary objects. The cars themselves are still.
     public float landmarkSpawnTime;
 
+    [HideInInspector] public List<CustomerController> customers = new List<CustomerController>();
+
     private float landmarkSpawnTimeElapsed;
     private List<GameObject> stationaryObjects = new List<GameObject>();
 
-    private const float maxDistance = 15f;
+    private const float maxDistance = 5f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -54,7 +56,8 @@ public class GameManager : Singleton<GameManager>
         customerObj.transform.position = new Vector3(UnityEngine.Random.Range(-10f, 10f), 0.5f, -200);
         CustomerController customer = customerObj.GetComponent<CustomerController>();
         // TODO: Spawn these in intelligent quadrants
-        Vector3 targetPosition = new Vector3(UnityEngine.Random.Range(-20f, 20f), 0, UnityEngine.Random.Range(-15, 15f));
+        Vector3 targetPosition = new Vector3(UnityEngine.Random.Range(-maxDistance, maxDistance), 0, UnityEngine.Random.Range(-maxDistance, maxDistance));
         customer.SetTargetPosition(targetPosition);
+        customers.Add(customer);
     }
 }
