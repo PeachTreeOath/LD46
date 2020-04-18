@@ -20,6 +20,7 @@ public class CustomerController : MonoBehaviour
     {
         Vector3 newPosition = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
         rigidBody.MovePosition(newPosition);
+
     }
 
     public void SetTargetPosition(Vector3 position)
@@ -30,6 +31,24 @@ public class CustomerController : MonoBehaviour
     // TODO: Change this to respect physics somewhat
     public void DestroyVehicle()
     {
+        rigidBody.freezeRotation = false;
+        rigidBody.useGravity = true;
+        rigidBody.AddExplosionForce(3000, transform.position + new Vector3(1, -10, 1), 100);
+    }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag.Equals("Bullet"))
+        {
+            DestroyVehicle();
+        }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag.Equals("Ground"))
+        {
+            // TODO: Friction
+        }
     }
 }
