@@ -52,6 +52,14 @@ public class CustomerController : MonoBehaviour
         isDead = true;
     }
 
+    public void FulfillOrder(FoodType type)
+    {
+        GameManager.instance.OrderFilled();
+
+        // TODO: Do an animation or something
+        Destroy(gameObject);
+    }
+
     // Social distancing algorithm - doesn't work very well
     public void MoveAwayFromPoint(Vector3 point)
     {
@@ -59,16 +67,20 @@ public class CustomerController : MonoBehaviour
         rigidBody.AddForce(oppositeDirection * Time.deltaTime * 10f);
     }
 
-    public void AssignFoodNeed(FoodType type)
+    public void AssignFoodRequirement(FoodType type)
     {
-
+        foodRequirement = type;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag.Equals("Bullet"))
         {
-            DestroyVehicle(collision.GetContact(0));
+            Bullet bullet = collision.gameObject.GetComponent<Bullet>();
+            if (bullet.foodType == foodRequirement)
+                FulfillOrder(bullet.foodType);
+            else
+                DestroyVehicle(collision.GetContact(0));
         }
     }
 

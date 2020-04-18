@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9961e959206b4fc428b946c9e152cb32, type: 3}
   m_Name: Level4
   m_EditorClassIdentifier: 
-  levelNumber: 0
+  levelNumber: 4
   spawnRateInSeconds: 0
   maxCarsOnScreen: 0
+  nOrdersToFill: 0
   possibleCars: []
+  possibleFoods: []

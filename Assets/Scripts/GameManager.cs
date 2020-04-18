@@ -20,8 +20,8 @@ public class GameManager : Singleton<GameManager>
     private int maxCarOnScreen;
     private int nOrdersToFill;
     private List<GameObject> possibleCars;
-  
-  
+
+
 
     //public float startingFuelAmount;s
     //public float fuelDecay;
@@ -40,9 +40,9 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         t = 0;
-        if(startingLevel <= 0) 
+        if (startingLevel <= 0)
         {
-            startingLevel = 1; 
+            startingLevel = 1;
         };
         currentLevel = startingLevel;
         SyncNewLevelData(currentLevel);
@@ -57,13 +57,13 @@ public class GameManager : Singleton<GameManager>
         nOrdersToFill = level.nOrdersToFill;
         possibleCars = level.possibleCars;
         Debug.Log("NEW LEVEL DATA SYNC'D");
-        CannonShoot.instance.InitAmmo(ResourceLoader.instance.GetLevel(1).possibleFoods);
+        CannonShoot.instance.InitAmmo(level.possibleFoods);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(spawnCD < t)
+        if (spawnCD < t)
         {
             Debug.Log("CAN SPAWN");
             if (nOrdersToFill > filledOrders)
@@ -77,15 +77,11 @@ public class GameManager : Singleton<GameManager>
                     t = 0;
                 }
             }
-            
         }
         else
         {
             t += Time.deltaTime;
         }
-        
-            
-
 
         /*// Move all stationary objects
         foreach (GameObject obj in stationaryObjects)
@@ -106,9 +102,20 @@ public class GameManager : Singleton<GameManager>
         */
     }
 
-    public void orderFilled()
+    public void OrderFilled()
     {
         aliveOrders--;
+        filledOrders++;
+
+        if (filledOrders >= nOrdersToFill)
+        {
+            GotoNextLevel();
+        }
+    }
+
+    public void GotoNextLevel()
+    {
+        Debug.Log("level beaten! going to next level");
     }
 
     private void SpawnLandmark()
@@ -121,14 +128,13 @@ public class GameManager : Singleton<GameManager>
 
     private void SpawnCustomer(GameObject newCustomer)
     {
-        //List<GameObject> possibleCars = ResourceLoader.instance.GetLevel(1).possibleCars;
-        //GameObject carPrefab = possibleCars[UnityEngine.Random.Range(0, possibleCars.Count)];
-
-
-        if (possibleCars.Count == 0) Debug.LogError("You forgot to assign cars to the level scriptable object");
         GameObject customerObj = Instantiate(newCustomer);
         customerObj.transform.position = new Vector3(UnityEngine.Random.Range(-10f, 10f), 0.5f, -200);
         CustomerController customer = customerObj.GetComponent<CustomerController>();
+        List<GameObject> possibleFoods = ResourceLoader.instance.GetLevel(currentLevel).possibleFoods;
+        Bullet randomFood = possibleFoods[UnityEngine.Random.Range(0, possibleFoods.Count)].GetComponent<Bullet>();
+        customer.AssignFoodRequirement(randomFood.foodType);
+
         // TODO: Spawn these in intelligent quadrants
         Vector3 targetPosition = new Vector3(UnityEngine.Random.Range(-maxDistance, maxDistance), 0, UnityEngine.Random.Range(-maxDistance, maxDistance));
         customer.SetTargetPosition(targetPosition);

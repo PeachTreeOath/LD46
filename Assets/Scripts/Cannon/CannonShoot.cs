@@ -15,8 +15,6 @@ public class CannonShoot : Singleton<CannonShoot>
     private GameObject bullet;
     private GameObject selectedBulletPrefab;
 
-
-
     // Start is called before the first frame update
     void Start()
     {
