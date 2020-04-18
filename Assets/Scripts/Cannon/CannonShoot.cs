@@ -69,12 +69,12 @@ public class CannonShoot : MonoBehaviour
       if (selectedBulletIndex >= bulletPrefabs.Length - 1)
       {
          selectedBulletIndex = 0;
-         Debug.Log("Selected bullet number (forward) = " + selectedBulletIndex);
+         //Debug.Log("Selected bullet number (forward) = " + selectedBulletIndex);
       }
       else
       {
          selectedBulletIndex++;
-         Debug.Log("Selected bullet number (forward) = " + selectedBulletIndex);
+         //Debug.Log("Selected bullet number (forward) = " + selectedBulletIndex);
       }
 
       AssignSelectedBullet(selectedBulletIndex);
@@ -85,12 +85,12 @@ public class CannonShoot : MonoBehaviour
       if (selectedBulletIndex <= 0)
       {
          selectedBulletIndex = bulletPrefabs.Length - 1;
-         Debug.Log("Selected bullet number (backward) = " + selectedBulletIndex);
+         //Debug.Log("Selected bullet number (backward) = " + selectedBulletIndex);
       }
       else
       {
          selectedBulletIndex--;
-         Debug.Log("Selected bullet number (backward) = " + selectedBulletIndex);
+         //Debug.Log("Selected bullet number (backward) = " + selectedBulletIndex);
       }
 
       AssignSelectedBullet(selectedBulletIndex);
