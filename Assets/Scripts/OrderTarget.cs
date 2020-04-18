@@ -51,6 +51,8 @@ public class OrderTarget : MonoBehaviour
                 FeedTarget();
             else
                 customerParent.DestroyVehicle(collision.GetContact(0));
+
+            bullet.Despawn();
         }
     }
 

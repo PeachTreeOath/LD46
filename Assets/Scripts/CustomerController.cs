@@ -88,20 +88,24 @@ public class CustomerController : MonoBehaviour
         // TODO: Need to smartly init all of these
     }
 
-    /*
-     * // currently in the order target logic but this could change
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag.Equals("Bullet"))
         {
+            // currently in the order target logic but this could change
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
+            /*
             if (bullet.foodType == foodRequirement)
                 FinishOrder();
             else
                 DestroyVehicle(collision.GetContact(0));
+                */
+
+            bullet.Despawn();
         }
     }
-    */
+
     private void OnCollisionStay(Collision collision)
     {
         if (isDead && collision.gameObject.tag.Equals("Ground"))
