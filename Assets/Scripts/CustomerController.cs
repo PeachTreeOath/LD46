@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class CustomerController : MonoBehaviour
     // Inspector set
     public Rigidbody rigidBody;
     public float speedMod;
+    public List<OrderTarget> orderTargets = new List<OrderTarget>();
 
     [HideInInspector] public float timeAlive; // This is used to help with crowd control
     [HideInInspector] public FoodType foodRequirement;
@@ -43,8 +45,21 @@ public class CustomerController : MonoBehaviour
         targetPosition = position;
     }
 
+    public void ReportFeeding(OrderTarget orderTarget)
+    {
+        if (IsOrderFulfilled())
+        {
+            FinishOrder();
+        }
+    }
+
     public void DestroyVehicle(ContactPoint contactPoint)
     {
+        foreach (OrderTarget target in orderTargets)
+        {
+            target.ReleaseTarget();
+        }
+
         rigidBody.constraints = RigidbodyConstraints.None;
         rigidBody.useGravity = true;
         rigidBody.AddExplosionForce(10, contactPoint.point, 10, 5, ForceMode.Impulse);
@@ -52,7 +67,7 @@ public class CustomerController : MonoBehaviour
         isDead = true;
     }
 
-    public void FulfillOrder(FoodType type)
+    public void FinishOrder()
     {
         GameManager.instance.OrderFilled();
 
@@ -67,23 +82,26 @@ public class CustomerController : MonoBehaviour
         rigidBody.AddForce(oppositeDirection * Time.deltaTime * 10f);
     }
 
-    public void AssignFoodRequirement(FoodType type)
+    public void AssignFoodRequirement(Bullet food)
     {
-        foodRequirement = type;
+        orderTargets[0].Init(this, food);
+        // TODO: Need to smartly init all of these
     }
 
+    /*
+     * // currently in the order target logic but this could change
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag.Equals("Bullet"))
         {
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
             if (bullet.foodType == foodRequirement)
-                FulfillOrder(bullet.foodType);
+                FinishOrder();
             else
                 DestroyVehicle(collision.GetContact(0));
         }
     }
-
+    */
     private void OnCollisionStay(Collision collision)
     {
         if (isDead && collision.gameObject.tag.Equals("Ground"))
@@ -112,6 +130,17 @@ public class CustomerController : MonoBehaviour
         }
 
         return minDistance;
+    }
+
+    private bool IsOrderFulfilled()
+    {
+        foreach (OrderTarget order in orderTargets)
+        {
+            if (!order.isFed)
+                return false;
+        }
+
+        return true;
     }
 
     /*

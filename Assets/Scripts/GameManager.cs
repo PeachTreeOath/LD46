@@ -133,7 +133,7 @@ public class GameManager : Singleton<GameManager>
         CustomerController customer = customerObj.GetComponent<CustomerController>();
         List<GameObject> possibleFoods = ResourceLoader.instance.GetLevel(currentLevel).possibleFoods;
         Bullet randomFood = possibleFoods[UnityEngine.Random.Range(0, possibleFoods.Count)].GetComponent<Bullet>();
-        customer.AssignFoodRequirement(randomFood.foodType);
+        customer.AssignFoodRequirement(randomFood);
 
         // TODO: Spawn these in intelligent quadrants
         Vector3 targetPosition = new Vector3(UnityEngine.Random.Range(-maxDistance, maxDistance), 0, UnityEngine.Random.Range(-maxDistance, maxDistance));

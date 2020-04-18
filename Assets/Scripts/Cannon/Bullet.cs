@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     // Inspector set
     public FoodType foodType;
+    public Sprite requirementIcon;
 
     // Start is called before the first frame update
     void Start()
