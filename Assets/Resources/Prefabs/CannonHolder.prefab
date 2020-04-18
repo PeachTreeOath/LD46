@@ -74,8 +74,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fd1f4d6120ed941aa367177256517d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 739039713466198104, guid: dffa86cfb51b7454e8b8d11b81aae30a,
-    type: 3}
+  bulletPrefabs:
+  - {fileID: 739039713466198104, guid: dffa86cfb51b7454e8b8d11b81aae30a, type: 3}
+  - {fileID: 739039713466198104, guid: dffa86cfb51b7454e8b8d11b81aae30a, type: 3}
+  - {fileID: 739039713466198104, guid: dffa86cfb51b7454e8b8d11b81aae30a, type: 3}
+  - {fileID: 739039713466198104, guid: dffa86cfb51b7454e8b8d11b81aae30a, type: 3}
   cannonEnd: {fileID: 5287275778815920663}
   shootingCooldown: 0.25
   bulletShootForce: 5
