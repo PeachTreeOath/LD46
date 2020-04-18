@@ -9,4 +9,5 @@ public class LevelData : ScriptableObject
     public float spawnRateInSeconds;
     public int maxCarsOnScreen;
     public List<GameObject> possibleCars;
+    public List<GameObject> possibleFoods;
 }

@@ -19,7 +19,7 @@ public class GameManager : Singleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
-
+        CannonShoot.instance.InitAmmo(ResourceLoader.instance.GetLevel(1).possibleFoods);
     }
 
     // Update is called once per frame
