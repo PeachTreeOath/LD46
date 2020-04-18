@@ -9,6 +9,7 @@ public class CustomerController : MonoBehaviour
     public float speedMod;
 
     [HideInInspector] public float timeAlive; // This is used to help with crowd control
+    [HideInInspector] public FoodType foodRequirement;
 
     private Vector3 targetPosition;
     private bool isDead;
@@ -56,6 +57,11 @@ public class CustomerController : MonoBehaviour
     {
         Vector3 oppositeDirection = transform.position - point;
         rigidBody.AddForce(oppositeDirection * Time.deltaTime * 10f);
+    }
+
+    public void AssignFoodNeed(FoodType type)
+    {
+
     }
 
     private void OnCollisionEnter(Collision collision)
