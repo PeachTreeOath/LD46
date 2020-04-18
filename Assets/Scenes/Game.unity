@@ -315,7 +315,7 @@ MonoBehaviour:
     LensShift: {x: 0, y: 0}
   m_Transitions:
     m_BlendHint: 0
-    m_InheritPosition: 0
+    m_InheritPosition: 1
     m_OnCameraLive:
       m_PersistentCalls:
         m_Calls: []
@@ -330,7 +330,7 @@ Transform:
   m_GameObject: {fileID: 909820846}
   m_LocalRotation: {x: -0.08428796, y: 0.8240979, z: -0.12734127, w: -0.5454746}
   m_LocalPosition: {x: 0.5206988, y: 1.8027256, z: 1.0620377}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0000004, y: 1, z: 1.0000002}
   m_Children:
   - {fileID: 1463965752}
   m_Father: {fileID: 0}
