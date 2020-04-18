@@ -9,6 +9,7 @@ public class CannonShoot : MonoBehaviour
    [SerializeField] private float shootingCooldown = 0.25f;
    [SerializeField] private float bulletShootForce = 5f;
 
+   private bool isCursorVisible = false;
    private int selectedBulletIndex = 0;
    private float shootRate = 0.0f;
    private GameObject bullet;
@@ -19,6 +20,8 @@ public class CannonShoot : MonoBehaviour
    // Start is called before the first frame update
    void Start()
    {
+      Cursor.lockState = CursorLockMode.Locked;
+      Cursor.visible = isCursorVisible;
       selectedBulletPrefab = bulletPrefabs[selectedBulletIndex];
    }
 
@@ -43,6 +46,12 @@ public class CannonShoot : MonoBehaviour
       if (Input.GetAxis("Mouse ScrollWheel") < 0.0f || Input.GetKeyDown(KeyCode.Q))
       {
          BulletSelectionBackward();
+      }
+
+      if (Input.GetKeyDown(KeyCode.Alpha0))
+      {
+         ChangeIsCursorVisible();
+         TurnCursorOnOff();
       }
    }
 
@@ -90,5 +99,31 @@ public class CannonShoot : MonoBehaviour
    private void AssignSelectedBullet(int bulletIndex)
    {
       selectedBulletPrefab = bulletPrefabs[bulletIndex];
+   }
+
+   private void ChangeIsCursorVisible()
+   {
+      if (isCursorVisible)
+      {
+         isCursorVisible = false;
+      }
+      else
+      {
+         isCursorVisible = true;
+      }
+   }
+
+   private void TurnCursorOnOff()
+   {
+      if (isCursorVisible)
+      {
+         Cursor.lockState = CursorLockMode.None;
+      }
+      else
+      {
+         Cursor.lockState = CursorLockMode.Locked;
+      }
+
+      Cursor.visible = isCursorVisible;
    }
 }
