@@ -23,11 +23,14 @@ public class BulletDisplay : MonoBehaviour
    {
       foreach (Transform foodModel in transform)
       {
-         switch(selectedBulletFoodType)
+
+         if (foodModel.GetComponent<FoodDisplayItem>().foodType == selectedBulletFoodType)
          {
-            case FoodType.BANANA:
-               foodModel.gameObject.SetActive(true);
-               break;
+            foodModel.gameObject.SetActive(true);
+         }
+         else
+         {
+            foodModel.gameObject.SetActive(false);
          }
       }
    }
