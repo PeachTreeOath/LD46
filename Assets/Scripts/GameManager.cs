@@ -179,7 +179,7 @@ public class GameManager : Singleton<GameManager>
 
         // Handle planes
         if (customer.isAerial)
-            targetPosition = new Vector3(targetPosition.x, Random.Range(4f, 8f), targetPosition.z);
+            targetPosition = new Vector3(targetPosition.x, Random.Range(4f, 6f), targetPosition.z);
 
         customer.SetTargetPosition(targetPosition);
 
