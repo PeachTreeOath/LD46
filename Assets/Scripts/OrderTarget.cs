@@ -13,7 +13,7 @@ public class OrderTarget : MonoBehaviour
 
     [HideInInspector] public FoodType foodRequirement;
     [HideInInspector] public bool isFed;
-
+    
     private CustomerController customerParent; // The vehicle that actually holds the order
     private TargetPairController targetPairParent; // Pair that tracks both left and right orders
 

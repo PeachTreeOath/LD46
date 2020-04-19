@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CustomerController : MonoBehaviour
@@ -84,8 +85,27 @@ public class CustomerController : MonoBehaviour
 
     public void AssignFoodRequirement(Bullet food)
     {
-        targetPairs[0].Init(this, food);
-        // TODO: Need to smartly init all of these
+        int count = targetPairs.Where(o => o.isAssigned == true).Count();
+
+        if (count == targetPairs.Count) // Check if all pairs are used up
+        {
+            // Don't assign anything if so
+            return;
+        }
+        else
+        {
+            // Choose a random, unassigned window to assign to
+            while (true)
+            {
+                int idx = UnityEngine.Random.Range(0, targetPairs.Count);
+
+                if (!targetPairs[idx].isAssigned)
+                {
+                    targetPairs[idx].Init(this, food);
+                    break;
+                }
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -139,7 +159,7 @@ public class CustomerController : MonoBehaviour
     {
         foreach (TargetPairController pair in targetPairs)
         {
-            if (!pair.isFed)
+            if (pair.isAssigned && !pair.isFed)
                 return false;
         }
 

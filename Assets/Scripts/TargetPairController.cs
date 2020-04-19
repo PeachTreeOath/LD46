@@ -10,13 +10,20 @@ public class TargetPairController : MonoBehaviour
     public OrderTarget rightTarget;
 
     [HideInInspector] public FoodType foodRequirement;
-    [HideInInspector] public bool isFed;
+    [HideInInspector] public bool isFed; // Has been shot w correct food
     [HideInInspector] public bool isDead;
+    [HideInInspector] public bool isAssigned; // Has be assigned a target
+
+    private void Start()
+    {
+        leftTarget.gameObject.SetActive(false);
+        rightTarget.gameObject.SetActive(false);
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (!isFed && !isDead)
+        if (isAssigned && !isFed && !isDead)
         {
             if (transform.position.x > 0)
             {
@@ -33,6 +40,7 @@ public class TargetPairController : MonoBehaviour
 
     public void Init(CustomerController parent, Bullet food)
     {
+        isAssigned = true;
         leftTarget.Init(this, parent, food);
         rightTarget.Init(this, parent, food);
     }
