@@ -42,14 +42,7 @@ public class AmmoTrayLogic : MonoBehaviour
 
    private void RotateLeft()
    {
-      //if (!maxNumberChecked)
-      //{
-      //   zRotation = zRotation - zRotationMax;
-      //   maxNumberChecked = true;
-      //}
-
-      //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, zRotation), rotateSpeed * Time.deltaTime);
-      transform.RotateAround(targetTransform.position, -targetTransform.up, rotateSpeed * Time.deltaTime);
+      transform.RotateAround(this.transform.position, -this.transform.forward, rotateSpeed * Time.deltaTime);
    }
 
    public IEnumerator TurnOnOffRotateRight()
