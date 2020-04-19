@@ -6,16 +6,18 @@ using TMPro;
 public class SetTextTo : MonoBehaviour
 {
     public string defaultText;
-    private TextMeshProUGUI tmp;
+    public TextMeshProUGUI tmp;
+
 
 
     private void Start()
     {
-        tmp = GetComponentInChildren<TextMeshProUGUI>();
+
     }
 
     public void SetTextToString(string text)
     {
+        Debug.Log(text);
         tmp.text = text;
     }
 }

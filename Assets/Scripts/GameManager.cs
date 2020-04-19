@@ -58,7 +58,7 @@ public class GameManager : Singleton<GameManager>
         maxCarOnScreen = level.maxCarsOnScreen;
         nOrdersToFill = level.nOrdersToFill;
         possibleCars = level.possibleCars;
-        Debug.Log("NEW LEVEL DATA SYNC'D");
+        Debug.Log("NEW LEVEL DATA SYNC'D: " + currentLevel.ToString());
         CannonShoot.instance.InitAmmo(level.possibleFoods);
     }
 
@@ -103,6 +103,7 @@ public class GameManager : Singleton<GameManager>
 
     public void OrderFilled()
     {
+        Debug.Log("Order Filled : " + filledOrders.ToString() + " : " + nOrdersToFill.ToString() );
         aliveOrders--;
         filledOrders++;
 

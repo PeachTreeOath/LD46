@@ -61,6 +61,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 50
   landmarkSpawnTime: 2
+  levelTextSpawnPosition: {fileID: 3543662886056990996, guid: 6df2bc5b138f98746984a22f80ae771e,
+    type: 3}
+  startingLevel: 1
   customers: []
 --- !u!114 &937687348
 MonoBehaviour:
@@ -81,3 +84,5 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   trackSegmentLength: 200
+  totalTrackLength: 0
+  cutoffPoint: 0
