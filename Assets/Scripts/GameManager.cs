@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using TMPro;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -20,6 +21,8 @@ public class GameManager : Singleton<GameManager>
     private int maxCarOnScreen;
     private int nOrdersToFill;
     private List<GameObject> possibleCars;
+
+    public TextMeshProUGUI orderText, levelText;
 
 
 
@@ -39,6 +42,7 @@ public class GameManager : Singleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
+        
         t = 0;
         if (startingLevel <= 0)
         {
@@ -48,6 +52,17 @@ public class GameManager : Singleton<GameManager>
         SyncNewLevelData(currentLevel);
 
         levelTextSpawnPosition.CreateCanvas(currentLevel);
+        UpdateOrderText();
+    }
+
+    private void UpdateOrderText()
+    {
+        orderText.text = "ORDERS\n" + filledOrders.ToString() + "/" + nOrdersToFill.ToString();
+    }
+
+    private void UpdateLevelText()
+    {
+        levelText.text = "LEVEL " + currentLevel.ToString();
     }
 
     private void SyncNewLevelData(int nextLevel)
@@ -106,7 +121,7 @@ public class GameManager : Singleton<GameManager>
         Debug.Log("Order Filled : " + filledOrders.ToString() + " : " + nOrdersToFill.ToString() );
         aliveOrders--;
         filledOrders++;
-
+        UpdateOrderText();
         if (filledOrders >= nOrdersToFill)
         {
             GotoNextLevel();
@@ -118,6 +133,7 @@ public class GameManager : Singleton<GameManager>
         currentLevel ++;
         levelTextSpawnPosition.CreateCanvas(currentLevel);
         Debug.Log("level beaten! going to next level");
+        UpdateLevelText();
     }
 
 
