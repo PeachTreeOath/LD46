@@ -89,7 +89,7 @@ public class CannonShoot : Singleton<CannonShoot>
         shootRate = shootingCooldown;
         lobBulletForce = 0.0f;
 
-        AudioManager.instance.PlaySound("Food_Truck_Cannon_Fire_2D");
+        AudioManager.instance.PlayRandomShot();
     }
 
     private void BulletSelectionForward()

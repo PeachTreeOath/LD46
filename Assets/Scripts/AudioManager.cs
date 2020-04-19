@@ -286,6 +286,20 @@ public class AudioManager : Singleton<AudioManager>
             PlaySound("Just_Car_Crash-002");
     }
 
+    public void PlayRandomShot()
+    {
+        int roll = UnityEngine.Random.Range(0, 4);
+
+        if (roll == 0)
+            PlaySound("Food_Truck_Cannon_Shoot_Updated_2D");
+        if (roll == 1)
+            PlaySound("Food_Truck_Cannon_Shoot_Updated-001_2D");
+        if (roll == 2)
+            PlaySound("Food_Truck_Cannon_Shoot_Updated-002_2D");
+        if (roll == 3)
+            PlaySound("Food_Truck_Cannon_Shoot_Updated-003_2D");
+    }
+
     public void PlayRandomSpotInSwivel()
     {
         float playbackTime = UnityEngine.Random.Range(0, swivelChannel.clip.length - 1);
