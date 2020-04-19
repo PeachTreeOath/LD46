@@ -43,8 +43,8 @@ public class GameManager : Singleton<GameManager>
     private int aliveOrders;
     private int filledOrders;
 
-    private const float maxDistance = 10f;
-    private const float minDistance = 3f;
+    private const float maxDistance = 8f;
+    private const float minDistance = 2f;
 
     // Start is called before the first frame update
     void Start()
@@ -95,7 +95,8 @@ public class GameManager : Singleton<GameManager>
                 if (maxCarOnScreen > aliveOrders)
                 {
                     var prefabToSpawn = possibleCars[Random.Range(0, possibleCars.Count)];
-                    SpawnCustomer(prefabToSpawn);
+                    if(customers.Count < maxCarOnScreen)
+                        SpawnCustomer(prefabToSpawn);
                     t = 0;
                 }
             }
@@ -106,16 +107,23 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void OrderFilled()
+    public void OrderFilled(CustomerController customerController)
     {
         Debug.Log("Order Filled : " + filledOrders.ToString() + " : " + nOrdersToFill.ToString());
         aliveOrders--;
         filledOrders++;
         UpdateOrderText();
+        RemoveCustomerFromList(customerController);
+
         if (filledOrders >= nOrdersToFill)
         {
             GotoNextLevel();
         }
+    }
+
+    public void RemoveCustomerFromList(CustomerController customerController)
+    {
+        customers.Remove(customerController);
     }
 
     public void GotoNextLevel()
