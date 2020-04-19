@@ -52,5 +52,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25550d1798a234a4d83a4677aa1580a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicMixerGroup: {fileID: 7242964558662139587, guid: 4f77e9e40b40e414f94881b83f154b21,
+    type: 2}
+  musicMixerGroup2: {fileID: 7242964558662139587, guid: 4f77e9e40b40e414f94881b83f154b21,
+    type: 2}
+  sfxMixerGroup: {fileID: 3754035740813448539, guid: 4f77e9e40b40e414f94881b83f154b21,
+    type: 2}
+  engineMixerGroup1: {fileID: 6888241879952649361, guid: 4f77e9e40b40e414f94881b83f154b21,
+    type: 2}
+  engineMixerGroup2: {fileID: 6695619061344139260, guid: 4f77e9e40b40e414f94881b83f154b21,
+    type: 2}
   mute: 0
-  musicVolume: 0
+  musicVolume: 1

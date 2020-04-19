@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 /// <summary>
@@ -9,6 +10,12 @@ using UnityEngine.SceneManagement;
 //[RequireComponent(typeof(AudioListener))]
 public class AudioManager : Singleton<AudioManager>
 {
+    // Inspector set
+    public AudioMixerGroup musicMixerGroup;
+    public AudioMixerGroup musicMixerGroup2;
+    public AudioMixerGroup sfxMixerGroup;
+    public AudioMixerGroup engineMixerGroup1;
+    public AudioMixerGroup engineMixerGroup2;
 
     // Use this to mute game during production
     public bool mute;
@@ -16,7 +23,9 @@ public class AudioManager : Singleton<AudioManager>
 
     private AudioSource musicChannel;
     private AudioSource musicChannel2; //used for crossfades between music
-    private AudioSource soundChannel;
+    private AudioSource sfxChannel;
+    private AudioSource engineChannel1;
+    private AudioSource engineChannel2;
     private Dictionary<string, AudioClip> soundMap;
     //Tracks whether intro in coroutine has finished playing or not.
     private bool introCompleted = true;
@@ -38,16 +47,19 @@ public class AudioManager : Singleton<AudioManager>
         musicChannel = new GameObject().AddComponent<AudioSource>();
         musicChannel.transform.SetParent(transform);
         musicChannel.name = "MusicChannel";
+        musicChannel.outputAudioMixerGroup = musicMixerGroup;
         musicChannel.loop = true;
 
         musicChannel2 = new GameObject().AddComponent<AudioSource>();
         musicChannel2.transform.SetParent(transform);
         musicChannel2.name = "MusicChannel2";
+        musicChannel.outputAudioMixerGroup = musicMixerGroup2;
         musicChannel2.loop = true;
 
-        soundChannel = new GameObject().AddComponent<AudioSource>();
-        soundChannel.transform.SetParent(transform);
-        soundChannel.name = "SoundChannel";
+        sfxChannel = new GameObject().AddComponent<AudioSource>();
+        sfxChannel.transform.SetParent(transform);
+        sfxChannel.outputAudioMixerGroup = sfxMixerGroup;
+        sfxChannel.name = "SoundChannel";
 
         AudioClip[] clips = Resources.LoadAll<AudioClip>("Audio");
         foreach (AudioClip clip in clips)
@@ -76,7 +88,7 @@ public class AudioManager : Singleton<AudioManager>
     {
         musicVolume = VolumeListener.volumeLevel;
         musicChannel.volume = VolumeListener.volumeLevel;
-        soundChannel.volume = VolumeListener.volumeLevel;
+        sfxChannel.volume = VolumeListener.volumeLevel;
     }
 
     public float GetMusicVolume()
@@ -200,12 +212,12 @@ public class AudioManager : Singleton<AudioManager>
     public void PlaySound(string name)
     {
         AudioClip clip = soundMap[name];
-        soundChannel.PlayOneShot(soundMap[name]);
+        sfxChannel.PlayOneShot(soundMap[name]);
     }
 
     public void PlaySound(string name, float volume)
     {
-        soundChannel.PlayOneShot(soundMap[name], volume * VolumeListener.volumeLevel);
+        sfxChannel.PlayOneShot(soundMap[name], volume * VolumeListener.volumeLevel);
     }
 
     public void ToggleMute(bool mute)
