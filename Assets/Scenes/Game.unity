@@ -1755,6 +1755,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PersistentManagers
       objectReference: {fileID: 0}
+    - target: {fileID: 2988278155331024598, guid: e83a49953c3a098408ff05be654288c4,
+        type: 3}
+      propertyPath: musicVolume
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e83a49953c3a098408ff05be654288c4, type: 3}
 --- !u!1001 &4209923120587173984

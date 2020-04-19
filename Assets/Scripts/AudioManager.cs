@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Audio manager that loads in all sounds from the Audio folder. Use the file names as arguments to play.
@@ -23,10 +24,15 @@ public class AudioManager : Singleton<AudioManager>
     //Holds a reference to a coroutine when one starts
     private Coroutine introCoroutine = null;
 
+    protected override void Awake()
+    {
+        base.Awake();
+
+        SetDontDestroy();
+    }
 
     void Start()
     {
-        return;
         soundMap = new Dictionary<string, AudioClip>();
 
         musicChannel = new GameObject().AddComponent<AudioSource>();
@@ -50,7 +56,20 @@ public class AudioManager : Singleton<AudioManager>
         }
 
         ToggleMute(mute);
-        PlayMusicWithIntro("Neutral_intro", "Neutral_loop");
+
+        if (SceneManager.GetActiveScene().name.Equals("Title"))
+            PlayMusic("Menu_Music_Loop");
+        else if (SceneManager.GetActiveScene().name.Equals("Game"))
+            PlayMusic("Gameplay_Music_Loop");
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            mute = !mute;
+            ToggleMute(mute);
+        }
     }
 
     public void UpdateMusicVolume()
@@ -151,8 +170,6 @@ public class AudioManager : Singleton<AudioManager>
         PlayMusic(name);
     }
 
-
-
     //Allows seamless transition of Music that are time and tempo aligned.
     public void PlayMusicWithIntroResumingTime(string introName, string loopName)
     {
@@ -178,8 +195,6 @@ public class AudioManager : Singleton<AudioManager>
             Debug.Log("intro already completed, starting from middle");
             PlayMusicFromTime(loopName, oldMusicTime);
         }
-
-
     }
 
     public void PlaySound(string name)
