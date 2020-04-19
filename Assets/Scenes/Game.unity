@@ -703,6 +703,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1196858345}
   - component: {fileID: 1196858344}
+  - component: {fileID: 1196858346}
   m_Layer: 0
   m_Name: CM_CannonCam
   m_TagString: Untagged
@@ -761,6 +762,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1196858346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196858343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ChannelMask: 1
+  m_Gain: 1
+  m_Use2DDistance: 0
 --- !u!1 &1203498870 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8657053366640029836, guid: 8ed9a8329fca6cc48af1ec327985b07c,
@@ -2055,9 +2071,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ImpulseDefinition:
     m_ImpulseChannel: 1
-    m_RawSignal: {fileID: 0}
-    m_AmplitudeGain: 1
-    m_FrequencyGain: 1
+    m_RawSignal: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+    m_AmplitudeGain: 1.86
+    m_FrequencyGain: 2.05
     m_RepeatMode: 0
     m_Randomize: 1
     m_TimeEnvelope:

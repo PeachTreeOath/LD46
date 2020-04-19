@@ -17,12 +17,14 @@ public class CannonShoot : Singleton<CannonShoot>
    private GameObject bullet;
    private GameObject selectedBulletPrefab;
    private AmmoTrayLogic ammoTray;
+   private Cinemachine.CinemachineImpulseSource impulseSource;
 
    // Start is called before the first frame update
    void Start()
    {
       selectedBulletPrefab = bulletPrefabs[selectedBulletIndex];
       ammoTray = GetComponentInChildren<AmmoTrayLogic>();
+      impulseSource = GetComponent<Cinemachine.CinemachineImpulseSource>();
    }
 
    // Update is called once per frame
@@ -38,6 +40,7 @@ public class CannonShoot : Singleton<CannonShoot>
          case BulletType.STRAIGHT:
             if (Input.GetButtonDown("Fire1") && shootRate <= 0.0f)
             {
+               GenerateShake();
                bulletShootForce = straightBulletForce;
                Shoot();
             }
@@ -50,6 +53,7 @@ public class CannonShoot : Singleton<CannonShoot>
 
             if (Input.GetButtonUp("Fire1"))
             {
+               GenerateShake();
                bulletShootForce = lobBulletForce;
                Shoot();
             }
@@ -120,5 +124,13 @@ public class CannonShoot : Singleton<CannonShoot>
    private void IncreaseLobBulletForce()
    {
       lobBulletForce += (lobForceIncreaseAmount * Time.deltaTime);
+   }
+
+   private void GenerateShake()
+   {
+      if (impulseSource)
+      {
+         impulseSource.GenerateImpulse(transform.forward);
+      }
    }
 }
