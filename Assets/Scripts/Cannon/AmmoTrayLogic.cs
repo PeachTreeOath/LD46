@@ -42,7 +42,7 @@ public class AmmoTrayLogic : MonoBehaviour
          maxNumberChecked = true;
       }
 
-      transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(-90f, 0f, zRotation), rotateSpeed * Time.deltaTime);
+      transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, zRotation), rotateSpeed * Time.deltaTime);
    }
 
    private void RotateLeft()
@@ -50,14 +50,11 @@ public class AmmoTrayLogic : MonoBehaviour
       if (!maxNumberChecked)
       {
          zRotation = zRotation - zRotationMax;
-         Debug.Log("ZRotation = " + zRotation);
          maxNumberChecked = true;
       }
 
-      transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(-90f, 0f, zRotation), rotateSpeed * Time.deltaTime);
+      transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, zRotation), rotateSpeed * Time.deltaTime);
    }
-
-
 
    public IEnumerator TurnOnOffRotateRight()
    {
