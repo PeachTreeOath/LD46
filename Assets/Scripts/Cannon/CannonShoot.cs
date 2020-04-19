@@ -71,6 +71,7 @@ public class CannonShoot : Singleton<CannonShoot>
 
       if (Input.GetAxis("Mouse ScrollWheel") < 0.0f || Input.GetKeyDown(KeyCode.Q))
       {
+         StartCoroutine(ammoTray.TurnOnOffRotateLeft());
          BulletSelectionBackward();
       }
    }

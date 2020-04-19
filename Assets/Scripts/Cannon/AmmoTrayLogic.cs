@@ -8,8 +8,8 @@ public class AmmoTrayLogic : MonoBehaviour
    [SerializeField] private float angleAddition = 40f;
    [SerializeField] private float zRotationMax = 40f;
 
-   private GameObject ammoTray;
    private bool isRotatingRight = false;
+   private bool isRotatingLeft = false;
    private bool maxNumberChecked = false;
    private float newAngle;
    private float zRotation = 6f;
@@ -27,6 +27,11 @@ public class AmmoTrayLogic : MonoBehaviour
       {
          RotateRight();
       }
+
+      if (isRotatingLeft)
+      {
+         RotateLeft();
+      }
    }
 
    private void RotateRight()
@@ -40,11 +45,33 @@ public class AmmoTrayLogic : MonoBehaviour
       transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(-90f, 0f, zRotation), rotateSpeed * Time.deltaTime);
    }
 
+   private void RotateLeft()
+   {
+      if (!maxNumberChecked)
+      {
+         zRotation = zRotation - zRotationMax;
+         Debug.Log("ZRotation = " + zRotation);
+         maxNumberChecked = true;
+      }
+
+      transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(-90f, 0f, zRotation), rotateSpeed * Time.deltaTime);
+   }
+
+
+
    public IEnumerator TurnOnOffRotateRight()
    {
       isRotatingRight = true;
       yield return new WaitForSeconds(0.35f);
       isRotatingRight = false;
+      maxNumberChecked = false;
+   }
+
+   public IEnumerator TurnOnOffRotateLeft()
+   {
+      isRotatingLeft = true;
+      yield return new WaitForSeconds(0.35f);
+      isRotatingLeft = false;
       maxNumberChecked = false;
    }
 }
