@@ -14,23 +14,13 @@ public class OrderTarget : MonoBehaviour
     [HideInInspector] public FoodType foodRequirement;
     [HideInInspector] public bool isFed;
 
-    private CustomerController customerParent; // The vehicle that actually hold the order
+    private CustomerController customerParent; // The vehicle that actually holds the order
+    private TargetPairController targetPairParent; // Pair that tracks both left and right orders
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public void Init(CustomerController parent, Bullet food)
+    public void Init(TargetPairController targetPairController, CustomerController parent, Bullet food)
     {
         customerParent = parent;
+        targetPairParent = targetPairController;
         foodRequirement = food.foodType;
         foodIcon.sprite = food.requirementIcon;
     }
@@ -58,7 +48,7 @@ public class OrderTarget : MonoBehaviour
 
     private void FeedTarget()
     {
-        isFed = true;
-        customerParent.ReportFeeding(this);
+        targetPairParent.CompleteTarget();
+        customerParent.ReportFeeding();
     }
 }

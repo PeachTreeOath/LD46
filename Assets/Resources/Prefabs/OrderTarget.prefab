@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2409815039113737430}
   - component: {fileID: 2409815039113737426}
   - component: {fileID: 2409815039113737425}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: OrderTarget
   m_TagString: OrderTarget
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2409815039113737431}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.48, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0.5}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 5169317692923087144}
   m_Father: {fileID: 0}
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1127c73b8453d90438c23559881feb47, type: 2}
+  - {fileID: 2100000, guid: ec5ff48fe3c1cf44b9812f47be2000aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -136,10 +136,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2409815039113737427}
     m_Modifications:
+    - target: {fileID: 958514396373654223, guid: 0f32db1aceda0284a8a876dde6261ddf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 7407428592714383541, guid: 0f32db1aceda0284a8a876dde6261ddf,
         type: 3}
       propertyPath: m_Name
       value: OrderCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7407428592714383541, guid: 0f32db1aceda0284a8a876dde6261ddf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7407428592714383544, guid: 0f32db1aceda0284a8a876dde6261ddf,
         type: 3}
@@ -255,6 +265,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 7407428594177006666, guid: 0f32db1aceda0284a8a876dde6261ddf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f32db1aceda0284a8a876dde6261ddf, type: 3}

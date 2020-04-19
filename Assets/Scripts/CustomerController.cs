@@ -8,7 +8,7 @@ public class CustomerController : MonoBehaviour
     // Inspector set
     public Rigidbody rigidBody;
     public float speedMod;
-    public List<OrderTarget> orderTargets = new List<OrderTarget>();
+    public List<TargetPairController> targetPairs = new List<TargetPairController>();
 
     [HideInInspector] public float timeAlive; // This is used to help with crowd control
     [HideInInspector] public FoodType foodRequirement;
@@ -45,7 +45,7 @@ public class CustomerController : MonoBehaviour
         targetPosition = position;
     }
 
-    public void ReportFeeding(OrderTarget orderTarget)
+    public void ReportFeeding()
     {
         if (IsOrderFulfilled())
         {
@@ -55,7 +55,7 @@ public class CustomerController : MonoBehaviour
 
     public void DestroyVehicle(ContactPoint contactPoint)
     {
-        foreach (OrderTarget target in orderTargets)
+        foreach (TargetPairController target in targetPairs)
         {
             target.ReleaseTarget();
         }
@@ -84,10 +84,9 @@ public class CustomerController : MonoBehaviour
 
     public void AssignFoodRequirement(Bullet food)
     {
-        orderTargets[0].Init(this, food);
+        targetPairs[0].Init(this, food);
         // TODO: Need to smartly init all of these
     }
-
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -100,7 +99,7 @@ public class CustomerController : MonoBehaviour
                 FinishOrder();
             else
                 DestroyVehicle(collision.GetContact(0));
-                */
+            */
 
             bullet.Despawn();
         }
@@ -138,9 +137,9 @@ public class CustomerController : MonoBehaviour
 
     private bool IsOrderFulfilled()
     {
-        foreach (OrderTarget order in orderTargets)
+        foreach (TargetPairController pair in targetPairs)
         {
-            if (!order.isFed)
+            if (!pair.isFed)
                 return false;
         }
 
