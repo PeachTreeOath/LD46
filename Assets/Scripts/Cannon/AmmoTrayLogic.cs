@@ -5,8 +5,9 @@ using UnityEngine;
 public class AmmoTrayLogic : MonoBehaviour
 {
    [SerializeField] private float rotateSpeed = 20f;
-   [SerializeField] private float angleAddition = 40f;
-   [SerializeField] private float zRotationMax = 40f;
+   //[SerializeField] private float angleAddition = 40f;
+   //[SerializeField] private float zRotationMax = 40f;
+   [SerializeField] private Transform targetTransform;
 
    private bool isRotatingRight = false;
    private bool isRotatingLeft = false;
@@ -36,30 +37,25 @@ public class AmmoTrayLogic : MonoBehaviour
 
    private void RotateRight()
    {
-      if (!maxNumberChecked)
-      {
-         zRotation = zRotation + zRotationMax;
-         maxNumberChecked = true;
-      }
-
-      transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, zRotation), rotateSpeed * Time.deltaTime);
+      transform.RotateAround(this.transform.position, this.transform.forward, rotateSpeed * Time.deltaTime);
    }
 
    private void RotateLeft()
    {
-      if (!maxNumberChecked)
-      {
-         zRotation = zRotation - zRotationMax;
-         maxNumberChecked = true;
-      }
+      //if (!maxNumberChecked)
+      //{
+      //   zRotation = zRotation - zRotationMax;
+      //   maxNumberChecked = true;
+      //}
 
-      transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, zRotation), rotateSpeed * Time.deltaTime);
+      //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, zRotation), rotateSpeed * Time.deltaTime);
+      transform.RotateAround(targetTransform.position, -targetTransform.up, rotateSpeed * Time.deltaTime);
    }
 
    public IEnumerator TurnOnOffRotateRight()
    {
       isRotatingRight = true;
-      yield return new WaitForSeconds(0.35f);
+      yield return new WaitForSeconds(1f);
       isRotatingRight = false;
       maxNumberChecked = false;
    }
@@ -67,7 +63,7 @@ public class AmmoTrayLogic : MonoBehaviour
    public IEnumerator TurnOnOffRotateLeft()
    {
       isRotatingLeft = true;
-      yield return new WaitForSeconds(0.35f);
+      yield return new WaitForSeconds(1f);
       isRotatingLeft = false;
       maxNumberChecked = false;
    }

@@ -1951,6 +1951,22 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2100464841, guid: 3548f05a9315e9e40845db1be26c4e82, type: 3}
+      propertyPath: angleAddition
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 2100464841, guid: 3548f05a9315e9e40845db1be26c4e82, type: 3}
+      propertyPath: zRotationMax
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 2100464841, guid: 3548f05a9315e9e40845db1be26c4e82, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 1687258585}
+    - target: {fileID: 2100464841, guid: 3548f05a9315e9e40845db1be26c4e82, type: 3}
+      propertyPath: rotateSpeed
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 587365826372671801, guid: 3548f05a9315e9e40845db1be26c4e82,
         type: 3}
       propertyPath: m_Enabled
