@@ -10,6 +10,7 @@ public class CustomerController : MonoBehaviour
     public Rigidbody rigidBody;
     public float speedMod;
     public List<TargetPairController> targetPairs = new List<TargetPairController>();
+    public bool isAerial;
 
     [HideInInspector] public float timeAlive; // This is used to help with crowd control
     [HideInInspector] public FoodType foodRequirement;

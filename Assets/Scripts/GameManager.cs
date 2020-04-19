@@ -88,7 +88,7 @@ public class GameManager : Singleton<GameManager>
                 if (maxCarOnScreen > aliveOrders)
                 {
                     var prefabToSpawn = possibleCars[Random.Range(0, possibleCars.Count)];
-                    if(customers.Count < maxCarOnScreen)
+                    if (customers.Count < maxCarOnScreen)
                         SpawnCustomer(prefabToSpawn);
                     t = 0;
                 }
@@ -157,6 +157,7 @@ public class GameManager : Singleton<GameManager>
     private void SpawnCustomer(GameObject newCustomer)
     {
         GameObject customerObj = Instantiate(newCustomer);
+        CustomerController customer = customerObj.GetComponent<CustomerController>();
 
         // Spawn from back or front
         int roll = Random.Range(0, 2);
@@ -168,8 +169,11 @@ public class GameManager : Singleton<GameManager>
         else
             customerObj.transform.position = new Vector3(Random.Range(-20f, 20f), 0.5f, 200);
 
+        // Handle planes
+        if (customer.isAerial)
+            customerObj.transform.position = new Vector3(customerObj.transform.position.x, Random.Range(4f, 8f), customerObj.transform.position.z);
+
         // Initialize customer
-        CustomerController customer = customerObj.GetComponent<CustomerController>();
         List<GameObject> possibleFoods = ResourceLoader.instance.GetLevel(currentLevel).possibleFoods;
         Bullet randomFood = possibleFoods[UnityEngine.Random.Range(0, possibleFoods.Count)].GetComponent<Bullet>();
         customer.AssignFoodRequirement(randomFood);
@@ -182,6 +186,10 @@ public class GameManager : Singleton<GameManager>
         else
             while (targetPosition == Vector3.zero || Vector3.Distance(targetPosition, PlayerController.instance.transform.position) < minDistance)
                 targetPosition = new Vector3(Random.Range(-maxDistance, maxDistance), 0, Random.Range(0, maxDistance));
+
+        // Handle planes
+        if (customer.isAerial)
+            targetPosition = new Vector3(targetPosition.x, Random.Range(4f, 8f), targetPosition.z);
 
         customer.SetTargetPosition(targetPosition);
 
