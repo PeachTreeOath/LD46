@@ -1869,6 +1869,11 @@ PrefabInstance:
       propertyPath: bulletShootForce
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: -4996388679565106930, guid: 3548f05a9315e9e40845db1be26c4e82,
+        type: 3}
+      propertyPath: lobForceIncreaseAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 441251188063784445, guid: 3548f05a9315e9e40845db1be26c4e82,
         type: 3}
       propertyPath: m_Layer

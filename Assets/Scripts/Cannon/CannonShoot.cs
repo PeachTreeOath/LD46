@@ -9,6 +9,7 @@ public class CannonShoot : Singleton<CannonShoot>
    [SerializeField] private float shootingCooldown = 0.25f;
    [SerializeField] private float straightBulletForce = 25f;
    [SerializeField] private float lobBulletForce = 0f;
+   [SerializeField] private float lobForceIncreaseAmount = 0.5f;
 
    private float bulletShootForce = 5f;
    private int selectedBulletIndex = 0;
@@ -38,30 +39,22 @@ public class CannonShoot : Singleton<CannonShoot>
             if (Input.GetButtonDown("Fire1") && shootRate <= 0.0f)
             {
                bulletShootForce = straightBulletForce;
-               Debug.Log("Straight shot selected");
                Shoot();
             }
             break;
          case BulletType.LOB:
             if (Input.GetButton("Fire1"))
             {
-               Debug.Log("Pressing down");
-               InvokeRepeating("IncreaseLobBulletForce", 0.3f, Time.deltaTime);
+               IncreaseLobBulletForce();
             }
 
             if (Input.GetButtonUp("Fire1"))
             {
-               CancelInvoke();
                bulletShootForce = lobBulletForce;
                Shoot();
             }
             break;
       }
-
-      //if (Input.GetButtonDown("Fire1") && shootRate <= 0.0f)
-      //{
-      //   Shoot();
-      //}
 
       if (Input.GetAxis("Mouse ScrollWheel") > 0.0f || Input.GetKeyDown(KeyCode.E))
       {
@@ -126,6 +119,6 @@ public class CannonShoot : Singleton<CannonShoot>
 
    private void IncreaseLobBulletForce()
    {
-      lobBulletForce += 0.01f;
+      lobBulletForce += (lobForceIncreaseAmount * Time.deltaTime);
    }
 }
