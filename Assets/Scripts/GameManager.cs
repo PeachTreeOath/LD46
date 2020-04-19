@@ -132,6 +132,11 @@ public class GameManager : Singleton<GameManager>
     private void SpawnCustomer(GameObject newCustomer)
     {
         GameObject customerObj = Instantiate(newCustomer);
+
+        // Spawn from back or front
+        int roll = Random.Range(0, 2);
+        bool isBackSpawn = roll == 0 ? true : false;
+
         customerObj.transform.position = new Vector3(UnityEngine.Random.Range(-10f, 10f), 0.5f, -200);
         CustomerController customer = customerObj.GetComponent<CustomerController>();
         List<GameObject> possibleFoods = ResourceLoader.instance.GetLevel(currentLevel).possibleFoods;
