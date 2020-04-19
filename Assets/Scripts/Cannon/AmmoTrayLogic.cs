@@ -5,12 +5,13 @@ using UnityEngine;
 public class AmmoTrayLogic : MonoBehaviour
 {
    [SerializeField] private float rotateSpeed = 65f;
-   [SerializeField] private float angleAddition;
+   [SerializeField] private float angleAddition = 40f;
 
    private GameObject ammoTray;
    private bool isRotatingRight = false;
    private bool maxNumberChecked = false;
    private float newAngle;
+   private float z_rotation = 0f;
 
    // Start is called before the first frame update
    void Start()
@@ -29,25 +30,14 @@ public class AmmoTrayLogic : MonoBehaviour
 
    private void RotateRight()
    {
-      if (!maxNumberChecked)
-      {
-         newAngle = transform.eulerAngles.z + angleAddition;
-         maxNumberChecked = true;
-      }
-
-      if (transform.eulerAngles.z < newAngle)
-      {
-         float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, transform.eulerAngles.z + angleAddition, rotateSpeed * Time.deltaTime);
-         transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, angle);
-      }
-
+      //float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, angleAddition, rotateSpeed * Time.deltaTime);
+      //transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, angle);  
    }
 
    public IEnumerator TurnOnOffRotateRight()
    {
       isRotatingRight = true;
-      yield return new WaitForSeconds(0.5f);
+      yield return new WaitForSeconds(0.35f);
       isRotatingRight = false;
-      maxNumberChecked = false;
    }
 }

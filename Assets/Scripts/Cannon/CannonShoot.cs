@@ -125,6 +125,6 @@ public class CannonShoot : Singleton<CannonShoot>
 
    private void IncreaseLobBulletForce()
    {
-      lobBulletForce += 0.001f;
+      lobBulletForce += 0.01f;
    }
 }
