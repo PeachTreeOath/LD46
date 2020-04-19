@@ -4,47 +4,26 @@ ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
   - first:
-      74: -3100369314251171874
-    second: Idle
-  - first:
-      74: 881371355071035451
-    second: Back Tire Rotation
+      74: 925839335934884148
+    second: Jeep Idle
   - first:
       74: -466893782352660403
     second: Tire Rotation
   - first:
-      74: 4167131250369227425
-    second: Jeep Body|Back Tire Rotation
-  - first:
-      74: -29956605445872837
-    second: Jeep Body|Idle
-  - first:
-      74: 5223484878993711169
-    second: Jeep Body|Plane
+      74: 74885456271741369
+    second: Jeep Body|Jeep Idle
   - first:
       74: 9199166849170439369
     second: Jeep Body|Tire Rotation
   - first:
-      74: -6150154160214516040
-    second: Jeep Back Tires|Back Tire Rotation
-  - first:
-      74: -225980869775330142
-    second: Jeep Back Tires|Idle
-  - first:
-      74: -5813595928755075433
-    second: Jeep Back Tires|Plane
+      74: 1712768124427493017
+    second: Jeep Back Tires|Jeep Idle
   - first:
       74: -1398209013046226321
     second: Jeep Back Tires|Tire Rotation
   - first:
-      74: -3387172647107113437
-    second: Jeep Front Tires|Back Tire Rotation
-  - first:
-      74: -599952624230679017
-    second: Jeep Front Tires|Idle
-  - first:
-      74: 5273035681227574441
-    second: Jeep Front Tires|Plane
+      74: 7247984654736150853
+    second: Jeep Front Tires|Jeep Idle
   - first:
       74: 4735676229571411654
     second: Jeep Front Tires|Tire Rotation
@@ -80,7 +59,94 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Jeep Body|Jeep Idle
+      takeName: Jeep Body|Jeep Idle
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 198
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Jeep Back Tires|Tire Rotation
+      takeName: Jeep Back Tires|Tire Rotation
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Jeep Front Tires|Tire Rotation
+      takeName: Jeep Front Tires|Tire Rotation
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
