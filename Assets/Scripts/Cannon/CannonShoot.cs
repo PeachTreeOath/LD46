@@ -15,11 +15,13 @@ public class CannonShoot : Singleton<CannonShoot>
    private float shootRate = 0.0f;
    private GameObject bullet;
    private GameObject selectedBulletPrefab;
+   private AmmoTrayLogic ammoTray;
 
    // Start is called before the first frame update
    void Start()
    {
       selectedBulletPrefab = bulletPrefabs[selectedBulletIndex];
+      ammoTray = GetComponentInChildren<AmmoTrayLogic>();
    }
 
    // Update is called once per frame
@@ -63,6 +65,7 @@ public class CannonShoot : Singleton<CannonShoot>
 
       if (Input.GetAxis("Mouse ScrollWheel") > 0.0f || Input.GetKeyDown(KeyCode.E))
       {
+         StartCoroutine(ammoTray.TurnOnOffRotateRight());
          BulletSelectionForward();
       }
 
