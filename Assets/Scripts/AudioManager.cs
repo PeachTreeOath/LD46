@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -11,11 +12,11 @@ using UnityEngine.SceneManagement;
 public class AudioManager : Singleton<AudioManager>
 {
     // Inspector set
+    public AudioMixer masterMixer;
     public AudioMixerGroup musicMixerGroup;
     public AudioMixerGroup musicMixerGroup2;
     public AudioMixerGroup sfxMixerGroup;
-    public AudioMixerGroup engineMixerGroup1;
-    public AudioMixerGroup engineMixerGroup2;
+    public AudioMixerGroup engineMixerGroup;
 
     // Use this to mute game during production
     public bool mute;
@@ -26,12 +27,17 @@ public class AudioManager : Singleton<AudioManager>
     private AudioSource sfxChannel;
     private AudioSource engineChannel1;
     private AudioSource engineChannel2;
+    private AudioSource swivelChannel;
     private Dictionary<string, AudioClip> soundMap;
     //Tracks whether intro in coroutine has finished playing or not.
     private bool introCompleted = true;
 
     //Holds a reference to a coroutine when one starts
     private Coroutine introCoroutine = null;
+
+    float maxVol = 1f;
+    float minVol = 0f;
+    private float ratio = 1f;
 
     protected override void Awake()
     {
@@ -61,6 +67,21 @@ public class AudioManager : Singleton<AudioManager>
         sfxChannel.outputAudioMixerGroup = sfxMixerGroup;
         sfxChannel.name = "SoundChannel";
 
+        engineChannel1 = new GameObject().AddComponent<AudioSource>();
+        engineChannel1.transform.SetParent(transform);
+        engineChannel1.outputAudioMixerGroup = engineMixerGroup;
+        engineChannel1.name = "EngineChannel1";
+
+        engineChannel2 = new GameObject().AddComponent<AudioSource>();
+        engineChannel2.transform.SetParent(transform);
+        engineChannel2.outputAudioMixerGroup = engineMixerGroup;
+        engineChannel2.name = "EngineChannel2";
+
+        swivelChannel = new GameObject().AddComponent<AudioSource>();
+        swivelChannel.transform.SetParent(transform);
+        swivelChannel.outputAudioMixerGroup = sfxMixerGroup;
+        swivelChannel.name = "RotationChannel";
+
         AudioClip[] clips = Resources.LoadAll<AudioClip>("Audio");
         foreach (AudioClip clip in clips)
         {
@@ -72,7 +93,24 @@ public class AudioManager : Singleton<AudioManager>
         if (SceneManager.GetActiveScene().name.Equals("Title"))
             PlayMusic("Menu_Music_Loop");
         else if (SceneManager.GetActiveScene().name.Equals("Game"))
+        {
             PlayMusic("Gameplay_Music_Loop");
+
+            // Play engine sounds
+            engineChannel1.clip = soundMap["Food_Truck_Rolling_Engine_Loop_No_Gears2D"];
+            engineChannel1.volume = maxVol;
+            engineChannel1.loop = true;
+            engineChannel1.Play();
+            //masterMixer.SetFloat("Engine1Vol", maxVol);
+
+            engineChannel2.clip = soundMap["Food_Truck_Rolling_Engine_Loop_Almost_Out_Of_Gas_2D"];
+            engineChannel2.volume = minVol;
+            engineChannel2.loop = true;
+            engineChannel2.Play();
+            //masterMixer.SetFloat("Engine2Vol", minVol);
+
+            swivelChannel.clip = soundMap["Food_Truck_Cannon_Turn_Turret_Move_Swivel_2D"];
+        }
     }
 
     private void Update()
@@ -82,6 +120,23 @@ public class AudioManager : Singleton<AudioManager>
             mute = !mute;
             ToggleMute(mute);
         }
+
+        // Fuel tester
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            ratio -= 0.1f;
+            TransitionToEngine2(ratio);
+        }
+    }
+
+    public void TransitionToEngine2(float engine1Ratio)
+    {
+        engineChannel1.volume = Mathf.Sqrt(engine1Ratio);
+        engineChannel2.volume = Mathf.Sqrt(1 - engine1Ratio);
+
+        //float vol = Mathf.Log10(Mathf.Lerp(maxVol, minVol, engine1Ratio) * 20);
+        //masterMixer.SetFloat("Engine1Vol", Mathf.Log10(Mathf.Lerp(maxVol, minVol, engine1Ratio) * 20));
+        //masterMixer.SetFloat("Engine2Vol", Mathf.Log10(Mathf.Lerp(minVol, maxVol, engine1Ratio) * 20));
     }
 
     public void UpdateMusicVolume()
@@ -109,7 +164,6 @@ public class AudioManager : Singleton<AudioManager>
         musicChannel.time = time;
         PlayMusicAndCrossfade(name, 2);
     }
-
 
     public void PlayMusicAndCrossfade(string name, float crossfadeDuration)
     {
@@ -219,6 +273,41 @@ public class AudioManager : Singleton<AudioManager>
     {
         sfxChannel.PlayOneShot(soundMap[name], volume * VolumeListener.volumeLevel);
     }
+
+    public void PlayRandomCrash()
+    {
+        int roll = UnityEngine.Random.Range(0, 3);
+
+        if (roll == 0)
+            PlaySound("Just_Car_Crash");
+        if (roll == 1)
+            PlaySound("Just_Car_Crash-001");
+        if (roll == 2)
+            PlaySound("Just_Car_Crash-002");
+    }
+
+    public void PlayRandomSpotInSwivel()
+    {
+        float playbackTime = UnityEngine.Random.Range(0, swivelChannel.clip.length - 1);
+        swivelChannel.time = playbackTime;
+        swivelChannel.volume = 1;
+        swivelChannel.Play();
+
+        //Invoke("StopSwiveling", 1f);
+        //StartCoroutine(LowerSwivelVolume(0.5f));
+    }
+
+    public void StopSwiveling()
+    {
+        swivelChannel.Stop();
+    }
+
+    //private IEnumerator LowerSwivelVolume(float delay)
+    //{
+    //    float timeElapsed = 0;
+
+    //    while (timeElapsed)
+    //}
 
     public void ToggleMute(bool mute)
     {

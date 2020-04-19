@@ -1776,11 +1776,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 125937869969011890, guid: f0b9a5bddd9359247a236c8d8d78b764,
-        type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0b9a5bddd9359247a236c8d8d78b764, type: 3}
 --- !u!1001 &2988278154366879892
@@ -1849,11 +1844,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PersistentManagers
-      objectReference: {fileID: 0}
-    - target: {fileID: 2988278155331024598, guid: e83a49953c3a098408ff05be654288c4,
-        type: 3}
-      propertyPath: musicVolume
-      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e83a49953c3a098408ff05be654288c4, type: 3}
