@@ -80,7 +80,7 @@ PrefabInstance:
     - target: {fileID: 739039713466198104, guid: dffa86cfb51b7454e8b8d11b81aae30a,
         type: 3}
       propertyPath: m_Name
-      value: Cactus
+      value: Fish
       objectReference: {fileID: 0}
     - target: {fileID: 844976927471901984, guid: dffa86cfb51b7454e8b8d11b81aae30a,
         type: 3}
@@ -91,7 +91,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -4562530893379237289, guid: c8e9553a1efece64cac82df3d049e6f4,
+      objectReference: {fileID: 2586148439552901436, guid: 2eba8f94d7dc2b945ac6d914caedd4b7,
         type: 3}
     - target: {fileID: 3541273535980543645, guid: dffa86cfb51b7454e8b8d11b81aae30a,
         type: 3}

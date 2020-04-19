@@ -62,6 +62,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 380947229265825982, guid: dffa86cfb51b7454e8b8d11b81aae30a,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 380947229265825982, guid: dffa86cfb51b7454e8b8d11b81aae30a,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 739039713466198104, guid: dffa86cfb51b7454e8b8d11b81aae30a,
         type: 3}
       propertyPath: m_Name
@@ -71,7 +81,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 8d518df942cc314418ade379a9fc65ba, type: 2}
+      objectReference: {fileID: 2100000, guid: bb0870f79c45e4f4f9d6092fddff2882, type: 2}
+    - target: {fileID: 1192819359657302338, guid: dffa86cfb51b7454e8b8d11b81aae30a,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 3216447080179446721, guid: fefc3914707fa3c43b7f531e6b017183,
+        type: 3}
     - target: {fileID: 3541273535980543645, guid: dffa86cfb51b7454e8b8d11b81aae30a,
         type: 3}
       propertyPath: m_Constraints
