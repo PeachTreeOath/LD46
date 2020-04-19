@@ -4,50 +4,64 @@ using UnityEngine;
 
 public class AmmoTrayLogic : MonoBehaviour
 {
-   [SerializeField] private float rotateSpeed = 65f;
-   [SerializeField] private float angleAddition;
+    [SerializeField] private float rotateSpeed = 20f;
+    //[SerializeField] private float angleAddition = 40f;
+    //[SerializeField] private float zRotationMax = 40f;
+    [SerializeField] private Transform targetTransform;
 
-   private GameObject ammoTray;
-   private bool isRotatingRight = false;
-   private bool maxNumberChecked = false;
-   private float newAngle;
+    private bool isRotatingRight = false;
+    private bool isRotatingLeft = false;
+    private bool maxNumberChecked = false;
+    private float newAngle;
+    private float zRotation = 6f;
 
-   // Start is called before the first frame update
-   void Start()
-   {
+    // Start is called before the first frame update
+    void Start()
+    {
 
-   }
+    }
 
-   // Update is called once per frame
-   void Update()
-   {
-      if (isRotatingRight)
-      {
-         RotateRight();
-      }
-   }
+    // Update is called once per frame
+    void Update()
+    {
+        if (isRotatingRight)
+        {
+            RotateRight();
+        }
 
-   private void RotateRight()
-   {
-      if (!maxNumberChecked)
-      {
-         newAngle = transform.eulerAngles.z + angleAddition;
-         maxNumberChecked = true;
-      }
+        if (isRotatingLeft)
+        {
+            RotateLeft();
+        }
+    }
 
-      if (transform.eulerAngles.z < newAngle)
-      {
-         float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, transform.eulerAngles.z + angleAddition, rotateSpeed * Time.deltaTime);
-         transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, angle);
-      }
+    private void RotateRight()
+    {
+        transform.RotateAround(this.transform.position, this.transform.forward, rotateSpeed * Time.deltaTime);
+    }
 
-   }
+    private void RotateLeft()
+    {
+        transform.RotateAround(this.transform.position, -this.transform.forward, rotateSpeed * Time.deltaTime);
+    }
 
-   public IEnumerator TurnOnOffRotateRight()
-   {
-      isRotatingRight = true;
-      yield return new WaitForSeconds(0.5f);
-      isRotatingRight = false;
-      maxNumberChecked = false;
-   }
+    public IEnumerator TurnOnOffRotateRight()
+    {
+        isRotatingRight = true;
+        yield return new WaitForSeconds(1f);
+        isRotatingRight = false;
+        maxNumberChecked = false;
+
+        AudioManager.instance.StopSwiveling();
+    }
+
+    public IEnumerator TurnOnOffRotateLeft()
+    {
+        isRotatingLeft = true;
+        yield return new WaitForSeconds(1f);
+        isRotatingLeft = false;
+        maxNumberChecked = false;
+
+        AudioManager.instance.StopSwiveling();
+    }
 }
