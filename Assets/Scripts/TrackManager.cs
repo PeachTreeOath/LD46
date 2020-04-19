@@ -24,13 +24,13 @@ public class TrackManager : Singleton<TrackManager>
     // Update is called once per frame
     void Update()
     {
-        // Move all stationary objects
+        // Move all tiles
         foreach (GameObject obj in trackSegments)
         {
-            obj.transform.position += new Vector3(0, 0, GameManager.instance.moveSpeed * Time.deltaTime);
-            if (obj.transform.position.z > cutoffPoint)
+            obj.transform.position -= new Vector3(0, 0, GameManager.instance.moveSpeed * Time.deltaTime);
+            if (obj.transform.position.z < -cutoffPoint)
             {
-                obj.transform.position -= resetDelta;
+                obj.transform.position += resetDelta;
             }
         }
     }
