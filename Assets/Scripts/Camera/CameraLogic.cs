@@ -6,13 +6,15 @@ public class CameraLogic : MonoBehaviour
 {
    private const int HIGH_PRIORITY_NUM = 11;
    private const int LOW_PRIORITY_NUM = 9;
+   private bool isCursorVisible = false;
 
    private Cinemachine.CinemachineVirtualCameraBase virtualCamera;
 
    // Start is called before the first frame update
    void Start()
    {
-
+      Cursor.lockState = CursorLockMode.Locked;
+      Cursor.visible = isCursorVisible;
       virtualCamera = GetComponent<Cinemachine.CinemachineVirtualCameraBase>();
    }
 
@@ -22,6 +24,12 @@ public class CameraLogic : MonoBehaviour
       if (Input.GetButtonDown("Fire2"))
       {
          ChangeCameraPriority();
+      }
+
+      if (Input.GetKeyDown(KeyCode.Alpha0))
+      {
+         ChangeIsCursorVisible();
+         TurnCursorOnOff();
       }
    }
 
@@ -38,5 +46,31 @@ public class CameraLogic : MonoBehaviour
             virtualCamera.Priority = LOW_PRIORITY_NUM;
          }
       }
+   }
+
+   private void ChangeIsCursorVisible()
+   {
+      if (isCursorVisible)
+      {
+         isCursorVisible = false;
+      }
+      else
+      {
+         isCursorVisible = true;
+      }
+   }
+
+   private void TurnCursorOnOff()
+   {
+      if (isCursorVisible)
+      {
+         Cursor.lockState = CursorLockMode.None;
+      }
+      else
+      {
+         Cursor.lockState = CursorLockMode.Locked;
+      }
+
+      Cursor.visible = isCursorVisible;
    }
 }
