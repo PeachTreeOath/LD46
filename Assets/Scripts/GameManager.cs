@@ -37,12 +37,13 @@ public class GameManager : Singleton<GameManager>
     private int aliveOrders;
     private int filledOrders;
 
-    private const float maxDistance = 5f;
+    private const float maxDistance = 10f;
+    private const float minDistance = 3f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
         t = 0;
         if (startingLevel <= 0)
         {
@@ -118,7 +119,7 @@ public class GameManager : Singleton<GameManager>
 
     public void OrderFilled()
     {
-        Debug.Log("Order Filled : " + filledOrders.ToString() + " : " + nOrdersToFill.ToString() );
+        Debug.Log("Order Filled : " + filledOrders.ToString() + " : " + nOrdersToFill.ToString());
         aliveOrders--;
         filledOrders++;
         UpdateOrderText();
@@ -130,7 +131,7 @@ public class GameManager : Singleton<GameManager>
 
     public void GotoNextLevel()
     {
-        currentLevel ++;
+        currentLevel++;
         levelTextSpawnPosition.CreateCanvas(currentLevel);
         Debug.Log("level beaten! going to next level");
         UpdateLevelText();
@@ -153,16 +154,30 @@ public class GameManager : Singleton<GameManager>
         int roll = Random.Range(0, 2);
         bool isBackSpawn = roll == 0 ? true : false;
 
-        customerObj.transform.position = new Vector3(UnityEngine.Random.Range(-10f, 10f), 0.5f, -200);
+        // Spawn initial position
+        if (isBackSpawn)
+            customerObj.transform.position = new Vector3(Random.Range(-20f, 20f), 0.5f, -200);
+        else
+            customerObj.transform.position = new Vector3(Random.Range(-20f, 20f), 0.5f, 200);
+
+        // Initialize customer
         CustomerController customer = customerObj.GetComponent<CustomerController>();
         List<GameObject> possibleFoods = ResourceLoader.instance.GetLevel(currentLevel).possibleFoods;
         Bullet randomFood = possibleFoods[UnityEngine.Random.Range(0, possibleFoods.Count)].GetComponent<Bullet>();
         customer.AssignFoodRequirement(randomFood);
 
-        // TODO: Spawn these in intelligent quadrants
-        Vector3 targetPosition = new Vector3(UnityEngine.Random.Range(-maxDistance, maxDistance), 0, UnityEngine.Random.Range(-maxDistance, maxDistance));
+        // Set position for them to move to. Make sure don't get too close or far via min and max distance
+        Vector3 targetPosition = Vector3.zero;
+        if (isBackSpawn)
+            while (targetPosition == Vector3.zero || Vector3.Distance(targetPosition, PlayerController.instance.transform.position) < minDistance)
+                targetPosition = new Vector3(Random.Range(-maxDistance, maxDistance), 0, Random.Range(-maxDistance, 0));
+        else
+            while (targetPosition == Vector3.zero || Vector3.Distance(targetPosition, PlayerController.instance.transform.position) < minDistance)
+                targetPosition = new Vector3(Random.Range(-maxDistance, maxDistance), 0, Random.Range(0, maxDistance));
+
         customer.SetTargetPosition(targetPosition);
-        //Get it's Customer Component and add it to the list.
+
+        // Get it's Customer Component and add it to the list.
         customers.Add(customer);
         Debug.Log("NEW CUSTOMER SPAWNED");
     }

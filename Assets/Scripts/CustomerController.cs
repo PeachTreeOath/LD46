@@ -129,7 +129,7 @@ public class CustomerController : MonoBehaviour
     {
         if (isDead && collision.gameObject.tag.Equals("Ground"))
         {
-            rigidBody.AddForce(new Vector3(0, 0, 1000 * Time.deltaTime));
+            rigidBody.AddForce(new Vector3(0, 0, -1000 * Time.deltaTime));
         }
     }
 

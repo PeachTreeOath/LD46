@@ -97,7 +97,7 @@ public class AudioManager : Singleton<AudioManager>
             PlayMusic("Gameplay_Music_Loop");
 
             // Play engine sounds
-            engineChannel1.clip = soundMap["Food_Truck_Rolling_Engine_Loop_No_Gears2D"];
+            engineChannel1.clip = soundMap["Food_Truck_Rolling_Engine_Loop_No_Gears2D_Update"];
             engineChannel1.volume = maxVol;
             engineChannel1.loop = true;
             engineChannel1.Play();
@@ -274,9 +274,16 @@ public class AudioManager : Singleton<AudioManager>
         sfxChannel.PlayOneShot(soundMap[name], volume * VolumeListener.volumeLevel);
     }
 
+    private int lastCrashPlayed = -1;
+
     public void PlayRandomCrash()
     {
         int roll = UnityEngine.Random.Range(0, 3);
+
+        while (roll == lastCrashPlayed)
+        {
+            roll = UnityEngine.Random.Range(0, 3);
+        }
 
         if (roll == 0)
             PlaySound("Just_Car_Crash");
@@ -284,11 +291,20 @@ public class AudioManager : Singleton<AudioManager>
             PlaySound("Just_Car_Crash-001");
         if (roll == 2)
             PlaySound("Just_Car_Crash-002");
+
+        lastCrashPlayed = roll;
     }
+
+    private int lastShotPlayed = -1;
 
     public void PlayRandomShot()
     {
         int roll = UnityEngine.Random.Range(0, 4);
+
+        while(roll == lastShotPlayed)
+        {
+            roll = UnityEngine.Random.Range(0, 4);
+        }
 
         if (roll == 0)
             PlaySound("Food_Truck_Cannon_Shoot_Updated_2D");
@@ -298,6 +314,8 @@ public class AudioManager : Singleton<AudioManager>
             PlaySound("Food_Truck_Cannon_Shoot_Updated-002_2D");
         if (roll == 3)
             PlaySound("Food_Truck_Cannon_Shoot_Updated-003_2D");
+
+        lastShotPlayed = roll;
     }
 
     public void PlayRandomSpotInSwivel()
