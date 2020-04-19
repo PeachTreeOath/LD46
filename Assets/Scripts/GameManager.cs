@@ -65,13 +65,10 @@ public class GameManager : Singleton<GameManager>
     {
         if (spawnCD < t)
         {
-            Debug.Log("CAN SPAWN");
             if (nOrdersToFill > filledOrders)
             {
-                Debug.Log("CAN ADD NEW ORDER");
                 if (maxCarOnScreen > aliveOrders)
                 {
-                    Debug.Log("SPAWNING PREFAB");
                     var prefabToSpawn = possibleCars[Random.Range(0, possibleCars.Count)];
                     SpawnCustomer(prefabToSpawn);
                     t = 0;
