@@ -66,11 +66,13 @@ public class CustomerController : MonoBehaviour
         rigidBody.AddExplosionForce(10, contactPoint.point, 10, 5, ForceMode.Impulse);
 
         isDead = true;
+
+        GameManager.instance.RemoveCustomerFromList(this);
     }
 
     public void FinishOrder()
     {
-        GameManager.instance.OrderFilled();
+        GameManager.instance.OrderFilled(this);
 
         // TODO: Do an animation or something
         Destroy(gameObject);
