@@ -2794,6 +2794,16 @@ PrefabInstance:
       propertyPath: levelText
       value: 
       objectReference: {fileID: 1184147336}
+    - target: {fileID: 7216740713649722169, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
+        type: 3}
+      propertyPath: fuelPerOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216740713649722169, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
+        type: 3}
+      propertyPath: startingFuelAmount
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 7216740713649722174, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
         type: 3}
       propertyPath: m_Name

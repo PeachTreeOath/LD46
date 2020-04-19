@@ -12,6 +12,11 @@ public class GameManager : Singleton<GameManager>
     public float landmarkSpawnTime;
     public SpawnCanvas levelTextSpawnPosition;
     public int startingLevel = 1;
+    public float startingFuelAmount;
+    private float fuelAmount;
+    public float fuelPerOrder;
+    public float fuelPerLevelUp;
+    public float maxFuel;
     private int currentLevel;
 
     private float t;
@@ -21,6 +26,7 @@ public class GameManager : Singleton<GameManager>
     private int maxCarOnScreen;
     private int nOrdersToFill;
     private List<GameObject> possibleCars;
+    
 
     public TextMeshProUGUI orderText, levelText;
 
@@ -54,6 +60,7 @@ public class GameManager : Singleton<GameManager>
 
         levelTextSpawnPosition.CreateCanvas(currentLevel);
         UpdateOrderText();
+        fuelAmount = startingFuelAmount;
     }
 
     private void UpdateOrderText()
@@ -97,24 +104,6 @@ public class GameManager : Singleton<GameManager>
         {
             t += Time.deltaTime;
         }
-
-        /*// Move all stationary objects
-        foreach (GameObject obj in stationaryObjects)
-        {
-            obj.transform.position += new Vector3(0, 0, moveSpeed * Time.deltaTime);
-        }
-
-        // Spawn logic
-        landmarkSpawnTimeElapsed += Time.deltaTime;
-
-        if (landmarkSpawnTimeElapsed > landmarkSpawnTime)
-        {
-            landmarkSpawnTimeElapsed -= landmarkSpawnTime;
-
-            SpawnLandmark();
-            SpawnCustomer(); // TODO: Separate these out
-        }
-        */
     }
 
     public void OrderFilled()
@@ -135,6 +124,7 @@ public class GameManager : Singleton<GameManager>
         levelTextSpawnPosition.CreateCanvas(currentLevel);
         Debug.Log("level beaten! going to next level");
         UpdateLevelText();
+        fuelAmount = fuelPerLevelUp;
     }
 
 
