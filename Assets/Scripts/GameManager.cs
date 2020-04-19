@@ -9,7 +9,7 @@ public class GameManager : Singleton<GameManager>
     // Inspector set
     public float moveSpeed = 5f; // This moves all stationary objects. The cars themselves are still.
     public float landmarkSpawnTime;
-
+    public SpawnCanvas levelTextSpawnPosition;
     public int startingLevel = 1;
     private int currentLevel;
 
@@ -46,6 +46,8 @@ public class GameManager : Singleton<GameManager>
         };
         currentLevel = startingLevel;
         SyncNewLevelData(currentLevel);
+
+        levelTextSpawnPosition.CreateCanvas(currentLevel);
     }
 
     private void SyncNewLevelData(int nextLevel)
@@ -112,8 +114,11 @@ public class GameManager : Singleton<GameManager>
 
     public void GotoNextLevel()
     {
+        currentLevel ++;
+        levelTextSpawnPosition.CreateCanvas(currentLevel);
         Debug.Log("level beaten! going to next level");
     }
+
 
     private void SpawnLandmark()
     {

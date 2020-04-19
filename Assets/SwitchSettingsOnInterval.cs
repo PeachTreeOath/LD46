@@ -10,6 +10,7 @@ public class SwitchSettingsOnInterval : MonoBehaviour
     private bool boldEnable = false;
     private float t;
     private TextMeshProUGUI text;
+    
     void Start()
     {
         t = 0;
@@ -38,6 +39,15 @@ public class SwitchSettingsOnInterval : MonoBehaviour
         else
         {
             t += Time.deltaTime;
+        }
+
+        if(transform.position.z > 0f)
+        {
+            transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
+        }
+        else
+        {
+            transform.rotation = new Quaternion(0f, 180f, 0f, 0f);
         }
         
     }
