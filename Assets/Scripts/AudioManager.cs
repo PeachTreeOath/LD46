@@ -54,7 +54,7 @@ public class AudioManager : Singleton<AudioManager>
         musicChannel.transform.SetParent(transform);
         musicChannel.name = "MusicChannel";
         musicChannel.outputAudioMixerGroup = musicMixerGroup;
-        musicChannel.loop = true;
+        musicChannel.loop = false;
 
         musicChannel2 = new GameObject().AddComponent<AudioSource>();
         musicChannel2.transform.SetParent(transform);
@@ -91,17 +91,42 @@ public class AudioManager : Singleton<AudioManager>
         ToggleMute(mute);
 
         if (SceneManager.GetActiveScene().name.Equals("Title"))
-            PlayMusic("Menu_Music_Loop");
+            StartCoroutine(PlayIntroMusicUntilDone());
         else if (SceneManager.GetActiveScene().name.Equals("Game"))
         {
             StartGameSounds();
         }
     }
 
+    public IEnumerator PlayIntroMusicUntilDone()
+    {
+        PlayMusic("Menu_Music_Loop");
+        bool isNextScene = false;
+        musicChannel.loop = false;
+
+        while (!isNextScene)
+        {
+            yield return null;
+
+            if (!musicChannel.isPlaying)
+            {
+                if (SceneManager.GetActiveScene().name.Equals("Game"))
+                {
+                    isNextScene = true;
+                }
+                else
+                {
+                    PlayMusic("Menu_Music_Loop");
+                }
+            }
+        }
+
+        PlayMusic("Gameplay_Music_Loop");
+        musicChannel.loop = true;
+    }
+
     public void StartGameSounds()
     {
-        PlayMusic("Gameplay_Music_Loop");
-
         // Play engine sounds
         engineChannel1.clip = soundMap["Food_Truck_Rolling_Engine_Loop_No_Gears2D_Update"];
         engineChannel1.volume = maxVol;
@@ -127,11 +152,11 @@ public class AudioManager : Singleton<AudioManager>
         }
 
         // Fuel tester
-       // if (Input.GetKeyDown(KeyCode.N))
+        // if (Input.GetKeyDown(KeyCode.N))
         //{
         //    ratio -= 0.1f;
         //    TransitionToEngine2(ratio);
-       // }
+        // }
     }
 
     public void TransitionToEngine2(float engine1Ratio)
