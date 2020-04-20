@@ -11,7 +11,9 @@ public class CustomerController : MonoBehaviour
     public float speedMod;
     public List<TargetPairController> targetPairs = new List<TargetPairController>();
     public bool isAerial;
+
     public ParticleSystem explosion;
+    public AudioSource audioSource;
 
     [HideInInspector] public float timeAlive; // This is used to help with crowd control
     [HideInInspector] public FoodType foodRequirement;
@@ -23,11 +25,21 @@ public class CustomerController : MonoBehaviour
     private void Awake()
     {
             
+
+    private void Start()
+    {
+        audioSource.outputAudioMixerGroup = AudioManager.instance.sfxMixerGroup;
+
     }
 
     private void Update()
     {
         timeAlive += Time.deltaTime;
+
+        if(Input.GetKeyDown(KeyCode.J))
+        {
+            PlayRandomCrash();
+        }
     }
 
     private void FixedUpdate()
@@ -119,6 +131,12 @@ public class CustomerController : MonoBehaviour
         }
     }
 
+    public void PlaySound(string name)
+    {
+        AudioClip clip = AudioManager.instance.soundMap[name];
+        audioSource.PlayOneShot(clip);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag.Equals("Bullet"))
@@ -134,8 +152,32 @@ public class CustomerController : MonoBehaviour
 
             bullet.Despawn();
         }
+        else if (isDead && collision.gameObject.tag.Equals("Ground"))
+        {
+            PlayRandomCrash();
+        }
     }
 
+    // Careful, this code is duplicated
+    private int lastCrashPlayed = -1;
+    public void PlayRandomCrash()
+    {
+        int roll = UnityEngine.Random.Range(0, 3);
+
+        while (roll == lastCrashPlayed)
+        {
+            roll = UnityEngine.Random.Range(0, 3);
+        }
+
+        if (roll == 0)
+            PlaySound("Just_Car_Crash");
+        if (roll == 1)
+            PlaySound("Just_Car_Crash-001");
+        if (roll == 2)
+            PlaySound("Just_Car_Crash-002");
+
+        lastCrashPlayed = roll;
+    }
     private void OnCollisionStay(Collision collision)
     {
         if (isDead && collision.gameObject.tag.Equals("Ground"))

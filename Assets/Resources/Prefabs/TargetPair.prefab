@@ -49,6 +49,8 @@ MonoBehaviour:
   rightTarget: {fileID: 1777208904746964391}
   foodRequirement: 0
   isFed: 0
+  isDead: 0
+  isAssigned: 0
 --- !u!1001 &2068239911432012833
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -110,6 +112,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2409815039113737427, guid: ec68d4c0a80c21e4cabe9ced01bad8e4,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2409815039113737427, guid: ec68d4c0a80c21e4cabe9ced01bad8e4,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2409815039113737427, guid: ec68d4c0a80c21e4cabe9ced01bad8e4,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 2409815039113737431, guid: ec68d4c0a80c21e4cabe9ced01bad8e4,
         type: 3}
@@ -201,17 +218,17 @@ PrefabInstance:
     - target: {fileID: 2409815039113737427, guid: ec68d4c0a80c21e4cabe9ced01bad8e4,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 2409815039113737427, guid: ec68d4c0a80c21e4cabe9ced01bad8e4,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 2409815039113737427, guid: ec68d4c0a80c21e4cabe9ced01bad8e4,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 2409815039113737429, guid: ec68d4c0a80c21e4cabe9ced01bad8e4,
         type: 3}
