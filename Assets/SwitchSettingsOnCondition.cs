@@ -7,10 +7,12 @@ using UnityEngine.UI;
 public class SwitchSettingsOnCondition : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float amount = 0.25f;
+    public float firstCondition;
+    public float secondCondition; 
     public float flick = 0.85f;
     private float t = 0;
     private bool boldEnable = false;
+    private bool itallicEnable = false;
     private TextMeshProUGUI text;
     public Slider value;
 
@@ -24,20 +26,19 @@ public class SwitchSettingsOnCondition : MonoBehaviour
     void Update()
     {
         
-        if (value.value < amount)
+        if (value.value > secondCondition)
         {
             if (t > flick)
             {
                 if (boldEnable)
                 {
-                    text.fontStyle = FontStyles.Italic;
+                    text.fontStyle = FontStyles.Normal;
                     boldEnable = false;
                     t = 0;
                 }
                 else
                 {
                     text.fontStyle = FontStyles.Bold;
-                    text.fontStyle = FontStyles.Italic;
                     boldEnable = true;
                     t = 0;
                 }
@@ -46,9 +47,29 @@ public class SwitchSettingsOnCondition : MonoBehaviour
             {
                 t += Time.deltaTime;
             }
-                
 
         }
-
+        else if(value.value > firstCondition && value.value < secondCondition)
+        {
+            if (t > flick)
+            {
+                if (boldEnable)
+                {
+                    text.fontStyle = FontStyles.Italic;
+                    itallicEnable = false;
+                    t = 0;
+                }
+                else
+                {
+                    text.fontStyle = FontStyles.Normal;
+                    itallicEnable = true;
+                    t = 0;
+                }
+            }
+            else
+            {
+                t += Time.deltaTime;
+            }
+        }
     }
 }

@@ -11,12 +11,19 @@ public class CustomerController : MonoBehaviour
     public float speedMod;
     public List<TargetPairController> targetPairs = new List<TargetPairController>();
     public bool isAerial;
+    public ParticleSystem explosion;
 
     [HideInInspector] public float timeAlive; // This is used to help with crowd control
     [HideInInspector] public FoodType foodRequirement;
 
     private Vector3 targetPosition;
     private bool isDead;
+
+
+    private void Awake()
+    {
+            
+    }
 
     private void Update()
     {
@@ -74,7 +81,8 @@ public class CustomerController : MonoBehaviour
     public void FinishOrder()
     {
         GameManager.instance.OrderFilled(this);
-
+        explosion.Play();
+        explosion.gameObject.GetComponentsInChildren<ParticleSystem>().Play();
         // TODO: Do an animation or something
         Destroy(gameObject);
     }
