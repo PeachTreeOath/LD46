@@ -41,7 +41,7 @@ public class OrderTarget : MonoBehaviour
             if (bullet.foodType == foodRequirement)
                 FeedTarget();
             else
-                customerParent.DestroyVehicle(collision.GetContact(0));
+                customerParent.DestroyVehicle(collision.GetContact(0).point);
 
             bullet.Despawn();
         }

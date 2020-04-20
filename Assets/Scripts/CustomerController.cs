@@ -74,7 +74,7 @@ public class CustomerController : MonoBehaviour
         }
     }
 
-    public void DestroyVehicle(ContactPoint contactPoint)
+    public void DestroyVehicle(Vector3 explosionPoint)
     {
         foreach (TargetPairController target in targetPairs)
         {
@@ -83,7 +83,7 @@ public class CustomerController : MonoBehaviour
 
         rigidBody.constraints = RigidbodyConstraints.None;
         rigidBody.useGravity = true;
-        rigidBody.AddExplosionForce(10, contactPoint.point, 10, 5, ForceMode.Impulse);
+        rigidBody.AddExplosionForce(10, explosionPoint, 10, 5, ForceMode.Impulse);
 
         isDead = true;
 
@@ -98,9 +98,10 @@ public class CustomerController : MonoBehaviour
         {
             p.Play();
         }
-       
-        // TODO: Do an animation or something
-        Destroy(gameObject);
+        
+        // TODO: Create the thumbs up here
+
+        DestroyVehicle(transform.position);
     }
 
     // Social distancing algorithm - doesn't work very well
