@@ -143,10 +143,10 @@ public class GameManager : Singleton<GameManager>
             if (obj == null)
                 continue;
 
-            obj.transform.position -= new Vector3(0, 0, moveSpeed * Time.deltaTime);
+            obj.transform.position -= new Vector3(0, 0, moveSpeed * Time.deltaTime); // Move all objects
             if (obj.transform.position.z < -TrackManager.instance.cutoffPoint)
             {
-                objsToDelete.Add(obj);
+                objsToDelete.Add(obj); // Put them into a list for deletion
             }
         }
 
