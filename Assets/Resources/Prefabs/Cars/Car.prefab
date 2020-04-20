@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2317140412773303419}
   - component: {fileID: 8302901412086730312}
   - component: {fileID: 3028488037179863585}
+  - component: {fileID: 5298239493554633168}
   m_Layer: 0
   m_Name: Car
   m_TagString: Customer
@@ -58,9 +59,9 @@ MonoBehaviour:
   - {fileID: 1867265502104452804}
   - {fileID: 3901614628022151000}
   isAerial: 0
+  explosion: {fileID: 0}
   audioSource: {fileID: 3028488037179863585}
   timeAlive: 0
-  foodRequirement: 0
 --- !u!65 &2317140412773303420
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -199,6 +200,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &5298239493554633168
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2317140412773303417}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a1f7365c4c2bec54d8addf1801aa46ca, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3997377850469969282
 GameObject:
   m_ObjectHideFlags: 0
