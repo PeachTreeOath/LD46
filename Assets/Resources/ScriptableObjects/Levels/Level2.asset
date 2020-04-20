@@ -19,4 +19,8 @@ MonoBehaviour:
   possibleCars:
   - {fileID: 2317140412773303417, guid: 86afc9a983548694b887b0220c259912, type: 3}
   - {fileID: 2317140412773303417, guid: 3eab980c607633e4c973b620ff2793f0, type: 3}
-  possibleFoods: []
+  possibleFoods:
+  - {fileID: 9065365568881466584, guid: 6e2a0ddf991a7624097d4e6d80a46b19, type: 3}
+  - {fileID: 9065365568881466584, guid: 73bb71ad62004bd4b8a0091d00329ae1, type: 3}
+  - {fileID: 9065365568881466584, guid: cd7e4b4c849452443b5a68d4eb965ce0, type: 3}
+  - {fileID: 9065365568881466584, guid: b157ba6f5f5b4844aa675279f1a8efc3, type: 3}

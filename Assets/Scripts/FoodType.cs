@@ -5,13 +5,13 @@ using UnityEngine;
 public enum FoodType
 {
     BANANA,
+    BEER,
     CACTUS,
-    DIM_SUM,
+    STEAK,
     FISH,
     HOT_DOG,
     ICE_CREAM,
-    MEAT_SKEWER,
-    SODA,
+    RAMEN,
+    RAT_STICK,
     WAFFLE,
-    WINE
 }
