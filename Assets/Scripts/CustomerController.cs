@@ -24,6 +24,7 @@ public class CustomerController : MonoBehaviour
 
     private void Awake()
     {
+    }
             
 
     private void Start()
