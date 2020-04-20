@@ -179,11 +179,13 @@ public class GameManager : Singleton<GameManager>
     public void GotoNextLevel()
     {
         currentLevel++;
+        SyncNewLevelData(currentLevel);
         levelTextSpawnPosition.CreateCanvas(currentLevel);
         Debug.Log("level beaten! going to next level");
         UpdateLevelText();
         fuelAmount += fuelPerLevelUp / currentLevel;
         UpdateFuelUI();
+        UpdateOrderText();
     }
 
     private void SpawnEnvObj()
