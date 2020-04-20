@@ -5,212 +5,222 @@ using UnityEngine;
 
 public class CannonShoot : Singleton<CannonShoot>
 {
-   public BulletDisplay bulletDisplay;
-   public List<BulletDisplay> ammoTrayDisplays;
-   public Animator anim;
+    public BulletDisplay bulletDisplay;
+    public List<BulletDisplay> ammoTrayDisplays;
+    public Animator anim;
 
-   public GameObject[] bulletPrefabs;
-   [SerializeField] private Transform cannonEnd;
-   [SerializeField] private float shootingCooldown = 0.25f;
-   [SerializeField] private float straightBulletForce = 25f;
-   [SerializeField] private float lobBulletForce = 0f;
-   [SerializeField] private float lobForceIncreaseAmount = 0.5f;
+    public GameObject[] bulletPrefabs;
+    [SerializeField] private Transform cannonEnd;
+    [SerializeField] private float shootingCooldown = 0.25f;
+    [SerializeField] private float straightBulletForce = 25f;
+    [SerializeField] private float lobBulletForce = 0f;
+    [SerializeField] private float lobForceIncreaseAmount = 0.5f;
 
-   private float bulletShootForce = 5f;
-   private int selectedBulletIndex = 0;
-   private int selectedAmmoTrayIndex = 0;
-   private float shootRate = 0.0f;
-   private GameObject bullet;
-   private GameObject selectedBulletPrefab;
-   private AmmoTrayLogic ammoTray;
-   private Cinemachine.CinemachineImpulseSource impulseSource;
+    private float bulletShootForce = 5f;
+    private int selectedBulletIndex = 0;
+    private int selectedAmmoTrayIndex = 0;
+    private float shootRate = 0.0f;
+    private GameObject bullet;
+    private GameObject selectedBulletPrefab;
+    private AmmoTrayLogic ammoTray;
+    private Cinemachine.CinemachineImpulseSource impulseSource;
+    private bool isShotQueuedUp;
 
-   // Start is called before the first frame update
-   void Start()
-   {
-      ammoTray = GetComponentInChildren<AmmoTrayLogic>();
-      impulseSource = GetComponent<Cinemachine.CinemachineImpulseSource>();
-      anim = GetComponent<Animator>();
-   }
+    // Start is called before the first frame update
+    void Start()
+    {
+        ammoTray = GetComponentInChildren<AmmoTrayLogic>();
+        impulseSource = GetComponent<Cinemachine.CinemachineImpulseSource>();
+        anim = GetComponent<Animator>();
+    }
 
-   // Update is called once per frame
-   void Update()
-   {
-      if (shootRate > 0.0f)
-      {
-         shootRate -= Time.deltaTime;
-      }
+    // Update is called once per frame
+    void Update()
+    {
+        if (shootRate > 0.0f)
+        {
+            shootRate -= Time.deltaTime;
+        }
 
-      if (Input.GetButtonDown("Fire1") && shootRate <= 0.0f)
-      {
-         if (anim)
-         {
-            anim.SetTrigger("Shot");
-         }
-         GenerateShake();
-         bulletShootForce = straightBulletForce;
-         Shoot();
-      }
+        if (Input.GetButtonDown("Fire1") && shootRate <= 0.0f)
+        {
+            isShotQueuedUp = true;
+        }
 
-      if (Input.GetAxis("Mouse ScrollWheel") > 0.0f || Input.GetKeyDown(KeyCode.E))
-      {
-         ammoTray.TurnRight();
-         //StartCoroutine(ammoTray.TurnOnOffRotateRight());
-         BulletSelectionForward();
-         RefreshAmmoTrayDisplays();
-         AudioManager.instance.PlayRandomSpotInSwivel();
-      }
+        if (Input.GetAxis("Mouse ScrollWheel") > 0.0f || Input.GetKeyDown(KeyCode.E))
+        {
+            ammoTray.TurnRight();
+            //StartCoroutine(ammoTray.TurnOnOffRotateRight());
+            BulletSelectionForward();
+            RefreshAmmoTrayDisplays();
+            AudioManager.instance.PlayRandomSpotInSwivel();
+        }
 
-      if (Input.GetAxis("Mouse ScrollWheel") < 0.0f || Input.GetKeyDown(KeyCode.Q))
-      {
-         ammoTray.TurnLeft();
-         //StartCoroutine(ammoTray.TurnOnOffRotateLeft());
-         BulletSelectionBackward();
-         RefreshAmmoTrayDisplays();
-         AudioManager.instance.PlayRandomSpotInSwivel();
-      }
-   }
+        if (Input.GetAxis("Mouse ScrollWheel") < 0.0f || Input.GetKeyDown(KeyCode.Q))
+        {
+            ammoTray.TurnLeft();
+            //StartCoroutine(ammoTray.TurnOnOffRotateLeft());
+            BulletSelectionBackward();
+            RefreshAmmoTrayDisplays();
+            AudioManager.instance.PlayRandomSpotInSwivel();
+        }
+    }
 
-   private void RefreshAmmoTrayDisplays()
-   {
-      int ammoTrayIdx = selectedAmmoTrayIndex;
-      int bulletIdx = selectedBulletIndex;
+    private void RefreshAmmoTrayDisplays()
+    {
+        int ammoTrayIdx = selectedAmmoTrayIndex;
+        int bulletIdx = selectedBulletIndex;
 
-      // Fill out 1 direction
-      for (int i = 0; i < 3; i++)
-      {
-         GameObject prefab = bulletPrefabs[bulletIdx];
-         ammoTrayDisplays[ammoTrayIdx].DisplayCurrentBullet(prefab.GetComponent<Bullet>().foodType);
+        // Fill out 1 direction
+        for (int i = 0; i < 3; i++)
+        {
+            GameObject prefab = bulletPrefabs[bulletIdx];
+            ammoTrayDisplays[ammoTrayIdx].DisplayCurrentBullet(prefab.GetComponent<Bullet>().foodType);
 
-         ammoTrayIdx++;
-         if (ammoTrayIdx >= ammoTrayDisplays.Count)
-         {
-            ammoTrayIdx = 0;
-         }
+            ammoTrayIdx++;
+            if (ammoTrayIdx >= ammoTrayDisplays.Count)
+            {
+                ammoTrayIdx = 0;
+            }
 
-         bulletIdx++;
-         if (bulletIdx >= bulletPrefabs.Length)
-         {
-            bulletIdx = 0;
-         }
-      }
+            bulletIdx++;
+            if (bulletIdx >= bulletPrefabs.Length)
+            {
+                bulletIdx = 0;
+            }
+        }
 
-      // Fill out the other direction
-      ammoTrayIdx = selectedAmmoTrayIndex;
-      bulletIdx = selectedBulletIndex;
-      for (int i = 0; i < 3; i++)
-      {
-         GameObject prefab = bulletPrefabs[bulletIdx];
-         ammoTrayDisplays[ammoTrayIdx].DisplayCurrentBullet(prefab.GetComponent<Bullet>().foodType);
+        // Fill out the other direction
+        ammoTrayIdx = selectedAmmoTrayIndex;
+        bulletIdx = selectedBulletIndex;
+        for (int i = 0; i < 3; i++)
+        {
+            GameObject prefab = bulletPrefabs[bulletIdx];
+            ammoTrayDisplays[ammoTrayIdx].DisplayCurrentBullet(prefab.GetComponent<Bullet>().foodType);
 
-         ammoTrayIdx--;
-         if (ammoTrayIdx < 0)
-         {
-            ammoTrayIdx = ammoTrayDisplays.Count - 1;
-         }
+            ammoTrayIdx--;
+            if (ammoTrayIdx < 0)
+            {
+                ammoTrayIdx = ammoTrayDisplays.Count - 1;
+            }
 
-         bulletIdx--;
-         if (bulletIdx < 0)
-         {
-            bulletIdx = bulletPrefabs.Length - 1;
-         }
-      }
-   }
+            bulletIdx--;
+            if (bulletIdx < 0)
+            {
+                bulletIdx = bulletPrefabs.Length - 1;
+            }
+        }
+    }
 
-   public void InitAmmo(List<GameObject> ammoTypes)
-   {
-      bulletPrefabs = ammoTypes.ToArray();
-      selectedBulletPrefab = bulletPrefabs[selectedBulletIndex];
-      if (bulletDisplay)
-      {
-         bulletDisplay.DisplayCurrentBullet(selectedBulletPrefab.GetComponent<Bullet>().foodType);
-      }
+    private void FixedUpdate()
+    {
+        if (isShotQueuedUp)
+        {
+            if (anim)
+            {
+                anim.SetTrigger("Shot");
+            }
+            GenerateShake();
+            bulletShootForce = straightBulletForce;
+            Shoot();
+            isShotQueuedUp = false;
+        }
+    }
 
-      RefreshAmmoTrayDisplays();
-   }
+    public void InitAmmo(List<GameObject> ammoTypes)
+    {
+        bulletPrefabs = ammoTypes.ToArray();
+        selectedBulletPrefab = bulletPrefabs[selectedBulletIndex];
+        if (bulletDisplay)
+        {
+            bulletDisplay.DisplayCurrentBullet(selectedBulletPrefab.GetComponent<Bullet>().foodType);
+        }
 
-   private void Shoot()
-   {
-      bullet = Instantiate(selectedBulletPrefab, cannonEnd.position, Quaternion.identity);
+        RefreshAmmoTrayDisplays();
+    }
 
-      bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletShootForce, ForceMode.Impulse);
+    private void Shoot()
+    {
+        bullet = Instantiate(selectedBulletPrefab, cannonEnd.position, Quaternion.identity);
 
-      shootRate = shootingCooldown;
-      lobBulletForce = 0.0f;
+        bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletShootForce, ForceMode.Impulse);
 
-      AudioManager.instance.PlayRandomShot();
-   }
+        shootRate = shootingCooldown;
+        lobBulletForce = 0.0f;
 
-   private void BulletSelectionForward()
-   {
-      if (selectedBulletIndex >= bulletPrefabs.Length - 1)
-      {
-         selectedBulletIndex = 0;
-      }
-      else
-      {
-         selectedBulletIndex++;
-      }
+        AudioManager.instance.PlayRandomShot();
+    }
 
-      if (selectedAmmoTrayIndex >= ammoTrayDisplays.Count - 1)
-      {
-         selectedAmmoTrayIndex = 0;
-      }
-      else
-      {
-         selectedAmmoTrayIndex++;
-      }
+    private void BulletSelectionForward()
+    {
+        if (selectedBulletIndex >= bulletPrefabs.Length - 1)
+        {
+            selectedBulletIndex = 0;
+        }
+        else
+        {
+            selectedBulletIndex++;
+        }
 
-      AssignSelectedBullet(selectedBulletIndex);
+        if (selectedAmmoTrayIndex >= ammoTrayDisplays.Count - 1)
+        {
+            selectedAmmoTrayIndex = 0;
+        }
+        else
+        {
+            selectedAmmoTrayIndex++;
+        }
 
-      /// AudioManager.instance.PlaySound("Food_Truck_Cannon_Turn_Revolver_Right_2D");
-   }
+        AssignSelectedBullet(selectedBulletIndex);
 
-   private void BulletSelectionBackward()
-   {
-      if (selectedBulletIndex <= 0)
-      {
-         selectedBulletIndex = bulletPrefabs.Length - 1;
-      }
-      else
-      {
-         selectedBulletIndex--;
-      }
+        /// AudioManager.instance.PlaySound("Food_Truck_Cannon_Turn_Revolver_Right_2D");
+    }
 
-      if (selectedAmmoTrayIndex <= 0)
-      {
-         selectedAmmoTrayIndex = ammoTrayDisplays.Count - 1;
-      }
-      else
-      {
-         selectedAmmoTrayIndex--;
-      }
+    private void BulletSelectionBackward()
+    {
+        if (selectedBulletIndex <= 0)
+        {
+            selectedBulletIndex = bulletPrefabs.Length - 1;
+        }
+        else
+        {
+            selectedBulletIndex--;
+        }
 
-      AssignSelectedBullet(selectedBulletIndex);
+        if (selectedAmmoTrayIndex <= 0)
+        {
+            selectedAmmoTrayIndex = ammoTrayDisplays.Count - 1;
+        }
+        else
+        {
+            selectedAmmoTrayIndex--;
+        }
 
-      // AudioManager.instance.PlaySound("Food_Truck_Cannon_Turn_Revolver_Left_2D");
-   }
+        AssignSelectedBullet(selectedBulletIndex);
 
-   private void AssignSelectedBullet(int bulletIndex)
-   {
-      selectedBulletPrefab = bulletPrefabs[bulletIndex];
+        // AudioManager.instance.PlaySound("Food_Truck_Cannon_Turn_Revolver_Left_2D");
+    }
 
-      if (bulletDisplay)
-      {
-         bulletDisplay.DisplayCurrentBullet(selectedBulletPrefab.GetComponent<Bullet>().foodType);
-      }
-   }
+    private void AssignSelectedBullet(int bulletIndex)
+    {
+        selectedBulletPrefab = bulletPrefabs[bulletIndex];
 
-   private void IncreaseLobBulletForce()
-   {
-      lobBulletForce += (lobForceIncreaseAmount * Time.deltaTime);
-   }
+        if (bulletDisplay)
+        {
+            bulletDisplay.DisplayCurrentBullet(selectedBulletPrefab.GetComponent<Bullet>().foodType);
+        }
+    }
 
-   private void GenerateShake()
-   {
-      if (impulseSource)
-      {
-         impulseSource.GenerateImpulse(transform.forward);
-      }
-   }
+    private void IncreaseLobBulletForce()
+    {
+        lobBulletForce += (lobForceIncreaseAmount * Time.deltaTime);
+    }
+
+    private void GenerateShake()
+    {
+        if (impulseSource)
+        {
+            impulseSource.GenerateImpulse(transform.forward);
+        }
+    }
 }
