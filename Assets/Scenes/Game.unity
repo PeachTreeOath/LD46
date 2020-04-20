@@ -2754,34 +2754,20 @@ PrefabInstance:
       objectReference: {fileID: 1184147336}
     - target: {fileID: 7216740713649722169, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
         type: 3}
-      propertyPath: fuelPerOrder
-      value: 20
-      objectReference: {fileID: 0}
+      propertyPath: fuelGauge
+      value: 
+      objectReference: {fileID: 1279127161}
     - target: {fileID: 7216740713649722169, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
         type: 3}
-      propertyPath: startingFuelAmount
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7216740713649722169, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
-        type: 3}
-      propertyPath: maxFuel
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7216740713649722169, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
-        type: 3}
-      propertyPath: fuelPerLevelUp
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7216740713649722169, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
-        type: 3}
-      propertyPath: fuelSpentPerTick
+      propertyPath: environmentalObjectSpawnTime
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7216740713649722169, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
         type: 3}
-      propertyPath: fuelGauge
+      propertyPath: environmentalObjectsToSpawn.Array.data[0]
       value: 
-      objectReference: {fileID: 1279127161}
+      objectReference: {fileID: 9065365568881466584, guid: b157ba6f5f5b4844aa675279f1a8efc3,
+        type: 3}
     - target: {fileID: 7216740713649722174, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
         type: 3}
       propertyPath: m_Name

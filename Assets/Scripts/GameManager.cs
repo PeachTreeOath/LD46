@@ -5,12 +5,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 using TMPro;
+using System.Linq;
 
 public class GameManager : Singleton<GameManager>
 {
     // Inspector set
     public float moveSpeed = 5f; // This moves all stationary objects. The cars themselves are still.
-    public float landmarkSpawnTime;
+    public float environmentalObjectSpawnTime;
     public SpawnCanvas levelTextSpawnPosition;
     public int startingLevel = 1;
     public float startingFuelAmount;
@@ -19,6 +20,8 @@ public class GameManager : Singleton<GameManager>
     public float fuelPerLevelUp;
     public float maxFuel;
     private int currentLevel;
+    public List<GameObject> environmentalObjectsToSpawn;
+    private float environmentalObjectSpawnTimeElapsed;
 
     private float t;
     private LevelData level;
@@ -52,7 +55,6 @@ public class GameManager : Singleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
-
         t = 0;
         if (startingLevel <= 0)
         {
@@ -79,9 +81,9 @@ public class GameManager : Singleton<GameManager>
 
     private void UpdateFuelUI()
     {
-        
+
     }
-        
+
     private void SyncNewLevelData(int nextLevel)
     {
         level = ResourceLoader.instance.GetLevel(nextLevel);
@@ -98,9 +100,9 @@ public class GameManager : Singleton<GameManager>
     void Update()
     {
         fuelAmount -= fuelSpentPerTick * Time.deltaTime;
-        fuelGauge.value = 1 - fuelAmount/100;
+        fuelGauge.value = 1 - fuelAmount / 100;
 
-        if(fuelAmount <= 0)
+        if (fuelAmount <= 0)
         {
             currentLevel = 1;
             fuelAmount = startingFuelAmount;
@@ -123,6 +125,29 @@ public class GameManager : Singleton<GameManager>
         {
             t += Time.deltaTime;
         }
+
+        // Spawn logic
+        environmentalObjectSpawnTimeElapsed += Time.deltaTime;
+
+        if (environmentalObjectSpawnTimeElapsed > environmentalObjectSpawnTime)
+        {
+            environmentalObjectSpawnTimeElapsed -= environmentalObjectSpawnTime;
+            SpawnEnvObj();
+        }
+
+        // Move all env objs
+        List<GameObject> objsToDelete = new List<GameObject>();
+        foreach (GameObject obj in stationaryObjects)
+        {
+            obj.transform.position -= new Vector3(0, 0, GameManager.instance.moveSpeed * Time.deltaTime);
+            if (obj.transform.position.z < -TrackManager.instance.cutoffPoint)
+            {
+                objsToDelete.Add(obj);
+                Destroy(obj);
+            }
+        }
+
+        stationaryObjects = stationaryObjects.Except(objsToDelete).ToList();
     }
 
     public void OrderFilled(CustomerController customerController)
@@ -151,15 +176,14 @@ public class GameManager : Singleton<GameManager>
         levelTextSpawnPosition.CreateCanvas(currentLevel);
         Debug.Log("level beaten! going to next level");
         UpdateLevelText();
-        fuelAmount += fuelPerLevelUp/currentLevel;
+        fuelAmount += fuelPerLevelUp / currentLevel;
         UpdateFuelUI();
     }
 
-
-    private void SpawnLandmark()
+    private void SpawnEnvObj()
     {
-        GameObject landmarkObj = Instantiate(ResourceLoader.instance.testLandmarkPrefab);
-        landmarkObj.transform.position = new Vector3(UnityEngine.Random.Range(-10f, 10f), 0.5f, -50);
+        GameObject landmarkObj = Instantiate(environmentalObjectsToSpawn[Random.Range(0, environmentalObjectsToSpawn.Count)]);
+        landmarkObj.transform.position = new Vector3(Random.Range(-20f, 20f), 0.5f, 200);
         //Add it to Stationary Objects.
         stationaryObjects.Add(landmarkObj);
     }
