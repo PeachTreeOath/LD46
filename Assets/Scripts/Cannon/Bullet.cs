@@ -5,27 +5,34 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Inspector set
-    public FoodType foodType;
-    public BulletType bulletType;
-    public Sprite requirementIcon;
+   // Inspector set
+   public FoodType foodType;
+   public BulletType bulletType;
+   public Sprite requirementIcon;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+   private float destroyTime = 5f;
 
-    }
+   // Start is called before the first frame update
+   void Start()
+   {
+      Invoke("DestroyAfterSeconds", destroyTime);
+   }
 
-    // Update is called once per frame
-    void Update()
-    {
+   // Update is called once per frame
+   void Update()
+   {
 
-    }
+   }
 
-    public void Despawn()
-    {
-        // TODO: Play sounds and animation
+   public void Despawn()
+   {
+      // TODO: Play sounds and animation
 
-        Destroy(gameObject);
-    }
+      Destroy(gameObject);
+   }
+
+   private void DestroyAfterSeconds()
+   {
+      Destroy(gameObject);
+   }
 }
