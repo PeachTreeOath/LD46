@@ -19,6 +19,7 @@ public class CustomerController : MonoBehaviour
 
     private Vector3 targetPosition;
     private bool isDead;
+    public GameObject thumbsUp;
 
 
     private void Awake()
@@ -101,7 +102,8 @@ public class CustomerController : MonoBehaviour
         
 
         // Create thumbs up
-        Instantiate(ResourceLoader.instance.thumbsUpPrefab, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+        GameObject g = Instantiate(thumbsUp, transform.position + new Vector3(0, 2.3f, 0), Quaternion.identity);
+        g.GetComponentInChildren<ParticleSystem>().Play();
         DestroyVehicle(transform.position);
     }
 
