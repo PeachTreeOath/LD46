@@ -3122,16 +3122,6 @@ PrefabInstance:
       propertyPath: fuelGauge
       value: 
       objectReference: {fileID: 1279127161}
-    - target: {fileID: 7216740713649722169, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
-        type: 3}
-      propertyPath: fuelSpentPerTick
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7216740713649722169, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
-        type: 3}
-      propertyPath: environmentalObjectSpawnTime
-      value: 0.15
-      objectReference: {fileID: 0}
     - target: {fileID: 7216740713649722174, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
         type: 3}
       propertyPath: m_Name

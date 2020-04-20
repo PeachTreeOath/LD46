@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 50
-  environmentalObjectSpawnTime: 0.5
+  environmentalObjectSpawnTime: 0.15
   levelTextSpawnPosition: {fileID: 0}
   startingLevel: 1
   startingFuelAmount: 100
@@ -74,10 +74,11 @@ MonoBehaviour:
   - {fileID: 7768890333174835713, guid: 319fff956a4def040833a843c02f9f69, type: 3}
   - {fileID: 5672170342732669527, guid: f36ec33523618a0459e3fa4f59d1d6c1, type: 3}
   - {fileID: 2255523073257541149, guid: 9de18cd36fa5004468758665e28536e8, type: 3}
+  - {fileID: 7314439757817458688, guid: 61f9201b015aa974faecdd44d655d4d2, type: 3}
   orderText: {fileID: 0}
   levelText: {fileID: 0}
   fuelGauge: {fileID: 0}
-  fuelSpentPerTick: 1
+  fuelSpentPerTick: 5
   customers: []
 --- !u!114 &937687348
 MonoBehaviour:
