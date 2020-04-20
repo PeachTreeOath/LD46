@@ -28,7 +28,7 @@ public class AudioManager : Singleton<AudioManager>
     private AudioSource engineChannel1;
     private AudioSource engineChannel2;
     private AudioSource swivelChannel;
-    private Dictionary<string, AudioClip> soundMap;
+    [HideInInspector] public Dictionary<string, AudioClip> soundMap;
     //Tracks whether intro in coroutine has finished playing or not.
     private bool introCompleted = true;
 
@@ -274,8 +274,8 @@ public class AudioManager : Singleton<AudioManager>
         sfxChannel.PlayOneShot(soundMap[name], volume * VolumeListener.volumeLevel);
     }
 
+    // Careful, this code is duplicated
     private int lastCrashPlayed = -1;
-
     public void PlayRandomCrash()
     {
         int roll = UnityEngine.Random.Range(0, 3);
@@ -296,7 +296,6 @@ public class AudioManager : Singleton<AudioManager>
     }
 
     private int lastShotPlayed = -1;
-
     public void PlayRandomShot()
     {
         int roll = UnityEngine.Random.Range(0, 4);

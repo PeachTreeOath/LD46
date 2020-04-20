@@ -26,7 +26,7 @@ public class GameManager : Singleton<GameManager>
     private int maxCarOnScreen;
     private int nOrdersToFill;
     private List<GameObject> possibleCars;
-    
+
 
     public TextMeshProUGUI orderText, levelText;
 
@@ -168,14 +168,23 @@ public class GameManager : Singleton<GameManager>
         Bullet randomFood = possibleFoods[UnityEngine.Random.Range(0, possibleFoods.Count)].GetComponent<Bullet>();
         customer.AssignFoodRequirement(randomFood);
 
+        // Find a horizontal distance. This is doing separately so the car doesnt just sit directly in front of the player
+        int hRoll = Random.Range(0, 2);
+        bool isLeftSection = roll == 0 ? true : false;
+        float xPos;
+        if (isLeftSection)
+            xPos = Random.Range(-maxDistance, -2);
+        else
+            xPos = Random.Range(2, maxDistance);
+
         // Set position for them to move to. Make sure don't get too close or far via min and max distance
         Vector3 targetPosition = Vector3.zero;
         if (isBackSpawn)
             while (targetPosition == Vector3.zero || Vector3.Distance(targetPosition, PlayerController.instance.transform.position) < minDistance)
-                targetPosition = new Vector3(Random.Range(-maxDistance, maxDistance), 0, Random.Range(-maxDistance, 0));
+                targetPosition = new Vector3(xPos, 0, Random.Range(-maxDistance, minDistance));
         else
             while (targetPosition == Vector3.zero || Vector3.Distance(targetPosition, PlayerController.instance.transform.position) < minDistance)
-                targetPosition = new Vector3(Random.Range(-maxDistance, maxDistance), 0, Random.Range(0, maxDistance));
+                targetPosition = new Vector3(xPos, 0, Random.Range(minDistance, maxDistance));
 
         // Handle planes
         if (customer.isAerial)
