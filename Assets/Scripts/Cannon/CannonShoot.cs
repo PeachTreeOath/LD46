@@ -234,7 +234,7 @@ public class CannonShoot : Singleton<CannonShoot>
                     AudioManager.instance.PlaySound("Ammo_Readout_VO_Ice_Cream_2D");
                     break;
                 case FoodType.RAMEN:
-                    AudioManager.instance.PlaySound("Ammo_Readout_VO_Rat_Stick_2D");
+                    AudioManager.instance.PlaySound("Ammo_Readout_VO_Ramen_2D");
                     break;
                 case FoodType.RAT_STICK:
                     AudioManager.instance.PlaySound("Ammo_Readout_VO_Rat_Stick_2D");

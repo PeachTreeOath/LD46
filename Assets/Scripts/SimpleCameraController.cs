@@ -121,8 +121,8 @@ namespace UnityTemplateProjects
             // Exit Sample  
             if (Input.GetKey(KeyCode.Escape))
             {
-                Application.Quit();
 				#if UNITY_EDITOR
+                Application.Quit();
 				UnityEditor.EditorApplication.isPlaying = false; 
 				#endif
             }

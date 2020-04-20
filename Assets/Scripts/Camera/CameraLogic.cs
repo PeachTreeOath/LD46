@@ -26,7 +26,7 @@ public class CameraLogic : MonoBehaviour
          ChangeCameraPriority();
       }
 
-      if (Input.GetKeyDown(KeyCode.Alpha0))
+      if (Input.GetKeyDown(KeyCode.Escape))
       {
          ChangeIsCursorVisible();
          LockUnlockCursor();

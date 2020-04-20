@@ -71,12 +71,14 @@ public class CustomerController : MonoBehaviour
 
     public void ReportFeeding()
     {
+        PlayRandomEat();
         if (IsOrderFulfilled())
         {
             FinishOrder();
+            //TODO: Play success sounds?
         }
     }
-    
+
     public void PlayExplosion()
     {
         explosion.Play();
@@ -84,6 +86,7 @@ public class CustomerController : MonoBehaviour
         {
             p.Play();
         }
+        PlayRandomExplosion();
     }
 
     public void DestroyVehicle(Vector3 explosionPoint)
@@ -160,7 +163,7 @@ public class CustomerController : MonoBehaviour
             else
                 DestroyVehicle(collision.GetContact(0));
             */
-
+            PlayRandomScared();
             bullet.Despawn();
         }
         else if (isDead && collision.gameObject.tag.Equals("Ground"))
@@ -189,6 +192,71 @@ public class CustomerController : MonoBehaviour
 
         lastCrashPlayed = roll;
     }
+
+    private int lastExplosionPlayed = -1;
+    public void PlayRandomExplosion()
+    {
+        int roll = UnityEngine.Random.Range(0, 5);
+
+        while (roll == lastExplosionPlayed)
+        {
+            roll = UnityEngine.Random.Range(0, 5);
+        }
+
+        if (roll == 0)
+            PlaySound("General_Explosion");
+        if (roll == 1)
+            PlaySound("General_Explosion-001");
+        if (roll == 2)
+            PlaySound("General_Explosion-002");
+        if (roll == 3)
+            PlaySound("General_Explosion-003");
+        if (roll == 4)
+            PlaySound("General_Explosion-004");
+
+        lastExplosionPlayed = roll;
+    }
+
+    private int lastEatPlayed = -1;
+    public void PlayRandomEat()
+    {
+        int roll = UnityEngine.Random.Range(0, 3);
+
+        while (roll == lastEatPlayed)
+        {
+            roll = UnityEngine.Random.Range(0, 3);
+        }
+
+        if (roll == 0)
+            PlaySound("Customer_Eats_Food");
+        if (roll == 1)
+            PlaySound("Customer_Eats_Food-001");
+        if (roll == 2)
+            PlaySound("Customer_Eats_Food-002");
+
+        lastEatPlayed = roll;
+    }
+
+    private int lastScaredPlayed = -1;
+    public void PlayRandomScared()
+    {
+        int roll = UnityEngine.Random.Range(0, 3);
+
+        while (roll == lastScaredPlayed)
+        {
+            roll = UnityEngine.Random.Range(0, 3);
+        }
+
+        if (roll == 0)
+            PlaySound("Just_Customer_Scared_VO");
+        if (roll == 1)
+            PlaySound("Just_Customer_Scared_VO-001");
+        if (roll == 2)
+            PlaySound("Just_Customer_Scared_VO-002");
+
+        lastScaredPlayed = roll;
+    }
+
     private void OnCollisionStay(Collision collision)
     {
         if (isDead && collision.gameObject.tag.Equals("Ground"))
@@ -232,10 +300,10 @@ public class CustomerController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(!isDead && other.gameObject.tag.Equals("Customer"))
+        if (!isDead && other.gameObject.tag.Equals("Customer"))
         {
             var dist = other.transform.position - this.transform.position;
-            rigidBody.AddForce( -dist *  bounceForce * Time.deltaTime);
+            rigidBody.AddForce(-dist * bounceForce * Time.deltaTime);
         }
     }
 
