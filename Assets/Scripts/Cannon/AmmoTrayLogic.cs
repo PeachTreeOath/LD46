@@ -10,6 +10,8 @@ public class AmmoTrayLogic : MonoBehaviour
 
     private bool isCoroutineRunning;
     private Quaternion targetRotation;
+    private Coroutine rotateCoroutine;
+    private bool hasRotatedYet;
 
     //private bool isRotatingRight = false;
     //private bool isRotatingLeft = false;
@@ -68,27 +70,33 @@ public class AmmoTrayLogic : MonoBehaviour
         // Skip to end of rotation
         if (isCoroutineRunning)
         {
-            transform.localRotation = targetRotation;
-            isCoroutineRunning = false;
+            StopCoroutine(rotateCoroutine);
         }
 
-        targetRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, transform.localRotation.eulerAngles.z + 36);
-        StartCoroutine(RotateToDestination());
+        if (!hasRotatedYet)
+            targetRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, transform.localRotation.eulerAngles.z + 36);
+        else
+            targetRotation = Quaternion.Euler(targetRotation.eulerAngles.x, targetRotation.eulerAngles.y, targetRotation.eulerAngles.z + 36);
+
+        hasRotatedYet = true;
+        rotateCoroutine = StartCoroutine(RotateToDestination());
     }
 
     public void TurnRight()
     {
-        // Quaternion currentLocalRotation = transform.localRotation;
-
         // Skip to end of rotation
         if (isCoroutineRunning)
         {
-            transform.localRotation = targetRotation;
-            isCoroutineRunning = false;
+            StopCoroutine(rotateCoroutine);
         }
 
-        targetRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, transform.localRotation.eulerAngles.z - 36);
-        StartCoroutine(RotateToDestination());
+        if (!hasRotatedYet)
+            targetRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, transform.localRotation.eulerAngles.z - 36);
+        else
+            targetRotation = Quaternion.Euler(targetRotation.eulerAngles.x, targetRotation.eulerAngles.y, targetRotation.eulerAngles.z - 36);
+
+        hasRotatedYet = true;
+        rotateCoroutine = StartCoroutine(RotateToDestination());
     }
 
     private IEnumerator RotateToDestination()
