@@ -74,6 +74,15 @@ public class CustomerController : MonoBehaviour
             FinishOrder();
         }
     }
+    
+    public void PlayExplosion()
+    {
+        explosion.Play();
+        foreach (ParticleSystem p in explosion.gameObject.GetComponentsInChildren<ParticleSystem>())
+        {
+            p.Play();
+        }
+    }
 
     public void DestroyVehicle(Vector3 explosionPoint)
     {
@@ -87,20 +96,12 @@ public class CustomerController : MonoBehaviour
         rigidBody.AddExplosionForce(10, explosionPoint, 10, 5, ForceMode.Impulse);
 
         isDead = true;
-        explosion.Play();
-        foreach (ParticleSystem p in explosion.gameObject.GetComponentsInChildren<ParticleSystem>())
-        {
-            p.Play();
-        }
-
         GameManager.instance.RemoveCustomerFromList(this);
     }
 
     public void FinishOrder()
     {
         GameManager.instance.OrderFilled(this);
-        
-
         // Create thumbs up
         GameObject g = Instantiate(thumbsUp, transform.position + new Vector3(0, 2.3f, 0), Quaternion.identity);
         g.GetComponentInChildren<ParticleSystem>().Play();

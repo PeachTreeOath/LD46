@@ -39,9 +39,15 @@ public class OrderTarget : MonoBehaviour
         {
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
             if (bullet.foodType == foodRequirement)
+            {
                 FeedTarget();
+            }   
             else
+            {
                 customerParent.DestroyVehicle(collision.GetContact(0).point);
+                customerParent.PlayExplosion();
+            }
+                
 
             bullet.Despawn();
         }
