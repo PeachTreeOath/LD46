@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 50
-  environmentalObjectSpawnTime: 1
+  environmentalObjectSpawnTime: 0.5
   levelTextSpawnPosition: {fileID: 0}
   startingLevel: 1
   startingFuelAmount: 100
@@ -68,7 +68,10 @@ MonoBehaviour:
   fuelPerLevelUp: 100
   maxFuel: 100
   environmentalObjectsToSpawn:
-  - {fileID: 9065365568881466584, guid: b157ba6f5f5b4844aa675279f1a8efc3, type: 3}
+  - {fileID: 4011135100037450741, guid: c346eeb0078371540ba66e5c0973a38e, type: 3}
+  - {fileID: 8687313117052363588, guid: 7451c042fadc9f74c82afd051a44990a, type: 3}
+  - {fileID: 7768890333174835713, guid: 319fff956a4def040833a843c02f9f69, type: 3}
+  - {fileID: 5672170342732669527, guid: f36ec33523618a0459e3fa4f59d1d6c1, type: 3}
   orderText: {fileID: 0}
   levelText: {fileID: 0}
   fuelGauge: {fileID: 0}

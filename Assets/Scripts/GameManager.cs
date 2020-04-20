@@ -49,7 +49,7 @@ public class GameManager : Singleton<GameManager>
     private int aliveOrders;
     private int filledOrders;
 
-    private const float maxDistance = 8f;
+    private const float maxDistance = 6f;
     private const float minDistance = 2f;
 
     // Start is called before the first frame update
@@ -139,15 +139,20 @@ public class GameManager : Singleton<GameManager>
         List<GameObject> objsToDelete = new List<GameObject>();
         foreach (GameObject obj in stationaryObjects)
         {
-            obj.transform.position -= new Vector3(0, 0, GameManager.instance.moveSpeed * Time.deltaTime);
+            if (obj == null)
+                continue;
+
+            obj.transform.position -= new Vector3(0, 0, moveSpeed * Time.deltaTime);
             if (obj.transform.position.z < -TrackManager.instance.cutoffPoint)
             {
                 objsToDelete.Add(obj);
-                Destroy(obj);
             }
         }
 
         stationaryObjects = stationaryObjects.Except(objsToDelete).ToList();
+
+        foreach (GameObject obj in objsToDelete)
+            Destroy(obj);
     }
 
     public void OrderFilled(CustomerController customerController)
@@ -183,7 +188,7 @@ public class GameManager : Singleton<GameManager>
     private void SpawnEnvObj()
     {
         GameObject landmarkObj = Instantiate(environmentalObjectsToSpawn[Random.Range(0, environmentalObjectsToSpawn.Count)]);
-        landmarkObj.transform.position = new Vector3(Random.Range(-20f, 20f), 0.5f, 200);
+        landmarkObj.transform.position = new Vector3(Random.Range(-20f, 20f), 0f, 200);
         //Add it to Stationary Objects.
         stationaryObjects.Add(landmarkObj);
     }
@@ -209,8 +214,12 @@ public class GameManager : Singleton<GameManager>
 
         // Initialize customer
         List<GameObject> possibleFoods = ResourceLoader.instance.GetLevel(currentLevel).possibleFoods;
-        Bullet randomFood = possibleFoods[UnityEngine.Random.Range(0, possibleFoods.Count)].GetComponent<Bullet>();
-        customer.AssignFoodRequirement(randomFood);
+        int numFoods = Random.Range(1, 4);
+        for (int i = 0; i < numFoods; i++)
+        {
+            Bullet randomFood = possibleFoods[Random.Range(0, possibleFoods.Count)].GetComponent<Bullet>();
+            customer.AssignFoodRequirement(randomFood);
+        }
 
         // Find a horizontal distance. This is doing separately so the car doesnt just sit directly in front of the player
         int hRoll = Random.Range(0, 2);

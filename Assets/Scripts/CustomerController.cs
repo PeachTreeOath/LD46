@@ -16,7 +16,6 @@ public class CustomerController : MonoBehaviour
     public AudioSource audioSource;
 
     [HideInInspector] public float timeAlive; // This is used to help with crowd control
-    [HideInInspector] public FoodType foodRequirement;
 
     private Vector3 targetPosition;
     private bool isDead;
