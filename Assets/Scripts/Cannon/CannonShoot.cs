@@ -63,14 +63,16 @@ public class CannonShoot : Singleton<CannonShoot>
 
       if (Input.GetAxis("Mouse ScrollWheel") > 0.0f || Input.GetKeyDown(KeyCode.E))
       {
-         StartCoroutine(ammoTray.TurnOnOffRotateRight());
+         ammoTray.TurnRight();
+         //StartCoroutine(ammoTray.TurnOnOffRotateRight());
          BulletSelectionForward();
          AudioManager.instance.PlayRandomSpotInSwivel();
       }
 
       if (Input.GetAxis("Mouse ScrollWheel") < 0.0f || Input.GetKeyDown(KeyCode.Q))
       {
-         StartCoroutine(ammoTray.TurnOnOffRotateLeft());
+         ammoTray.TurnLeft();
+         //StartCoroutine(ammoTray.TurnOnOffRotateLeft());
          BulletSelectionBackward();
          AudioManager.instance.PlayRandomSpotInSwivel();
       }
