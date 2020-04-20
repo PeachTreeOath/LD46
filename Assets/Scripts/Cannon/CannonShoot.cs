@@ -6,7 +6,7 @@ public class CannonShoot : Singleton<CannonShoot>
 {
    public BulletDisplay bulletDisplay;
 
-   [SerializeField] private GameObject[] bulletPrefabs;
+   public GameObject[] bulletPrefabs;
    [SerializeField] private Transform cannonEnd;
    [SerializeField] private float shootingCooldown = 0.25f;
    [SerializeField] private float straightBulletForce = 25f;

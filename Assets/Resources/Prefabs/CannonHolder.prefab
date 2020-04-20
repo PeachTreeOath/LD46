@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c31c7fe78789aa468e7587b5cbffdf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodType: 5
+  foodType: 6
 --- !u!1 &640357094277507217
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c31c7fe78789aa468e7587b5cbffdf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodType: 1
+  foodType: 2
 --- !u!114 &2737791421253118589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,7 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c31c7fe78789aa468e7587b5cbffdf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodType: 4
+  foodType: 5
 --- !u!114 &3207281435559630785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,7 +343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c31c7fe78789aa468e7587b5cbffdf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodType: 8
+  foodType: 9
 --- !u!114 &374910238424737815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,7 +356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c31c7fe78789aa468e7587b5cbffdf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodType: 9
+  foodType: 3
 --- !u!1 &3359112597132618183
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,8 +730,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDisplay: {fileID: 7394199115555505123}
-  leftChecker: {fileID: 0}
-  rightChecker: {fileID: 0}
   bulletPrefabs:
   - {fileID: 739039713466198104, guid: dffa86cfb51b7454e8b8d11b81aae30a, type: 3}
   - {fileID: 9065365568881466584, guid: 117a903c990cf50479f5bd53dc162823, type: 3}
@@ -943,7 +941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c31c7fe78789aa468e7587b5cbffdf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodType: 3
+  foodType: 4
 --- !u!1 &7442835128388063194
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,7 +1007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c31c7fe78789aa468e7587b5cbffdf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodType: 7
+  foodType: 1
 --- !u!114 &5804129954326550576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1022,7 +1020,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c31c7fe78789aa468e7587b5cbffdf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodType: 6
+  foodType: 8
 --- !u!1 &7940118789232370818
 GameObject:
   m_ObjectHideFlags: 0
