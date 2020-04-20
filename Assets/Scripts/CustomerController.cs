@@ -11,17 +11,25 @@ public class CustomerController : MonoBehaviour
     public float speedMod;
     public List<TargetPairController> targetPairs = new List<TargetPairController>();
     public bool isAerial;
+
+    public ParticleSystem explosion;
     public AudioSource audioSource;
 
     [HideInInspector] public float timeAlive; // This is used to help with crowd control
-    [HideInInspector] public FoodType foodRequirement;
 
     private Vector3 targetPosition;
     private bool isDead;
 
+
+    private void Awake()
+    {
+    }
+            
+
     private void Start()
     {
         audioSource.outputAudioMixerGroup = AudioManager.instance.sfxMixerGroup;
+
     }
 
     private void Update()
@@ -85,7 +93,12 @@ public class CustomerController : MonoBehaviour
     public void FinishOrder()
     {
         GameManager.instance.OrderFilled(this);
-
+        explosion.Play();
+        foreach( ParticleSystem p in explosion.gameObject.GetComponentsInChildren<ParticleSystem>())
+        {
+            p.Play();
+        }
+       
         // TODO: Do an animation or something
         Destroy(gameObject);
     }

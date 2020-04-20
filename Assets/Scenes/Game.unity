@@ -293,6 +293,16 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3270096663322570537, guid: f4458a8b2cc8a704abdc75c965ccf265,
+        type: 3}
+      propertyPath: firstCondition
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3270096663322570537, guid: f4458a8b2cc8a704abdc75c965ccf265,
+        type: 3}
+      propertyPath: secondCondition
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3270096663322570539, guid: f4458a8b2cc8a704abdc75c965ccf265,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -332,6 +342,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -83.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3270096663467033184, guid: f4458a8b2cc8a704abdc75c965ccf265,
+        type: 3}
+      propertyPath: m_Value
+      value: 0.74
       objectReference: {fileID: 0}
     - target: {fileID: 3270096663467033185, guid: f4458a8b2cc8a704abdc75c965ccf265,
         type: 3}
