@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CannonShoot : Singleton<CannonShoot>
 {
    public BulletDisplay bulletDisplay;
+    public List<BulletDisplay> ammoTrayDisplays;
 
    public GameObject[] bulletPrefabs;
    [SerializeField] private Transform cannonEnd;
@@ -26,10 +28,12 @@ public class CannonShoot : Singleton<CannonShoot>
    { 
       ammoTray = GetComponentInChildren<AmmoTrayLogic>();
       impulseSource = GetComponent<Cinemachine.CinemachineImpulseSource>();
-   }
 
-   // Update is called once per frame
-   void Update()
+        RefreshAmmoTrayDisplays();
+    }
+
+    // Update is called once per frame
+    void Update()
    {
       if (shootRate > 0.0f)
       {
@@ -73,6 +77,7 @@ public class CannonShoot : Singleton<CannonShoot>
          ammoTray.TurnRight();
          //StartCoroutine(ammoTray.TurnOnOffRotateRight());
          BulletSelectionForward();
+         RefreshAmmoTrayDisplays();
          AudioManager.instance.PlayRandomSpotInSwivel();
       }
 
@@ -85,7 +90,27 @@ public class CannonShoot : Singleton<CannonShoot>
       }
    }
 
-   public void InitAmmo(List<GameObject> ammoTypes)
+    private void RefreshAmmoTrayDisplays()
+    {
+        int tempIdx = selectedBulletIndex;
+
+        for(int i = 0; i < 3; i++)
+        {
+            GameObject prefab = bulletPrefabs[tempIdx];
+            ammoTrayDisplays[tempIdx].DisplayCurrentBullet(prefab.GetComponent<Bullet>().foodType);
+
+            if (tempIdx >= bulletPrefabs.Length - 1)
+            {
+                tempIdx = 0;
+            }
+            else
+            {
+                tempIdx++;
+            }
+        }
+    }
+
+    public void InitAmmo(List<GameObject> ammoTypes)
    {
       bulletPrefabs = ammoTypes.ToArray();
       selectedBulletPrefab = bulletPrefabs[selectedBulletIndex];
