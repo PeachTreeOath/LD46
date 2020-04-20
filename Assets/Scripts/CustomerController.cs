@@ -95,7 +95,11 @@ public class CustomerController : MonoBehaviour
     {
         GameManager.instance.OrderFilled(this);
         explosion.Play();
-        explosion.gameObject.GetComponentsInChildren<ParticleSystem>().Play();
+        foreach( ParticleSystem p in explosion.gameObject.GetComponentsInChildren<ParticleSystem>())
+        {
+            p.Play();
+        }
+       
         // TODO: Do an animation or something
         Destroy(gameObject);
     }
