@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Level5
   m_EditorClassIdentifier: 
   levelNumber: 5
-  spawnRateInSeconds: 0.25
-  maxCarsOnScreen: 35
-  nOrdersToFill: 50
+  spawnRateInSeconds: 1
+  maxCarsOnScreen: 50
+  nOrdersToFill: 100
   possibleCars:
   - {fileID: 2317140412773303417, guid: 86afc9a983548694b887b0220c259912, type: 3}
   - {fileID: 2317140412773303417, guid: 3eab980c607633e4c973b620ff2793f0, type: 3}
