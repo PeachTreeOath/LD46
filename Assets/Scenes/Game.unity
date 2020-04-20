@@ -327,7 +327,7 @@ PrefabInstance:
     - target: {fileID: 3270096662890193816, guid: f4458a8b2cc8a704abdc75c965ccf265,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 4.92
+      value: 4.9199944
       objectReference: {fileID: 0}
     - target: {fileID: 3270096662890193816, guid: f4458a8b2cc8a704abdc75c965ccf265,
         type: 3}
@@ -337,7 +337,7 @@ PrefabInstance:
     - target: {fileID: 3270096662890193816, guid: f4458a8b2cc8a704abdc75c965ccf265,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.858
+      value: -0.8579998
       objectReference: {fileID: 0}
     - target: {fileID: 3270096662890193816, guid: f4458a8b2cc8a704abdc75c965ccf265,
         type: 3}
@@ -465,6 +465,11 @@ PrefabInstance:
       propertyPath: m_Value
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3270096663467033184, guid: f4458a8b2cc8a704abdc75c965ccf265,
+        type: 3}
+      propertyPath: m_MaxValue
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3270096663467033185, guid: f4458a8b2cc8a704abdc75c965ccf265,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -584,6 +589,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FuelBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 3270096663467033247, guid: f4458a8b2cc8a704abdc75c965ccf265,
+        type: 3}
+      propertyPath: fillSpeed
+      value: 0.85
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4458a8b2cc8a704abdc75c965ccf265, type: 3}
@@ -3060,6 +3070,11 @@ PrefabInstance:
       propertyPath: fuelGauge
       value: 
       objectReference: {fileID: 1279127161}
+    - target: {fileID: 7216740713649722169, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
+        type: 3}
+      propertyPath: fuelSpentPerTick
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7216740713649722174, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
         type: 3}
       propertyPath: m_Name
@@ -3078,6 +3093,31 @@ PrefabInstance:
       propertyPath: targetTransform
       value: 
       objectReference: {fileID: 1687258585}
+    - target: {fileID: 3013450221339770406, guid: 3548f05a9315e9e40845db1be26c4e82,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.8582852
+      objectReference: {fileID: 0}
+    - target: {fileID: 3013450221339770406, guid: 3548f05a9315e9e40845db1be26c4e82,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5131731
+      objectReference: {fileID: 0}
+    - target: {fileID: 3013450221339770406, guid: 3548f05a9315e9e40845db1be26c4e82,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -118.24899
+      objectReference: {fileID: 0}
+    - target: {fileID: 3013450221339770406, guid: 3548f05a9315e9e40845db1be26c4e82,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3013450221339770406, guid: 3548f05a9315e9e40845db1be26c4e82,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 6365454478580365788, guid: 3548f05a9315e9e40845db1be26c4e82,
         type: 3}
       propertyPath: m_Name
