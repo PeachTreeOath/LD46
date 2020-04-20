@@ -274,11 +274,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level Text Spawn Position
       objectReference: {fileID: 0}
-    - target: {fileID: 3543662886056990998, guid: 6df2bc5b138f98746984a22f80ae771e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6df2bc5b138f98746984a22f80ae771e, type: 3}
 --- !u!1001 &595830563
@@ -2252,7 +2247,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1578817383
 PrefabInstance:
@@ -2832,10 +2827,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2044329766, guid: f0b9a5bddd9359247a236c8d8d78b764, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 125937869917866243, guid: f0b9a5bddd9359247a236c8d8d78b764,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2896,16 +2887,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 125937869917866492, guid: f0b9a5bddd9359247a236c8d8d78b764,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2209386700060795691, guid: f0b9a5bddd9359247a236c8d8d78b764,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0b9a5bddd9359247a236c8d8d78b764, type: 3}
 --- !u!1001 &2988278154366879892
@@ -2953,7 +2934,7 @@ PrefabInstance:
     - target: {fileID: 2988278155331024592, guid: e83a49953c3a098408ff05be654288c4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2988278155331024592, guid: e83a49953c3a098408ff05be654288c4,
         type: 3}
@@ -2974,11 +2955,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PersistentManagers
-      objectReference: {fileID: 0}
-    - target: {fileID: 2988278155331024597, guid: e83a49953c3a098408ff05be654288c4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e83a49953c3a098408ff05be654288c4, type: 3}
@@ -3066,11 +3042,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7216740713649722169, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
         type: 3}
-      propertyPath: environmentalObjectsToSpawn.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7216740713649722169, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
-        type: 3}
       propertyPath: levelTextSpawnPosition
       value: 
       objectReference: {fileID: 574094687}
@@ -3089,26 +3060,10 @@ PrefabInstance:
       propertyPath: fuelGauge
       value: 
       objectReference: {fileID: 1279127161}
-    - target: {fileID: 7216740713649722169, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
-        type: 3}
-      propertyPath: environmentalObjectsToSpawn.Array.data[4]
-      value: 
-      objectReference: {fileID: 2255523073257541149, guid: 9de18cd36fa5004468758665e28536e8,
-        type: 3}
-    - target: {fileID: 7216740713649722169, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
-        type: 3}
-      propertyPath: fuelSpentPerTick
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7216740713649722174, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
         type: 3}
       propertyPath: m_Name
       value: Managers
-      objectReference: {fileID: 0}
-    - target: {fileID: 7216740713649722174, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afe08af2cc9ec8d49b9ef064f8f253f6, type: 3}
@@ -3123,60 +3078,10 @@ PrefabInstance:
       propertyPath: targetTransform
       value: 
       objectReference: {fileID: 1687258585}
-    - target: {fileID: 374910238424737815, guid: 3548f05a9315e9e40845db1be26c4e82,
-        type: 3}
-      propertyPath: foodType
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2232581155695500332, guid: 3548f05a9315e9e40845db1be26c4e82,
-        type: 3}
-      propertyPath: foodType
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2392226213795527546, guid: 3548f05a9315e9e40845db1be26c4e82,
-        type: 3}
-      propertyPath: foodType
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3207281435559630785, guid: 3548f05a9315e9e40845db1be26c4e82,
-        type: 3}
-      propertyPath: foodType
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 3359112597132618183, guid: 3548f05a9315e9e40845db1be26c4e82,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4302098144332190755, guid: 3548f05a9315e9e40845db1be26c4e82,
-        type: 3}
-      propertyPath: foodType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4379648000547508625, guid: 3548f05a9315e9e40845db1be26c4e82,
-        type: 3}
-      propertyPath: foodType
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5804129954326550576, guid: 3548f05a9315e9e40845db1be26c4e82,
-        type: 3}
-      propertyPath: foodType
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5823183002793092851, guid: 3548f05a9315e9e40845db1be26c4e82,
-        type: 3}
-      propertyPath: foodType
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 6365454478580365788, guid: 3548f05a9315e9e40845db1be26c4e82,
         type: 3}
       propertyPath: m_Name
       value: CannonHolder
-      objectReference: {fileID: 0}
-    - target: {fileID: 6365454478580365788, guid: 3548f05a9315e9e40845db1be26c4e82,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6365454478580365791, guid: 3548f05a9315e9e40845db1be26c4e82,
         type: 3}
@@ -3301,11 +3206,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ground
-      objectReference: {fileID: 0}
-    - target: {fileID: 5991295036711686693, guid: 8ed9a8329fca6cc48af1ec327985b07c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ed9a8329fca6cc48af1ec327985b07c, type: 3}
