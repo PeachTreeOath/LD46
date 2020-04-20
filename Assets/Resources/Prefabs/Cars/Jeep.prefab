@@ -69,6 +69,8 @@ MonoBehaviour:
   explosion: {fileID: 2041810662464401665}
   audioSource: {fileID: -3954471832719370926}
   timeAlive: 0
+  thumbsUp: {fileID: 5096430394123122620, guid: 270f02ae84fb53e4692a32dff1c137b2,
+    type: 3}
 --- !u!65 &2317140412773303420
 BoxCollider:
   m_ObjectHideFlags: 0

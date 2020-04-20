@@ -20,7 +20,7 @@ public class SpawnCanvas : MonoBehaviour
     public void CreateCanvas(int levelNumber)
     {
        var t = "LEVEL\n" + levelNumber.ToString();
-       GameObject g = Instantiate(canvas, transform.position, Quaternion.identity);
+       GameObject g = Instantiate(canvas, transform.position + new Vector3(0f,5f,0f), Quaternion.identity);
        g.GetComponent<SetTextTo>().SetTextToString(t);
     }
 }
