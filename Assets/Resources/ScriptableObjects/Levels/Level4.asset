@@ -16,5 +16,17 @@ MonoBehaviour:
   spawnRateInSeconds: 0
   maxCarsOnScreen: 0
   nOrdersToFill: 0
-  possibleCars: []
-  possibleFoods: []
+  possibleCars:
+  - {fileID: 2317140412773303417, guid: 86afc9a983548694b887b0220c259912, type: 3}
+  - {fileID: 2317140412773303417, guid: 3eab980c607633e4c973b620ff2793f0, type: 3}
+  - {fileID: 2317140412773303417, guid: 85d562d2db80dcc41b7346c1ba04fa7f, type: 3}
+  - {fileID: 2317140412773303417, guid: 8dc571832f689b34297685ceaa4dbb68, type: 3}
+  possibleFoods:
+  - {fileID: 9065365568881466584, guid: 6e2a0ddf991a7624097d4e6d80a46b19, type: 3}
+  - {fileID: 9065365568881466584, guid: 73bb71ad62004bd4b8a0091d00329ae1, type: 3}
+  - {fileID: 9065365568881466584, guid: cd7e4b4c849452443b5a68d4eb965ce0, type: 3}
+  - {fileID: 9065365568881466584, guid: b157ba6f5f5b4844aa675279f1a8efc3, type: 3}
+  - {fileID: 9065365568881466584, guid: 117a903c990cf50479f5bd53dc162823, type: 3}
+  - {fileID: 9065365568881466584, guid: 2a316756f665aed4c9ee28b06c1714b9, type: 3}
+  - {fileID: 9065365568881466584, guid: 71498f9e8f2f77a4cbf4fa1854d11d90, type: 3}
+  - {fileID: 9065365568881466584, guid: 32539e40215ba2047845cbc89192927c, type: 3}
