@@ -13,7 +13,7 @@ public class CameraLogic : MonoBehaviour
    // Start is called before the first frame update
    void Start()
    {
-      Cursor.lockState = CursorLockMode.Locked;
+      //Cursor.lockState = CursorLockMode.Locked;
       Cursor.visible = isCursorVisible;
       virtualCamera = GetComponent<Cinemachine.CinemachineVirtualCameraBase>();
    }
@@ -29,7 +29,7 @@ public class CameraLogic : MonoBehaviour
       if (Input.GetKeyDown(KeyCode.Alpha0))
       {
          ChangeIsCursorVisible();
-         TurnCursorOnOff();
+         //TurnCursorOnOff();
       }
    }
 
@@ -58,19 +58,21 @@ public class CameraLogic : MonoBehaviour
       {
          isCursorVisible = true;
       }
-   }
-
-   private void TurnCursorOnOff()
-   {
-      if (isCursorVisible)
-      {
-         Cursor.lockState = CursorLockMode.None;
-      }
-      else
-      {
-         Cursor.lockState = CursorLockMode.Locked;
-      }
 
       Cursor.visible = isCursorVisible;
    }
+
+   //private void TurnCursorOnOff()
+   //{
+   //   if (isCursorVisible)
+   //   {
+   //      Cursor.lockState = CursorLockMode.None;
+   //   }
+   //   else
+   //   {
+   //      Cursor.lockState = CursorLockMode.Locked;
+   //   }
+
+   //   Cursor.visible = isCursorVisible;
+   //}
 }
