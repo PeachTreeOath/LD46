@@ -24,7 +24,7 @@ public class CustomerController : MonoBehaviour
     private void Awake()
     {
     }
-            
+
 
     private void Start()
     {
@@ -36,7 +36,7 @@ public class CustomerController : MonoBehaviour
     {
         timeAlive += Time.deltaTime;
 
-        if(Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.J))
         {
             PlayRandomCrash();
         }
@@ -94,13 +94,13 @@ public class CustomerController : MonoBehaviour
     {
         GameManager.instance.OrderFilled(this);
         explosion.Play();
-        foreach( ParticleSystem p in explosion.gameObject.GetComponentsInChildren<ParticleSystem>())
+        foreach (ParticleSystem p in explosion.gameObject.GetComponentsInChildren<ParticleSystem>())
         {
             p.Play();
         }
-        
-        // TODO: Create the thumbs up here
 
+        // Create thumbs up
+        Instantiate(ResourceLoader.instance.thumbsUpPrefab, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
         DestroyVehicle(transform.position);
     }
 
