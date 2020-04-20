@@ -94,23 +94,28 @@ public class AudioManager : Singleton<AudioManager>
             PlayMusic("Menu_Music_Loop");
         else if (SceneManager.GetActiveScene().name.Equals("Game"))
         {
-            PlayMusic("Gameplay_Music_Loop");
-
-            // Play engine sounds
-            engineChannel1.clip = soundMap["Food_Truck_Rolling_Engine_Loop_No_Gears2D_Update"];
-            engineChannel1.volume = maxVol;
-            engineChannel1.loop = true;
-            engineChannel1.Play();
-            //masterMixer.SetFloat("Engine1Vol", maxVol);
-
-            engineChannel2.clip = soundMap["Food_Truck_Rolling_Engine_Loop_Almost_Out_Of_Gas_2D"];
-            engineChannel2.volume = minVol;
-            engineChannel2.loop = true;
-            engineChannel2.Play();
-            //masterMixer.SetFloat("Engine2Vol", minVol);
-
-            swivelChannel.clip = soundMap["Food_Truck_Cannon_Turn_Turret_Move_Swivel_2D"];
+            StartGameSounds();
         }
+    }
+
+    public void StartGameSounds()
+    {
+        PlayMusic("Gameplay_Music_Loop");
+
+        // Play engine sounds
+        engineChannel1.clip = soundMap["Food_Truck_Rolling_Engine_Loop_No_Gears2D_Update"];
+        engineChannel1.volume = maxVol;
+        engineChannel1.loop = true;
+        engineChannel1.Play();
+        //masterMixer.SetFloat("Engine1Vol", maxVol);
+
+        engineChannel2.clip = soundMap["Food_Truck_Rolling_Engine_Loop_Almost_Out_Of_Gas_2D"];
+        engineChannel2.volume = minVol;
+        engineChannel2.loop = true;
+        engineChannel2.Play();
+        //masterMixer.SetFloat("Engine2Vol", minVol);
+
+        //swivelChannel.clip = soundMap["Food_Truck_Cannon_Turn_Turret_Move_Swivel_2D"];
     }
 
     private void Update()
@@ -122,11 +127,11 @@ public class AudioManager : Singleton<AudioManager>
         }
 
         // Fuel tester
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            ratio -= 0.1f;
-            TransitionToEngine2(ratio);
-        }
+       // if (Input.GetKeyDown(KeyCode.N))
+        //{
+        //    ratio -= 0.1f;
+        //    TransitionToEngine2(ratio);
+       // }
     }
 
     public void TransitionToEngine2(float engine1Ratio)
@@ -300,7 +305,7 @@ public class AudioManager : Singleton<AudioManager>
     {
         int roll = UnityEngine.Random.Range(0, 4);
 
-        while(roll == lastShotPlayed)
+        while (roll == lastShotPlayed)
         {
             roll = UnityEngine.Random.Range(0, 4);
         }
