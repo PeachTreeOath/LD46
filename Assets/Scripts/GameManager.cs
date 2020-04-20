@@ -188,7 +188,7 @@ public class GameManager : Singleton<GameManager>
     private void SpawnEnvObj()
     {
         GameObject landmarkObj = Instantiate(environmentalObjectsToSpawn[Random.Range(0, environmentalObjectsToSpawn.Count)]);
-        landmarkObj.transform.position = new Vector3(Random.Range(-20f, 20f), 0.5f, 200);
+        landmarkObj.transform.position = new Vector3(Random.Range(-20f, 20f), 0f, 200);
         //Add it to Stationary Objects.
         stationaryObjects.Add(landmarkObj);
     }
