@@ -23,8 +23,7 @@ public class CannonShoot : Singleton<CannonShoot>
 
    // Start is called before the first frame update
    void Start()
-   {
-      selectedBulletPrefab = bulletPrefabs[selectedBulletIndex];
+   { 
       ammoTray = GetComponentInChildren<AmmoTrayLogic>();
       impulseSource = GetComponent<Cinemachine.CinemachineImpulseSource>();
    }
@@ -80,6 +79,11 @@ public class CannonShoot : Singleton<CannonShoot>
    public void InitAmmo(List<GameObject> ammoTypes)
    {
       bulletPrefabs = ammoTypes.ToArray();
+      selectedBulletPrefab = bulletPrefabs[selectedBulletIndex];
+      if (bulletDisplay)
+      {
+         bulletDisplay.DisplayCurrentBullet(selectedBulletPrefab.GetComponent<Bullet>().foodType);
+      }
    }
 
    private void Shoot()
