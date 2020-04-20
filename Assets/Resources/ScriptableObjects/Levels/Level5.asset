@@ -15,7 +15,7 @@ MonoBehaviour:
   levelNumber: 5
   spawnRateInSeconds: 1
   maxCarsOnScreen: 50
-  nOrdersToFill: 100
+  nOrdersToFill: 30
   possibleCars:
   - {fileID: 2317140412773303417, guid: 86afc9a983548694b887b0220c259912, type: 3}
   - {fileID: 2317140412773303417, guid: 3eab980c607633e4c973b620ff2793f0, type: 3}
@@ -29,6 +29,6 @@ MonoBehaviour:
   - {fileID: 9065365568881466584, guid: 117a903c990cf50479f5bd53dc162823, type: 3}
   - {fileID: 9065365568881466584, guid: 2a316756f665aed4c9ee28b06c1714b9, type: 3}
   - {fileID: 9065365568881466584, guid: 71498f9e8f2f77a4cbf4fa1854d11d90, type: 3}
-  - {fileID: 9065365568881466584, guid: 32539e40215ba2047845cbc89192927c, type: 3}
-  - {fileID: 9065365568881466584, guid: 8cb47a61a7f27004b831b84e823fac05, type: 3}
   - {fileID: 9065365568881466584, guid: 82ca97a4c028932439eb295b6707df09, type: 3}
+  - {fileID: 9065365568881466584, guid: 8cb47a61a7f27004b831b84e823fac05, type: 3}
+  - {fileID: 9065365568881466584, guid: 32539e40215ba2047845cbc89192927c, type: 3}

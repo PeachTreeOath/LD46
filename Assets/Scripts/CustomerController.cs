@@ -21,6 +21,7 @@ public class CustomerController : MonoBehaviour
 
     private Vector3 targetPosition;
     private bool isDead;
+    private float timeDead;
     public GameObject thumbsUp;
 
 
@@ -39,10 +40,18 @@ public class CustomerController : MonoBehaviour
     {
         timeAlive += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.J))
+        // Prevent dead guys from hanging around if stuck
+        if (isDead)
         {
-            PlayRandomCrash();
+            timeDead += Time.deltaTime;
+            if (timeDead > 5)
+                Destroy(gameObject);
         }
+
+        //if (Input.GetKeyDown(KeyCode.J))
+        //{
+        //    PlayRandomCrash();
+        //}
     }
 
     private void FixedUpdate()
@@ -89,7 +98,7 @@ public class CustomerController : MonoBehaviour
         PlayRandomExplosion();
     }
 
-    public void DestroyVehicle(Vector3 explosionPoint)
+    public void DestroyVehicle(Vector3 explosionPoint, bool isGameOver)
     {
         foreach (TargetPairController target in targetPairs)
         {
@@ -101,7 +110,8 @@ public class CustomerController : MonoBehaviour
         rigidBody.AddExplosionForce(10, explosionPoint, 10, 5, ForceMode.Impulse);
 
         isDead = true;
-        GameManager.instance.RemoveCustomerFromList(this);
+        if(!isGameOver)
+            GameManager.instance.RemoveCustomerFromList(this);
     }
 
     public void FinishOrder()
@@ -110,7 +120,7 @@ public class CustomerController : MonoBehaviour
         // Create thumbs up
         GameObject g = Instantiate(thumbsUp, transform.position + new Vector3(0, 2.3f, 0), Quaternion.identity);
         g.GetComponentInChildren<ParticleSystem>().Play();
-        DestroyVehicle(transform.position);
+        DestroyVehicle(transform.position, false);
     }
 
     // Social distancing algorithm - doesn't work very well

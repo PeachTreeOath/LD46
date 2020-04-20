@@ -114,7 +114,22 @@ public class GameManager : Singleton<GameManager>
         if (fuelAmount <= 0)
         {
             currentLevel = 1;
+            filledOrders = 0;
+            aliveOrders = 0;
             fuelAmount = startingFuelAmount;
+
+            int i = 0; // Only play 2 sounds
+            foreach (CustomerController car in customers)
+            {
+                if (i < 2)
+                    car.PlayExplosion();
+
+                car.DestroyVehicle(car.transform.position - new Vector3(0, -3, 0), true);
+                i++;
+            }
+            UpdateOrderText();
+            UpdateLevelText();
+            customers.Clear();
         }
 
         if (spawnCD < t)

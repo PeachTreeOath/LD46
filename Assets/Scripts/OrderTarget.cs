@@ -44,7 +44,7 @@ public class OrderTarget : MonoBehaviour
             }   
             else
             {
-                customerParent.DestroyVehicle(collision.GetContact(0).point);
+                customerParent.DestroyVehicle(collision.GetContact(0).point, false);
                 customerParent.PlayExplosion();
             }
                 
