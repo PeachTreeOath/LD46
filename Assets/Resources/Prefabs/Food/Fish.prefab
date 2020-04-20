@@ -117,7 +117,7 @@ PrefabInstance:
         type: 3}
       propertyPath: requirementIcon
       value: 
-      objectReference: {fileID: 21300000, guid: 38354ca4fda00c74dbe4e759e0427bca,
+      objectReference: {fileID: 21300000, guid: aa106f1e61c423c4e9fae60fa06f8c90,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dffa86cfb51b7454e8b8d11b81aae30a, type: 3}

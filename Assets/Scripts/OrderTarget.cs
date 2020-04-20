@@ -13,7 +13,7 @@ public class OrderTarget : MonoBehaviour
 
     [HideInInspector] public FoodType foodRequirement;
     [HideInInspector] public bool isFed;
-    
+
     private CustomerController customerParent; // The vehicle that actually holds the order
     private TargetPairController targetPairParent; // Pair that tracks both left and right orders
 
@@ -23,6 +23,7 @@ public class OrderTarget : MonoBehaviour
         targetPairParent = targetPairController;
         foodRequirement = food.foodType;
         foodIcon.sprite = food.requirementIcon;
+        foodIcon.rectTransform.sizeDelta = new Vector2(food.requirementIcon.bounds.size.x * 100, food.requirementIcon.bounds.size.y * 100);
     }
 
     // This is done to prevent physics issues with the targets locking things into place before exploding
