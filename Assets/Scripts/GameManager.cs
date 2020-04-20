@@ -101,6 +101,8 @@ public class GameManager : Singleton<GameManager>
     void Update()
     {
         fuelAmount -= fuelSpentPerTick * Time.deltaTime;
+        Debug.Log(fuelAmount);
+
         fuelGauge.value = 1 - fuelAmount / 100;
 
         if (fuelAmount <= 0)
