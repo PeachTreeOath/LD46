@@ -53,7 +53,7 @@ public class CannonShoot : Singleton<CannonShoot>
             //StartCoroutine(ammoTray.TurnOnOffRotateRight());
             BulletSelectionForward();
             RefreshAmmoTrayDisplays();
-            AudioManager.instance.PlayRandomSpotInSwivel();
+            AudioManager.instance.PlaySound("Food_Truck_Cannon_Turn_Revolver_Left_2D");
         }
 
         if (Input.GetAxis("Mouse ScrollWheel") < 0.0f || Input.GetKeyDown(KeyCode.Q))
@@ -62,7 +62,7 @@ public class CannonShoot : Singleton<CannonShoot>
             //StartCoroutine(ammoTray.TurnOnOffRotateLeft());
             BulletSelectionBackward();
             RefreshAmmoTrayDisplays();
-            AudioManager.instance.PlayRandomSpotInSwivel();
+            AudioManager.instance.PlaySound("Food_Truck_Cannon_Turn_Revolver_Right_2D");
         }
     }
 
@@ -207,7 +207,42 @@ public class CannonShoot : Singleton<CannonShoot>
 
         if (bulletDisplay)
         {
-            bulletDisplay.DisplayCurrentBullet(selectedBulletPrefab.GetComponent<Bullet>().foodType);
+            FoodType food = selectedBulletPrefab.GetComponent<Bullet>().foodType;
+            bulletDisplay.DisplayCurrentBullet(food);
+
+            switch (food)
+            {
+                case FoodType.BANANA:
+                    AudioManager.instance.PlaySound("Ammo_Readout_VO_Banana_2D");
+                    break;
+                case FoodType.BEER:
+                    AudioManager.instance.PlaySound("Ammo_Readout_VO_Beer_2D");
+                    break;
+                case FoodType.CACTUS:
+                    AudioManager.instance.PlaySound("Ammo_Readout_VO_Cactus_2D");
+                    break;
+                case FoodType.STEAK:
+                    AudioManager.instance.PlaySound("Ammo_Readout_VO_Steak_2D");
+                    break;
+                case FoodType.FISH:
+                    AudioManager.instance.PlaySound("Ammo_Readout_VO_Fish_2D");
+                    break;
+                case FoodType.HOT_DOG:
+                    AudioManager.instance.PlaySound("Ammo_Readout_VO_Hotdog_2D");
+                    break;
+                case FoodType.ICE_CREAM:
+                    AudioManager.instance.PlaySound("Ammo_Readout_VO_Ice_Cream_2D");
+                    break;
+                case FoodType.RAMEN:
+                    AudioManager.instance.PlaySound("Ammo_Readout_VO_Rat_Stick_2D");
+                    break;
+                case FoodType.RAT_STICK:
+                    AudioManager.instance.PlaySound("Ammo_Readout_VO_Rat_Stick_2D");
+                    break;
+                case FoodType.WAFFLE:
+                    AudioManager.instance.PlaySound("Ammo_Readout_VO_Waffle_2D");
+                    break;
+            }
         }
     }
 

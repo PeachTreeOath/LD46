@@ -109,9 +109,9 @@ public class AmmoTrayLogic : MonoBehaviour
         {
             timeElapsed += Time.deltaTime;
 
-            transform.localRotation = Quaternion.Lerp(oldRotation, targetRotation, timeElapsed);
+            transform.localRotation = Quaternion.Lerp(oldRotation, targetRotation, timeElapsed * 4);
 
-            if (timeElapsed >= 1)
+            if (timeElapsed >= .25f)
                 isCoroutineRunning = false;
 
             yield return null;
