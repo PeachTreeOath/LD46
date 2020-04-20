@@ -50,7 +50,8 @@ public class GameManager : Singleton<GameManager>
     private int filledOrders;
 
     private const float maxDistance = 6f;
-    private const float minDistance = 2f;
+    private const float minDistance = 1.5f;
+    private const float minFlyerDistance = 3f;
 
     // Start is called before the first frame update
     void Start()
@@ -210,7 +211,7 @@ public class GameManager : Singleton<GameManager>
 
         // Handle planes
         if (customer.isAerial)
-            customerObj.transform.position = new Vector3(customerObj.transform.position.x, Random.Range(4f, 8f), customerObj.transform.position.z);
+            customerObj.transform.position = new Vector3(customerObj.transform.position.x, Random.Range(3f, 4f), customerObj.transform.position.z);
 
         // Initialize customer
         List<GameObject> possibleFoods = ResourceLoader.instance.GetLevel(currentLevel).possibleFoods;
@@ -234,14 +235,26 @@ public class GameManager : Singleton<GameManager>
         Vector3 targetPosition = Vector3.zero;
         if (isBackSpawn)
             while (targetPosition == Vector3.zero || Vector3.Distance(targetPosition, PlayerController.instance.transform.position) < minDistance)
-                targetPosition = new Vector3(xPos, 0, Random.Range(-maxDistance, minDistance));
+            {
+                float currMinDistance = -minDistance;
+                if (customer.isAerial)
+                    currMinDistance = Mathf.Min(-minFlyerDistance, currMinDistance);
+
+                targetPosition = new Vector3(xPos, 0, Random.Range(-maxDistance, currMinDistance));
+            }
         else
             while (targetPosition == Vector3.zero || Vector3.Distance(targetPosition, PlayerController.instance.transform.position) < minDistance)
-                targetPosition = new Vector3(xPos, 0, Random.Range(minDistance, maxDistance));
+            {
+                float currMinDistance = minDistance;
+                if (customer.isAerial)
+                    currMinDistance = Mathf.Max(minFlyerDistance, currMinDistance);
+
+                targetPosition = new Vector3(xPos, 0, Random.Range(currMinDistance, maxDistance));
+            }
 
         // Handle planes
         if (customer.isAerial)
-            targetPosition = new Vector3(targetPosition.x, Random.Range(4f, 6f), targetPosition.z);
+            targetPosition = new Vector3(targetPosition.x, Random.Range(3f, 4f), targetPosition.z);
 
         customer.SetTargetPosition(targetPosition);
 
