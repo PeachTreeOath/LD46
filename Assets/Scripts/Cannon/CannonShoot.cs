@@ -17,6 +17,7 @@ public class CannonShoot : Singleton<CannonShoot>
 
     private float bulletShootForce = 5f;
     private int selectedBulletIndex = 0;
+    private int selectedAmmoTrayIndex = 0;
     private float shootRate = 0.0f;
     private GameObject bullet;
     private GameObject selectedBulletPrefab;
@@ -28,8 +29,6 @@ public class CannonShoot : Singleton<CannonShoot>
     {
         ammoTray = GetComponentInChildren<AmmoTrayLogic>();
         impulseSource = GetComponent<Cinemachine.CinemachineImpulseSource>();
-
-        RefreshAmmoTrayDisplays();
     }
 
     // Update is called once per frame
@@ -86,46 +85,53 @@ public class CannonShoot : Singleton<CannonShoot>
             ammoTray.TurnLeft();
             //StartCoroutine(ammoTray.TurnOnOffRotateLeft());
             BulletSelectionBackward();
+            RefreshAmmoTrayDisplays();
             AudioManager.instance.PlayRandomSpotInSwivel();
         }
     }
 
     private void RefreshAmmoTrayDisplays()
     {
-        int tempIdx = selectedBulletIndex;
+        int ammoTrayIdx = selectedAmmoTrayIndex;
+        int bulletIdx = selectedBulletIndex;
 
         // Fill out 1 direction
         for (int i = 0; i < 3; i++)
         {
-            GameObject prefab = bulletPrefabs[tempIdx];
-            ammoTrayDisplays[tempIdx].DisplayCurrentBullet(prefab.GetComponent<Bullet>().foodType);
+            GameObject prefab = bulletPrefabs[bulletIdx];
+            ammoTrayDisplays[ammoTrayIdx].DisplayCurrentBullet(prefab.GetComponent<Bullet>().foodType);
 
-            tempIdx++;
-            if (tempIdx >= bulletPrefabs.Length - 1)
+            ammoTrayIdx++;
+            if(ammoTrayIdx >= ammoTrayDisplays.Count)
             {
-                tempIdx = 0;
+                ammoTrayIdx = 0;
             }
-            else
+
+            bulletIdx++;
+            if (bulletIdx >= bulletPrefabs.Length)
             {
-                tempIdx++;
+                bulletIdx = 0;
             }
         }
 
         // Fill out the other direction
-        tempIdx = selectedBulletIndex - 1;
+        ammoTrayIdx = selectedAmmoTrayIndex;
+        bulletIdx = selectedBulletIndex;
         for (int i = 0; i < 3; i++)
         {
-            GameObject prefab = bulletPrefabs[tempIdx];
-            ammoTrayDisplays[tempIdx].DisplayCurrentBullet(prefab.GetComponent<Bullet>().foodType);
+            GameObject prefab = bulletPrefabs[bulletIdx];
+            ammoTrayDisplays[ammoTrayIdx].DisplayCurrentBullet(prefab.GetComponent<Bullet>().foodType);
 
-            tempIdx--;
-            if (tempIdx <= 0)
+            ammoTrayIdx--;
+            if (ammoTrayIdx < 0)
             {
-                tempIdx = bulletPrefabs.Length - 1;
+                ammoTrayIdx = ammoTrayDisplays.Count - 1;
             }
-            else
+
+            bulletIdx--;
+            if (bulletIdx < 0)
             {
-                tempIdx--;
+                bulletIdx = bulletPrefabs.Length - 1;
             }
         }
     }
@@ -138,6 +144,8 @@ public class CannonShoot : Singleton<CannonShoot>
         {
             bulletDisplay.DisplayCurrentBullet(selectedBulletPrefab.GetComponent<Bullet>().foodType);
         }
+
+        RefreshAmmoTrayDisplays();
     }
 
     private void Shoot()
@@ -163,6 +171,15 @@ public class CannonShoot : Singleton<CannonShoot>
             selectedBulletIndex++;
         }
 
+        if (selectedAmmoTrayIndex >= ammoTrayDisplays.Count - 1)
+        {
+            selectedAmmoTrayIndex = 0;
+        }
+        else
+        {
+            selectedAmmoTrayIndex++;
+        }
+
         AssignSelectedBullet(selectedBulletIndex);
 
         /// AudioManager.instance.PlaySound("Food_Truck_Cannon_Turn_Revolver_Right_2D");
@@ -177,6 +194,15 @@ public class CannonShoot : Singleton<CannonShoot>
         else
         {
             selectedBulletIndex--;
+        }
+
+        if (selectedAmmoTrayIndex <= 0)
+        {
+            selectedAmmoTrayIndex = ammoTrayDisplays.Count - 1;
+        }
+        else
+        {
+            selectedAmmoTrayIndex--;
         }
 
         AssignSelectedBullet(selectedBulletIndex);
