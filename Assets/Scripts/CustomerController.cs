@@ -86,6 +86,11 @@ public class CustomerController : MonoBehaviour
         rigidBody.AddExplosionForce(10, explosionPoint, 10, 5, ForceMode.Impulse);
 
         isDead = true;
+        explosion.Play();
+        foreach (ParticleSystem p in explosion.gameObject.GetComponentsInChildren<ParticleSystem>())
+        {
+            p.Play();
+        }
 
         GameManager.instance.RemoveCustomerFromList(this);
     }
@@ -93,11 +98,7 @@ public class CustomerController : MonoBehaviour
     public void FinishOrder()
     {
         GameManager.instance.OrderFilled(this);
-        explosion.Play();
-        foreach (ParticleSystem p in explosion.gameObject.GetComponentsInChildren<ParticleSystem>())
-        {
-            p.Play();
-        }
+        
 
         // Create thumbs up
         Instantiate(ResourceLoader.instance.thumbsUpPrefab, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
