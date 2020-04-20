@@ -60,6 +60,8 @@ MonoBehaviour:
   targetPairs:
   - {fileID: 1867265502104452804}
   isAerial: 1
+  boundery: {fileID: 0}
+  bounceForce: 200
   explosion: {fileID: 2930309781520622680}
   audioSource: {fileID: -3006154521198602472}
   timeAlive: 0

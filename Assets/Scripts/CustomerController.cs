@@ -11,6 +11,8 @@ public class CustomerController : MonoBehaviour
     public float speedMod;
     public List<TargetPairController> targetPairs = new List<TargetPairController>();
     public bool isAerial;
+    public BoxCollider boundery;
+    public float bounceForce;
 
     public ParticleSystem explosion;
     public AudioSource audioSource;
@@ -226,6 +228,15 @@ public class CustomerController : MonoBehaviour
         }
 
         return true;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(!isDead && other.gameObject.tag.Equals("Customer"))
+        {
+            var dist = other.transform.position - this.transform.position;
+            rigidBody.AddForce( -dist *  bounceForce * Time.deltaTime);
+        }
     }
 
     /*
