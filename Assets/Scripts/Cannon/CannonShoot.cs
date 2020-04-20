@@ -36,30 +36,37 @@ public class CannonShoot : Singleton<CannonShoot>
          shootRate -= Time.deltaTime;
       }
 
-      switch (selectedBulletPrefab.GetComponent<Bullet>().bulletType)
+      if (Input.GetButtonDown("Fire1") && shootRate <= 0.0f)
       {
-         case BulletType.STRAIGHT:
-            if (Input.GetButtonDown("Fire1") && shootRate <= 0.0f)
-            {
-               GenerateShake();
-               bulletShootForce = straightBulletForce;
-               Shoot();
-            }
-            break;
-         case BulletType.LOB:
-            if (Input.GetButton("Fire1"))
-            {
-               IncreaseLobBulletForce();
-            }
-
-            if (Input.GetButtonUp("Fire1"))
-            {
-               GenerateShake();
-               bulletShootForce = lobBulletForce;
-               Shoot();
-            }
-            break;
+         GenerateShake();
+         bulletShootForce = straightBulletForce;
+         Shoot();
       }
+
+      //switch (selectedBulletPrefab.GetComponent<Bullet>().bulletType)
+      //{
+      //   case BulletType.STRAIGHT:
+      //      if (Input.GetButtonDown("Fire1") && shootRate <= 0.0f)
+      //      {
+      //         GenerateShake();
+      //         bulletShootForce = straightBulletForce;
+      //         Shoot();
+      //      }
+      //      break;
+      //   case BulletType.LOB:
+      //      if (Input.GetButton("Fire1"))
+      //      {
+      //         IncreaseLobBulletForce();
+      //      }
+
+      //      if (Input.GetButtonUp("Fire1"))
+      //      {
+      //         GenerateShake();
+      //         bulletShootForce = lobBulletForce;
+      //         Shoot();
+      //      }
+      //      break;
+      //}
 
       if (Input.GetAxis("Mouse ScrollWheel") > 0.0f || Input.GetKeyDown(KeyCode.E))
       {
