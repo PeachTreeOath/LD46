@@ -101,7 +101,13 @@ public class GameManager : Singleton<GameManager>
     void Update()
     {
         fuelAmount -= fuelSpentPerTick * Time.deltaTime;
-        Debug.Log(fuelAmount);
+        //Debug.Log(fuelAmount);
+
+        float tempFuel = Mathf.Min(fuelAmount, 50);
+        tempFuel = Mathf.Max(fuelAmount, 25);
+        float ratio = fuelAmount - 25;
+        ratio /= 25;
+        AudioManager.instance.TransitionToEngine2(ratio);
 
         fuelGauge.value = 1 - fuelAmount / 100;
 
