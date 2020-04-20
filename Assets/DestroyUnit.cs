@@ -10,6 +10,7 @@ public class DestroyUnit : MonoBehaviour
     {
         if (t > lifetime)
         {
+            Debug.Log("Destroyed");
             Destroy(this);
         }
         else

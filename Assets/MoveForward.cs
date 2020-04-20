@@ -7,6 +7,8 @@ public class MoveForward : MonoBehaviour
     // Start is called before the first frame update
     public float speedMovement;
     public Vector3 startScale, endScale, speedScale;
+    public bool dontScale;
+    public bool invert;
     void Start()
     {
         transform.localScale = startScale;
@@ -15,11 +17,22 @@ public class MoveForward : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.localScale.x < endScale.x)
+        if(!dontScale)
         {
-            transform.localScale += speedScale * Time.deltaTime;
+            if (transform.localScale.x < endScale.x)
+            {
+                transform.localScale += speedScale * Time.deltaTime;
+            }
         }
-
-        transform.Translate(Vector3.forward * speedMovement * Time.deltaTime);
+        
+        if(!invert)
+        {
+            transform.Translate(-Vector3.forward * speedMovement * Time.deltaTime);
+        }
+        else
+        {
+            transform.Translate(Vector3.forward * speedMovement * Time.deltaTime);
+        }
+        
     }
 }
