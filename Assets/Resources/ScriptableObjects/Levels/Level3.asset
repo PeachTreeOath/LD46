@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Level3
   m_EditorClassIdentifier: 
   levelNumber: 3
-  spawnRateInSeconds: 0
-  maxCarsOnScreen: 0
-  nOrdersToFill: 0
-  possibleCars: []
+  spawnRateInSeconds: 0.2
+  maxCarsOnScreen: 10
+  nOrdersToFill: 15
+  possibleCars:
+  - {fileID: 2317140412773303417, guid: 86afc9a983548694b887b0220c259912, type: 3}
+  - {fileID: 2317140412773303417, guid: 3eab980c607633e4c973b620ff2793f0, type: 3}
+  - {fileID: 2317140412773303417, guid: 85d562d2db80dcc41b7346c1ba04fa7f, type: 3}
   possibleFoods: []
