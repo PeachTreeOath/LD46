@@ -296,26 +296,31 @@ PrefabInstance:
     - target: {fileID: 3270096663322570539, guid: f4458a8b2cc8a704abdc75c965ccf265,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3270096663322570539, guid: f4458a8b2cc8a704abdc75c965ccf265,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3270096663322570539, guid: f4458a8b2cc8a704abdc75c965ccf265,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3270096663322570539, guid: f4458a8b2cc8a704abdc75c965ccf265,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3270096663322570539, guid: f4458a8b2cc8a704abdc75c965ccf265,
         type: 3}
       propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3270096663322570539, guid: f4458a8b2cc8a704abdc75c965ccf265,
+        type: 3}
+      propertyPath: m_fontStyle
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3270096663322570541, guid: f4458a8b2cc8a704abdc75c965ccf265,
@@ -1355,6 +1360,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1204668637}
   m_CullTransparentMesh: 0
+--- !u!114 &1279127161 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3270096663467033184, guid: f4458a8b2cc8a704abdc75c965ccf265,
+    type: 3}
+  m_PrefabInstance: {fileID: 595830563}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1305451703
 GameObject:
   m_ObjectHideFlags: 0
@@ -2738,13 +2755,33 @@ PrefabInstance:
     - target: {fileID: 7216740713649722169, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
         type: 3}
       propertyPath: fuelPerOrder
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7216740713649722169, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
         type: 3}
       propertyPath: startingFuelAmount
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 7216740713649722169, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
+        type: 3}
+      propertyPath: maxFuel
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216740713649722169, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
+        type: 3}
+      propertyPath: fuelPerLevelUp
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216740713649722169, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
+        type: 3}
+      propertyPath: fuelSpentPerTick
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216740713649722169, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
+        type: 3}
+      propertyPath: fuelGauge
+      value: 
+      objectReference: {fileID: 1279127161}
     - target: {fileID: 7216740713649722174, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
         type: 3}
       propertyPath: m_Name

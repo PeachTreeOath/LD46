@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 using TMPro;
 
@@ -29,6 +30,8 @@ public class GameManager : Singleton<GameManager>
     
 
     public TextMeshProUGUI orderText, levelText;
+    public Slider fuelGauge;
+    public float fuelSpentPerTick;
 
 
 
@@ -71,8 +74,14 @@ public class GameManager : Singleton<GameManager>
     private void UpdateLevelText()
     {
         levelText.text = "LEVEL " + currentLevel.ToString();
+        filledOrders = 0;
     }
 
+    private void UpdateFuelUI()
+    {
+        
+    }
+        
     private void SyncNewLevelData(int nextLevel)
     {
         level = ResourceLoader.instance.GetLevel(nextLevel);
@@ -88,6 +97,15 @@ public class GameManager : Singleton<GameManager>
     // Update is called once per frame
     void Update()
     {
+        fuelAmount -= fuelSpentPerTick * Time.deltaTime;
+        fuelGauge.value = 1 - fuelAmount/100;
+
+        if(fuelAmount <= 0)
+        {
+            currentLevel = 1;
+            fuelAmount = startingFuelAmount;
+        }
+
         if (spawnCD < t)
         {
             if (nOrdersToFill > filledOrders)
@@ -113,6 +131,7 @@ public class GameManager : Singleton<GameManager>
         aliveOrders--;
         filledOrders++;
         UpdateOrderText();
+        fuelAmount += fuelPerOrder;
         RemoveCustomerFromList(customerController);
 
         if (filledOrders >= nOrdersToFill)
@@ -132,7 +151,8 @@ public class GameManager : Singleton<GameManager>
         levelTextSpawnPosition.CreateCanvas(currentLevel);
         Debug.Log("level beaten! going to next level");
         UpdateLevelText();
-        fuelAmount = fuelPerLevelUp;
+        fuelAmount += fuelPerLevelUp/currentLevel;
+        UpdateFuelUI();
     }
 
 
