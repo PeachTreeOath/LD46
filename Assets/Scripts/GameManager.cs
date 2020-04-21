@@ -87,6 +87,8 @@ public class GameManager : Singleton<GameManager>
 
     private void SyncNewLevelData(int nextLevel)
     {
+        if (nextLevel > 5)
+            nextLevel = 5;
         level = ResourceLoader.instance.GetLevel(nextLevel);
 
         spawnCD = level.spawnRateInSeconds;
@@ -204,6 +206,7 @@ public class GameManager : Singleton<GameManager>
     public void GotoNextLevel()
     {
         currentLevel++;
+   
         SyncNewLevelData(currentLevel);
         levelTextSpawnPosition.CreateCanvas(currentLevel);
         Debug.Log("level beaten! going to next level");

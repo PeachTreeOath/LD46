@@ -15,7 +15,7 @@ MonoBehaviour:
   levelNumber: 4
   spawnRateInSeconds: 1
   maxCarsOnScreen: 40
-  nOrdersToFill: 25
+  nOrdersToFill: 10
   possibleCars:
   - {fileID: 2317140412773303417, guid: 3eab980c607633e4c973b620ff2793f0, type: 3}
   - {fileID: 2317140412773303417, guid: 86afc9a983548694b887b0220c259912, type: 3}
