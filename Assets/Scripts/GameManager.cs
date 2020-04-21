@@ -116,6 +116,7 @@ public class GameManager : Singleton<GameManager>
             currentLevel = 1;
             filledOrders = 0;
             aliveOrders = 0;
+            SyncNewLevelData(currentLevel);
             fuelAmount = startingFuelAmount;
 
             int i = 0; // Only play 2 sounds
@@ -186,6 +187,7 @@ public class GameManager : Singleton<GameManager>
         filledOrders++;
         UpdateOrderText();
         fuelAmount += fuelPerOrder;
+        fuelAmount = Mathf.Min(maxFuel, fuelAmount);
         RemoveCustomerFromList(customerController);
 
         if (filledOrders >= nOrdersToFill)
@@ -207,6 +209,7 @@ public class GameManager : Singleton<GameManager>
         Debug.Log("level beaten! going to next level");
         UpdateLevelText();
         fuelAmount += fuelPerLevelUp / currentLevel;
+        fuelAmount = Mathf.Min(maxFuel, fuelAmount);
         UpdateFuelUI();
         UpdateOrderText();
     }
