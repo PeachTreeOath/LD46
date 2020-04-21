@@ -95,7 +95,7 @@ public class GameManager : Singleton<GameManager>
         maxCarOnScreen = level.maxCarsOnScreen;
         nOrdersToFill = level.nOrdersToFill;
         possibleCars = level.possibleCars;
-        Debug.Log("NEW LEVEL DATA SYNC'D: " + currentLevel.ToString());
+       // Debug.Log("NEW LEVEL DATA SYNC'D: " + currentLevel.ToString());
         levelTextSpawnPosition.CreateCanvas(currentLevel);
         CannonShoot.instance.InitAmmo(level.possibleFoods);
     }
@@ -297,6 +297,6 @@ public class GameManager : Singleton<GameManager>
         // Get it's Customer Component and add it to the list.
         customers.Add(customer);
         aliveOrders++;
-        Debug.Log("NEW CUSTOMER SPAWNED");
+       //Debug.Log("NEW CUSTOMER SPAWNED");
     }
 }

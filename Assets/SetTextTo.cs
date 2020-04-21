@@ -17,7 +17,7 @@ public class SetTextTo : MonoBehaviour
 
     public void SetTextToString(string text)
     {
-        Debug.Log(text);
+       // Debug.Log(text);
         tmp.text = text;
     }
 }

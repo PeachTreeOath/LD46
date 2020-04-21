@@ -106,6 +106,7 @@ public class CustomerController : MonoBehaviour
         }
 
         rigidBody.constraints = RigidbodyConstraints.None;
+        rigidBody.isKinematic = false;
         rigidBody.useGravity = true;
         rigidBody.AddExplosionForce(10, explosionPoint, 10, 5, ForceMode.Impulse);
 
