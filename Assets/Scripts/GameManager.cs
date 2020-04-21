@@ -64,7 +64,7 @@ public class GameManager : Singleton<GameManager>
         currentLevel = startingLevel;
         SyncNewLevelData(currentLevel);
 
-        
+
         UpdateOrderText();
         fuelAmount = startingFuelAmount;
     }
@@ -135,7 +135,7 @@ public class GameManager : Singleton<GameManager>
             UpdateLevelText();
             customers.Clear();
         }
-        
+
 
         if (spawnCD < t)
         {
@@ -208,7 +208,7 @@ public class GameManager : Singleton<GameManager>
     public void GotoNextLevel()
     {
         currentLevel++;
-   
+
         SyncNewLevelData(currentLevel);
         levelTextSpawnPosition.CreateCanvas(currentLevel);
         Debug.Log("level beaten! going to next level");
@@ -247,7 +247,10 @@ public class GameManager : Singleton<GameManager>
             customerObj.transform.position = new Vector3(customerObj.transform.position.x, Random.Range(3f, 4f), customerObj.transform.position.z);
 
         // Initialize customer
-        List<GameObject> possibleFoods = ResourceLoader.instance.GetLevel(currentLevel).possibleFoods;
+        int level = currentLevel;
+        if (currentLevel > 5)
+            level = 5;
+        List<GameObject> possibleFoods = ResourceLoader.instance.GetLevel(level).possibleFoods;
         int numFoods = Random.Range(1, 4);
         for (int i = 0; i < numFoods; i++)
         {
@@ -293,6 +296,7 @@ public class GameManager : Singleton<GameManager>
 
         // Get it's Customer Component and add it to the list.
         customers.Add(customer);
+        aliveOrders++;
         Debug.Log("NEW CUSTOMER SPAWNED");
     }
 }

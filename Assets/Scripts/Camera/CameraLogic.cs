@@ -4,74 +4,76 @@ using UnityEngine;
 
 public class CameraLogic : MonoBehaviour
 {
-   private const int HIGH_PRIORITY_NUM = 11;
-   private const int LOW_PRIORITY_NUM = 9;
-   private bool isCursorVisible = false;
+    private const int HIGH_PRIORITY_NUM = 11;
+    private const int LOW_PRIORITY_NUM = 9;
+    private bool isCursorVisible = false;
 
-   private Cinemachine.CinemachineVirtualCameraBase virtualCamera;
+    private Cinemachine.CinemachineVirtualCameraBase virtualCamera;
 
-   // Start is called before the first frame update
-   void Start()
-   {
-      Cursor.lockState = CursorLockMode.Locked;
-      Cursor.visible = isCursorVisible;
-      virtualCamera = GetComponent<Cinemachine.CinemachineVirtualCameraBase>();
-   }
+    // Start is called before the first frame update
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = isCursorVisible;
+        virtualCamera = GetComponent<Cinemachine.CinemachineVirtualCameraBase>();
+    }
 
-   // Update is called once per frame
-   void Update()
-   {
-      if (Input.GetButtonDown("Fire2"))
-      {
-         ChangeCameraPriority();
-      }
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetButtonDown("Fire2"))
+        {
+            ChangeCameraPriority();
+        }
 
-      if (Input.GetKeyDown(KeyCode.Escape))
-      {
-         ChangeIsCursorVisible();
-         LockUnlockCursor();
-      }
-   }
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
+        // if (Input.GetKeyDown(KeyCode.Escape))
+        //  {
+        //   ChangeIsCursorVisible();
+        //    LockUnlockCursor();
+        // }
+    }
 
-   private void ChangeCameraPriority()
-   {
-      if (virtualCamera)
-      {
-         if (virtualCamera.Priority == LOW_PRIORITY_NUM)
-         {
-            virtualCamera.Priority = HIGH_PRIORITY_NUM;
-         }
-         else if (virtualCamera.Priority == HIGH_PRIORITY_NUM)
-         {
-            virtualCamera.Priority = LOW_PRIORITY_NUM;
-         }
-      }
-   }
+    private void ChangeCameraPriority()
+    {
+        if (virtualCamera)
+        {
+            if (virtualCamera.Priority == LOW_PRIORITY_NUM)
+            {
+                virtualCamera.Priority = HIGH_PRIORITY_NUM;
+            }
+            else if (virtualCamera.Priority == HIGH_PRIORITY_NUM)
+            {
+                virtualCamera.Priority = LOW_PRIORITY_NUM;
+            }
+        }
+    }
 
-   private void ChangeIsCursorVisible()
-   {
-      if (isCursorVisible)
-      {
-         isCursorVisible = false;
-      }
-      else
-      {
-         isCursorVisible = true;
-      }
+    private void ChangeIsCursorVisible()
+    {
+        if (isCursorVisible)
+        {
+            isCursorVisible = false;
+        }
+        else
+        {
+            isCursorVisible = true;
+        }
 
-      Cursor.visible = isCursorVisible;
-   }
+        Cursor.visible = isCursorVisible;
+    }
 
-   private void LockUnlockCursor()
-   {
-      if (isCursorVisible)
-      {
-         Cursor.lockState = CursorLockMode.None;
-      }
-      else
-      {
-         Cursor.lockState = CursorLockMode.Locked;
-      }
+    private void LockUnlockCursor()
+    {
+        if (isCursorVisible)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
 
-   }
+    }
 }
