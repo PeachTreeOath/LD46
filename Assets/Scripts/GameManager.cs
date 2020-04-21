@@ -64,7 +64,7 @@ public class GameManager : Singleton<GameManager>
         currentLevel = startingLevel;
         SyncNewLevelData(currentLevel);
 
-        levelTextSpawnPosition.CreateCanvas(currentLevel);
+        
         UpdateOrderText();
         fuelAmount = startingFuelAmount;
     }
@@ -94,6 +94,7 @@ public class GameManager : Singleton<GameManager>
         nOrdersToFill = level.nOrdersToFill;
         possibleCars = level.possibleCars;
         Debug.Log("NEW LEVEL DATA SYNC'D: " + currentLevel.ToString());
+        levelTextSpawnPosition.CreateCanvas(currentLevel);
         CannonShoot.instance.InitAmmo(level.possibleFoods);
     }
 
@@ -132,6 +133,7 @@ public class GameManager : Singleton<GameManager>
             UpdateLevelText();
             customers.Clear();
         }
+        
 
         if (spawnCD < t)
         {
