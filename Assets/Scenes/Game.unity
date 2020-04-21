@@ -3125,7 +3125,7 @@ PrefabInstance:
     - target: {fileID: 7216740713649722169, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
         type: 3}
       propertyPath: fuelSpentPerTick
-      value: 4
+      value: 3.325
       objectReference: {fileID: 0}
     - target: {fileID: 7216740713649722174, guid: afe08af2cc9ec8d49b9ef064f8f253f6,
         type: 3}
