@@ -15,7 +15,7 @@ MonoBehaviour:
   levelNumber: 1
   spawnRateInSeconds: 1
   maxCarsOnScreen: 10
-  nOrdersToFill: 1
+  nOrdersToFill: 10
   possibleCars:
   - {fileID: 2317140412773303417, guid: 3eab980c607633e4c973b620ff2793f0, type: 3}
   possibleFoods:
